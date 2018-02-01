@@ -1,0 +1,19 @@
+.LoginPage-card {
+  &.md-card {
+    width: 35%;
+    padding-bottom: 2%;
+  }
+
+  .LoginPage__submit {
+    float: right;
+  }
+
+  .LoginPage__text-field {
+    width: 95%;
+    margin-bottom: 5%;
+  }
+
+  .LoginPage__message {
+    color: red;
+  }
+}
