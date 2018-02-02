@@ -5,7 +5,7 @@ const keycloak = Keycloak({
   url: process.env.REACT_APP_AUTH_URL,
   'ssl-required': 'external',
   clientId: process.env.REACT_APP_AUTH_CLIENT_ID,
-  'bearer-only': true,
+  'public-client': true,
 });
 
 export default keycloak;

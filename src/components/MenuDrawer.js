@@ -6,7 +6,7 @@ import Toolbar from 'react-md/lib/Toolbars';
 
 import keycloak from '../keycloak-config';
 
-import './MenuDrawer.css';
+import '../assets/stylesheets/MenuDrawer.css';
 
 class MenuDrawer extends Component {
   constructor(props) {

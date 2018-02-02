@@ -7,7 +7,7 @@ import Toolbar from 'react-md/lib/Toolbars';
 import MenuDrawer from '../components/MenuDrawer';
 import { logout } from '../store/user/action';
 
-import './Header.css';
+import '../assets/stylesheets/Header.css';
 
 class Header extends Component {
   renderMenuDrawer() {

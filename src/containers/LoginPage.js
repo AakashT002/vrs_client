@@ -8,7 +8,7 @@ import { Card, CardText, CardTitle } from 'react-md/lib/Cards';
 
 import { login } from '../store/user/action';
 
-import './LoginPage.css';
+import '../assets/stylesheets/LoginPage.css';
 
 class LoginPage extends Component {
   constructor(props) {

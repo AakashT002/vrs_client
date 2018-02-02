@@ -9,7 +9,7 @@ import { getUserDetails } from '../store/user/action';
 
 import logo from '../assets/images/logo.svg';
 
-import './HomePage.css';
+import '../assets/stylesheets/HomePage.css';
 
 export class HomePage extends Component {
   handleClick() {

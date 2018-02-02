@@ -9,7 +9,7 @@ import HomePage from './HomePage';
 import LoginPage from './LoginPage';
 import RequireAuthentication from './RequireAuthentication';
 
-import './App.css';
+import '../assets/stylesheets/App.css';
 import 'material-design-icons/iconfont/material-icons.css';
 
 export class App extends Component {
