@@ -1,6 +1,7 @@
 import createBrowserHistory from 'history/createBrowserHistory';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import keycloak from './keycloak-config';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import registerServiceWorker from './registerServiceWorker';
@@ -24,7 +25,27 @@ const render = Component => {
   );
 };
 
-render(App);
+keycloak
+  .init({ onLoad: 'check-sso', checkLoginIframe: false })
+  .success(authenticated => {
+    if (authenticated) {
+      sessionStorage.setItem('kctoken', keycloak.token);
+      sessionStorage.setItem(
+        'username',
+        keycloak.tokenParsed.preferred_username
+      );
+      // store.dispatch(getUserRoles());
+      // store.dispatch(setUserName(keycloak.tokenParsed.preferred_username));
+      setInterval(() => {
+        keycloak.updateToken(10).error(() => keycloak.logout());
+        sessionStorage.setItem('kctoken', keycloak.token);
+      }, 10000);
+
+      render(App);
+    } else {
+      keycloak.login();
+    }
+  });
 
 // In development, hot module replacement (HMR) updates the application
 // when changes are made, without having to refresh.
