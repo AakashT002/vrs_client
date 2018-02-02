@@ -11,8 +11,9 @@ export default function RequireAuthentication(Component) {
     componentWillMount() {
       const { isAuthenticated, dispatch, history } = this.props;
 
-      if (!!process.env.REACT_APP_IDP) {
-        if (!!process.env.REACT_APP_BEARER_TYPE &&
+      if (process.env.REACT_APP_IDP === 'keycloak') {
+        if (
+          !!process.env.REACT_APP_BEARER_TYPE &&
           process.env.REACT_APP_BEARER_TYPE !== 'bearer-only'
         ) {
           keycloak
@@ -40,10 +41,10 @@ export default function RequireAuthentication(Component) {
                 keycloak.login();
               }
             });
-        } else if (!isAuthenticated && !!!sessionStorage.kctoken) {
+        } else if (!isAuthenticated && sessionStorage.kctoken !== undefined) {
           history.push('/login');
         }
-      } else if (!isAuthenticated && !!!sessionStorage.jwt) {
+      } else if (!isAuthenticated && sessionStorage.jwt !== undefined) {
         history.push('/login');
       }
     }

@@ -97,7 +97,7 @@ export const login = credentials => {
 };
 
 export const updateToken = () => {
-  return function(dispatch) {
+  return function() {
     const searchParams = new URLSearchParams();
 
     const params = {
@@ -123,11 +123,9 @@ export const updateToken = () => {
         sessionStorage.setItem('kctoken', data.access_token);
         sessionStorage.setItem('refresh_token', data.refresh_token);
       })
-      .catch(function(error) {
+      .catch(function() {
         sessionStorage.removeItem('kctoken');
         sessionStorage.removeItem('refresh_token');
-
-        console.log('Error: ' + error.message);
       });
   };
 };
