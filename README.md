@@ -1,3 +1,7 @@
+# LP02 - Team M : VRS Client
+
+This is a react/redux app that will be used by wholesalers largely to interact with the VRS system for their drug verification.
+
 # Redux
 
 Project template for create-react-app which includes useful Redux patterns.
