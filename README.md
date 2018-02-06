@@ -1,4 +1,4 @@
-# LP02 - Team M : VRS Client
+# LP02 - Team M : VRS : Requestor Client
 
 This is a react/redux app that will be used by wholesalers largely to interact with the VRS system for their drug verification.
 
