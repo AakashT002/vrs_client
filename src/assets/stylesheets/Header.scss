@@ -1,8 +1,18 @@
 header.Header-toolbar {
-  height: 48px;
+  height: 44px;
 
   > h2.md-title {
     line-height: 48px;
-    margin: 0 0 0 20px;
+    margin: 0 0 0 105px;
+    font-family: Roboto;
   }
+}
+
+.Header__title-logo {
+  margin-left: 88px;
+}
+
+.Header__title-key {
+  margin-top: -70px;
+  margin-left: 125px;
 }

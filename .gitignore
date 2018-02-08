@@ -15,6 +15,9 @@ src/**/*.css
 # environment variables
 .env
 
+# debug log
+debug.log
+
 # misc
 .DS_Store
 .env.local

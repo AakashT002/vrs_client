@@ -1,7 +1,7 @@
 @import '../../../node_modules/react-md/src/scss/react-md';
 @import 'variables';
 
-$md-primary-color: $green;
+$md-primary-color: $header-black;
 $md-secondary-color: $red;
 
 @include react-md-everything;

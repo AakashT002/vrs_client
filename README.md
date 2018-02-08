@@ -1,6 +1,6 @@
 # LP02 - Team M : VRS : Requestor Client
 
-This is a react/redux app that will be used by wholesalers largely to interact with the VRS system for their drug verification.
+This is a react/redux app that will be used by wholesalers largely to interact with the VRS system for their drug verification. Two applications one for desktop and mobile are deployed. `<App/>` component loads the desktop version and `<MobileApp/>` component loads the mobile version. Mobile app is accessible only by returns specialists.
 
 # Redux
 
@@ -12,21 +12,41 @@ You can find the most recent version of the Create React App guide [here](https:
 
 ## Getting Started
 
-* `yarn start` to run the application
-* `yarn test` to run tests
-* `yarn lint` to run additional linter rules
+* `npm start` to run the application
+* `npm test` to run tests
+* `npm run lint-all` to run additional linter rules
 
 ## KeyCloak integration for AuthN/Authz
 
 This app is configured to interact with Keycloak for providing AuthN/AuthZ. Edit .env.development for the below variables.
 
-* **REACT_APP_AUTH_REALM**=`<<domainName>>` (eg: trade-finance)
+**For Desktop**
+
+* **REACT_APP_AUTH_REALM**=`CognizantVRS`
 * **REACT_APP_AUTH_URL**=http://localhost:8080/auth
-* **REACT_APP_AUTH_CLIENT_ID**=`<<clientId>>` (eg: trade-finance-client)
+* **REACT_APP_AUTH_CLIENT_ID**=`requestor-client`
+* **REACT_APP_IDP**=`keycloak`
+* **REACT_APP_SASS**=`true`
+* **REACT_APP_DEVICE_TYPE**=`desktop`
 
-- **REACT_APP_AUTH_REALM** is kind of your project boundary under which you create user and provide them access to the various applications that you develop.
-- **REACT_APP_AUTH_URL** is the URL where Keycloak server is running
+**For Mobile**
 
+* **REACT_APP_AUTH_REALM**=`CognizantVRS(or)CognizantVRSMobile`
+* **REACT_APP_AUTH_URL**=http://localhost:8080/auth
+* **REACT_APP_AUTH_CLIENT_ID**=`requestor-client`
+* **REACT_APP_IDP**=`keycloak`
+* **REACT_APP_SASS**=`true`
+* **REACT_APP_DEVICE_TYPE**=`desktop(or)mobile`
+
+## Local Keycloak setup 
+* Download Keycloak and install it locally. Then create admin user at http://localhost:8080.
+* Then follow below steps to setup realms required for `requestor-client(desktop and mobile)` namely `CognizantVRS` and `CognizantVRSMobile`.
+
+* Please follow the screenshots provided in setup folder to create realm/client/user/roles as per the mode of an application i.e mobile/desktop.
+
+* **Themes for login in keycloak locally:**
+Please download and unzip the themes from [here](https://github.com/CognizantStudio/lp02-team-m-requestor-client/blob/master/src/setup).
+Then copy the unzipped folders to the `\keycloak-3.4.3.Final\themes` folder of keycloak.
 
 ## Deployment
 

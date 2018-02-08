@@ -1,14 +1,18 @@
 @import './variables';
 
 .HomePage-header {
-  background-color: #222;
-  height: 150px;
+  background-color: #F5F5F5;
+  height: 560px;
   padding: 20px;
-  color: $white;
+  color: #E0E0E0;
   text-align: center;
 
   & > h2 {
     color: $white;
+  }
+
+  HomePage__text {
+    color: $header-black;
   }
 }
 

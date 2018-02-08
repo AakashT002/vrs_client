@@ -55,10 +55,7 @@ class MenuDrawer extends Component {
           sessionStorage.removeItem('kctoken');
           sessionStorage.removeItem('refresh_token');
 
-          if (
-            !!process.env.REACT_APP_BEARER_TYPE &&
-            process.env.REACT_APP_BEARER_TYPE !== 'bearer-only'
-          ) {
+          if (process.env.REACT_APP_IDP === 'keycloak') {
             keycloak.logout();
           } else {
             this.props.handleLogout();

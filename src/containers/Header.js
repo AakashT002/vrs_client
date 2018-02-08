@@ -8,6 +8,7 @@ import MenuDrawer from '../components/MenuDrawer';
 import { logout } from '../store/user/action';
 
 import '../assets/stylesheets/Header.css';
+import mesaVerde_logo from '../assets/images/mesaverda_logo.jpg';
 
 class Header extends Component {
   renderMenuDrawer() {
@@ -20,14 +21,26 @@ class Header extends Component {
     );
   }
 
+  renderTitle() {
+    return (
+      <div>
+        <div>
+          <img src={mesaVerde_logo} className="Header__title-logo" alt="logo" />
+          <div className="Header__title-key">
+            <span>MESA VERDE</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="Header">
         <Toolbar
-          actions={[this.renderMenuDrawer()]}
           className="Header-toolbar"
           colored
-          title="Redux Template"
+          title={this.renderTitle()}
         />
       </div>
     );

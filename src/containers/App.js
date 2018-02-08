@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
 import Header from './Header';
-import DashboardPage from './DashboardPage';
 import HomePage from './HomePage';
 import LoginPage from './LoginPage';
-import RequireAuthentication from './RequireAuthentication';
+// import RequireAuthentication from './RequireAuthentication';
 
 import '../assets/stylesheets/App.css';
 import 'material-design-icons/iconfont/material-icons.css';
@@ -16,7 +15,7 @@ export class App extends Component {
   checkAuthenticated(component, path) {
     const Component = component;
     return this.props.isAuthenticated ? (
-      <Redirect to="/dashboard" />
+      <Redirect to="/home" />
     ) : (
       <Component to={path} />
     );
@@ -29,20 +28,12 @@ export class App extends Component {
 
         <div className="App-content">
           <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => this.checkAuthenticated(Redirect, '/home')}
-            />
+            <Route exact path="/" component={HomePage} />
             <Route
               path="/login"
               component={() => this.checkAuthenticated(LoginPage)}
             />
             <Route path="/home" component={HomePage} />
-            <Route
-              path="/dashboard"
-              component={RequireAuthentication(DashboardPage)}
-            />
           </Switch>
         </div>
       </div>

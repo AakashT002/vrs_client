@@ -12,38 +12,31 @@ export default function RequireAuthentication(Component) {
       const { isAuthenticated, dispatch, history } = this.props;
 
       if (process.env.REACT_APP_IDP === 'keycloak') {
-        if (
-          !!process.env.REACT_APP_BEARER_TYPE &&
-          process.env.REACT_APP_BEARER_TYPE !== 'bearer-only'
-        ) {
-          keycloak
-            .init({ onLoad: 'check-sso', checkLoginIframe: false })
-            .success(authenticated => {
-              if (authenticated) {
+        keycloak
+          .init({ onLoad: 'check-sso', checkLoginIframe: false })
+          .success(authenticated => {
+            if (authenticated) {
+              sessionStorage.setItem('kctoken', keycloak.token);
+              sessionStorage.setItem(
+                'username',
+                keycloak.tokenParsed.preferred_username
+              );
+
+              dispatch(
+                authenticate({
+                  id: sessionStorage.username,
+                  name: sessionStorage.username,
+                })
+              );
+
+              setInterval(() => {
+                keycloak.updateToken(10).error(() => keycloak.logout());
                 sessionStorage.setItem('kctoken', keycloak.token);
-                sessionStorage.setItem(
-                  'username',
-                  keycloak.tokenParsed.preferred_username
-                );
-
-                dispatch(
-                  authenticate({
-                    id: sessionStorage.username,
-                    name: sessionStorage.username,
-                  })
-                );
-
-                setInterval(() => {
-                  keycloak.updateToken(10).error(() => keycloak.logout());
-                  sessionStorage.setItem('kctoken', keycloak.token);
-                }, 10000);
-              } else {
-                keycloak.login();
-              }
-            });
-        } else if (!isAuthenticated && sessionStorage.kctoken !== undefined) {
-          history.push('/login');
-        }
+              }, 10000);
+            } else {
+              keycloak.login();
+            }
+          });
       } else if (!isAuthenticated && sessionStorage.jwt !== undefined) {
         history.push('/login');
       }
