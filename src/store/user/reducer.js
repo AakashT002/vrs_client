@@ -3,7 +3,7 @@ import * as ActionTypes from '../actionTypes';
 
 const initialUserState = {
   id: null,
-  isAuthenticated: !!sessionStorage.kctoken || !!sessionStorage.jwt,
+  isAuthenticated: !!sessionStorage.kctoken,
   name: null,
   respData: {},
   message: '',
@@ -25,15 +25,6 @@ export const user = createReducer(initialUserState, {
   },
   [ActionTypes.LOGOUT](state) {
     return { ...state, isAuthenticated: false };
-  },
-  [ActionTypes.FETCH_USER_DETAILS_REQUEST](state) {
-    return { ...state, respData: { data: '' } };
-  },
-  [ActionTypes.FETCH_USER_DETAILS_SUCCESS](state, action) {
-    return { ...state, respData: action.data };
-  },
-  [ActionTypes.FETCH_USER_DETAILS_FAILURE](state, action) {
-    return { ...state, respData: { data: `Error: ${action.data}` } };
   },
 });
 

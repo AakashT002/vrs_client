@@ -9,26 +9,20 @@ import { authenticate } from '../store/user/action';
 export default function RequireAuthentication(Component) {
   class Authentication extends React.Component {
     componentWillMount() {
-      const { isAuthenticated, dispatch, history } = this.props;
-
-      if (process.env.REACT_APP_IDP === 'keycloak') {
+      const { isAuthenticated, dispatch } = this.props;
+      if (!isAuthenticated) {
         keycloak
           .init({ onLoad: 'check-sso', checkLoginIframe: false })
           .success(authenticated => {
             if (authenticated) {
               sessionStorage.setItem('kctoken', keycloak.token);
-              sessionStorage.setItem(
-                'username',
-                keycloak.tokenParsed.preferred_username
-              );
-
+              sessionStorage.setItem('username', keycloak.tokenParsed.name);
               dispatch(
                 authenticate({
                   id: sessionStorage.username,
                   name: sessionStorage.username,
                 })
               );
-
               setInterval(() => {
                 keycloak.updateToken(10).error(() => keycloak.logout());
                 sessionStorage.setItem('kctoken', keycloak.token);
@@ -37,8 +31,6 @@ export default function RequireAuthentication(Component) {
               keycloak.login();
             }
           });
-      } else if (!isAuthenticated && sessionStorage.jwt !== undefined) {
-        history.push('/login');
       }
     }
 
@@ -54,7 +46,6 @@ export default function RequireAuthentication(Component) {
   }
 
   Authentication.propTypes = {
-    history: PropTypes.object,
     dispatch: PropTypes.func,
     isAuthenticated: PropTypes.bool,
   };

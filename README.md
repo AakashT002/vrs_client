@@ -25,18 +25,18 @@ This app is configured to interact with Keycloak for providing AuthN/AuthZ. Edit
 * **REACT_APP_AUTH_REALM**=`CognizantVRS`
 * **REACT_APP_AUTH_URL**=http://localhost:8080/auth
 * **REACT_APP_AUTH_CLIENT_ID**=`requestor-client`
-* **REACT_APP_IDP**=`keycloak`
+* **REACT_APP_API_URL**=`http://localhost:5000`
 * **REACT_APP_SASS**=`true`
 * **REACT_APP_DEVICE_TYPE**=`desktop`
 
 **For Mobile**
 
-* **REACT_APP_AUTH_REALM**=`CognizantVRS(or)CognizantVRSMobile`
+* **REACT_APP_AUTH_REALM**=`CognizantVRSMobile`
 * **REACT_APP_AUTH_URL**=http://localhost:8080/auth
 * **REACT_APP_AUTH_CLIENT_ID**=`requestor-client`
-* **REACT_APP_IDP**=`keycloak`
+* **REACT_APP_API_URL**=`http://localhost:5000`
 * **REACT_APP_SASS**=`true`
-* **REACT_APP_DEVICE_TYPE**=`desktop(or)mobile`
+* **REACT_APP_DEVICE_TYPE**=`mobile`
 
 ## Local Keycloak setup 
 * Download Keycloak and install it locally. Then create admin user at http://localhost:8080.
@@ -45,7 +45,7 @@ This app is configured to interact with Keycloak for providing AuthN/AuthZ. Edit
 * Please follow the screenshots provided in setup folder to create realm/client/user/roles as per the mode of an application i.e mobile/desktop.
 
 * **Themes for login in keycloak locally:**
-Please download and unzip the themes from [here](https://github.com/CognizantStudio/lp02-team-m-requestor-client/blob/master/src/setup).
+Please download and unzip the themes from [here](https://github.com/CognizantStudio/lp02-team-m-requestor-client/blob/master/setup).
 Then copy the unzipped folders to the `\keycloak-3.4.3.Final\themes` folder of keycloak.
 
 ## Deployment

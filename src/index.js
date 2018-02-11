@@ -1,18 +1,21 @@
 import createBrowserHistory from 'history/createBrowserHistory';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import keycloak from './keycloak-config';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import registerServiceWorker from './registerServiceWorker';
 
 import App from './containers/App';
+import MobileApp from './containers/MobileApp';
 import configureStore from './store/configureStore';
 
 import 'lato-font';
 import 'roboto-npm-webfont';
+import 'interstate-js';
 import 'typeface-muli';
 import './assets/stylesheets/index.css';
+
+import { DESKTOP, MOBILE } from './utils/constants';
 
 const history = createBrowserHistory();
 const store = configureStore(history);
@@ -28,27 +31,13 @@ const render = Component => {
   );
 };
 
-keycloak
-  .init({ onLoad: 'check-sso', checkLoginIframe: false })
-  .success(authenticated => {
-    if (authenticated) {
-      sessionStorage.setItem('kctoken', keycloak.token);
-      sessionStorage.setItem(
-        'username',
-        keycloak.tokenParsed.preferred_username
-      );
-      // store.dispatch(getUserRoles());
-      // store.dispatch(setUserName(keycloak.tokenParsed.preferred_username));
-      setInterval(() => {
-        keycloak.updateToken(10).error(() => keycloak.logout());
-        sessionStorage.setItem('kctoken', keycloak.token);
-      }, 10000);
+const deviceType = process.env.REACT_APP_DEVICE_TYPE;
 
-      render(App);
-    } else {
-      keycloak.login();
-    }
-  });
+if (deviceType === DESKTOP) {
+  render(App);
+} else if (deviceType === MOBILE) {
+  render(MobileApp);
+}
 
 // In development, hot module replacement (HMR) updates the application
 // when changes are made, without having to refresh.

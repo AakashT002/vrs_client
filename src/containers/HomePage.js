@@ -3,15 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'react-md/lib/Cards';
 
-import { getUserDetails } from '../store/user/action';
-
 import '../assets/stylesheets/HomePage.css';
 
 export class HomePage extends Component {
-  handleClick() {
-    this.props.dispatch(getUserDetails());
-  }
-
   render() {
     return (
       <div className="HomePage">
