@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Paper from 'react-md/lib/Papers';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import MobileHeader from './MobileHeader';
 import '../assets/stylesheets/MobileHomePage.css';
 
@@ -11,7 +14,7 @@ export class MobileHomePage extends Component {
           <br />
           <br />
           <div className="mobileHomePage-layout">
-            <MobileHeader />
+            <MobileHeader dispatch={this.props.dispatch} />
           </div>
         </div>
       </Paper>
@@ -19,4 +22,8 @@ export class MobileHomePage extends Component {
   }
 }
 
-export default MobileHomePage;
+MobileHomePage.propTypes = {
+  dispatch: PropTypes.func,
+};
+
+export default connect()(MobileHomePage);

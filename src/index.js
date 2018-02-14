@@ -32,20 +32,26 @@ const render = Component => {
 };
 
 const deviceType = process.env.REACT_APP_DEVICE_TYPE;
-
 if (deviceType === DESKTOP) {
   render(App);
 } else if (deviceType === MOBILE) {
   render(MobileApp);
 }
 
-// In development, hot module replacement (HMR) updates the application
+//In development, hot module replacement (HMR) updates the application
 // when changes are made, without having to refresh.
 if (module.hot) {
-  module.hot.accept('./containers/App', () => {
-    const NextApp = require('./containers/App').default;
-    render(NextApp);
-  });
+  if (deviceType === DESKTOP) {
+    module.hot.accept('./containers/App', () => {
+      const NextApp = require('./containers/App').default;
+      render(NextApp);
+    });
+  } else if (deviceType === MOBILE) {
+    module.hot.accept('./containers/MobileApp', () => {
+      const NextApp = require('./containers/MobileApp').default;
+      render(NextApp);
+    });
+  }
 }
 
 registerServiceWorker();

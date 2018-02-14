@@ -11,3 +11,11 @@ $md-secondary-color: $red;
   margin: 20px auto;
   width: 70%;
 }
+
+.md-table-row {
+  border-top: 1px solid $drawer-gray !important;
+  border-bottom: 1px solid $drawer-gray !important;
+  &:hover {
+    background: $drawer-gray !important;
+  }
+}

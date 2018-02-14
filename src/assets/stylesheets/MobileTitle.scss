@@ -1,0 +1,46 @@
+@import './variables';
+
+.mobileTitle {
+  width: 360px;
+  height: 53px;
+    
+  .mobileTitle__title--bar {
+    width: 264px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: $bluishblack;
+    box-shadow: 0 1px 1px 0 $dark-gray;
+    margin-left: 47px;   
+    position: relative;
+    margin-top: 9px;        
+  }
+    
+  .mobileTitle__title--project {
+    width: 240px;
+    height: 19px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: $white;
+    margin-left: 10px;
+    position: absolute;
+    margin-top: 11px;
+  }
+
+  .mobileTitle__title--more {
+    margin-top: -32px;
+    margin-left: 322px;
+    position: absolute;
+  }
+
+  .mobileTitle-home {
+    margin-top: 6px;
+    margin-left: 10px;
+    position: absolute;
+  }
+}

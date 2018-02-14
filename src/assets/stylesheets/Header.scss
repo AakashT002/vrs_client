@@ -1,3 +1,5 @@
+@import './variables';
+
 header.Header-toolbar {
   height: 44px;
 
@@ -6,6 +8,33 @@ header.Header-toolbar {
     margin: 0 0 0 105px;
     font-family: Roboto;
   }
+  
+  .Header__title-username {
+    float: right;
+    margin-left: 830px;
+    position: absolute;
+  }
+
+  .md-list--menu-tr {
+    right: -6px;
+    top: 50px;
+    background-color: $header-black;
+  }
+
+  .md-text--secondary {
+    color: $white;
+  }
+  
+  #userMenu{
+    margin-left: 940px;
+    margin-top: -20px;
+  }
+
+  .material-icons {  
+    float: right ;
+    margin-left: 956px;
+    margin-top: -11px;
+  } 
 }
 
 .Header__title-logo {

@@ -1,5 +1,5 @@
 export default function SessionStorage() {
-  let store = { username: 'admin' };
+  let store = { username: 'testuser' };
   this.getItem = key => {
     return store[key] || null;
   };

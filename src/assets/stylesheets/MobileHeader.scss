@@ -2,26 +2,24 @@
 
 .mobileHeader {
  
-	margin-top: -10px;
+  margin-top: -10px;
 
-	.mobileHeader-header {
-		width: 316px;
-		height: 48px;
-		background-color: $light-grey ;
-		border-top-left-radius: 15px;
-		border-top-right-radius: 15px;
-	}
+  .mobileHeader-header {
+	  width: 358px;
+		height: 125px;
+		background-color: $bluish-gray ;
+  }
 		
-	.mobileHeader-header--title {
+  .mobileHeader-header--title {
 		width: 280px;
 		height: 21px;
 		border-radius: 100px;
 		background-color: $white;
 		margin-top: -8px;
 		margin-left: 19px;
-	}
+  }
 		
-	.mobileHeader-title {
+  .mobileHeader-title {
 		width: 270px;
 		height: 16px;
 		font-family: Roboto;
@@ -34,15 +32,16 @@
 		text-align: left;
 		color: $light-black;
 		margin-left: 10px;
-	}
+  }
 		
-	.mobileHeader-toolbar {
-		border: 1px solid $disabled;
-		height: 60px;
-		background-color: $disabled;
-	}
+  .mobileHeader-toolbar {
+		border: 1px solid $bluish-gray;
+		width: 357px;
+		background-color: $bluish-gray;
+		margin-top: -34px;
+  }
 		
-	.mobileHeader-button {
+  .mobileHeader-button {
 		height: 18px;
 		font-family: Interstate;
 		font-size: 14px;
@@ -54,22 +53,73 @@
 		text-align: left;
 		color: $grayish-black;
 		margin-top: 20px;
-	
+
 		&:hover {
 			background-color: $disabled;
 		}
-	}
+  }
 	
-	.mobileHeader-button--verification {
+  .mobileHeader-button--verification {
 		width: 169px;        
-	}
-		
-	.mobileHeader-button--logout {
+  }
+	
+  .mobileHeader-button--logout {
 		width: 145px;
 		padding-left: 72px;
-	}
+  }
+
+  .mobileHeader-logo {
+		margin-left: 10px;
+		position: absolute;
+		margin-top: -4px;
+  }
+
+  .mobileHeader-title {
+		color: $light-grey;
+		width: 120px;
+		height: 16px;
+		font-family: OpenSans;
+		font-size: 18px;
+		font-weight: bold;
+		font-style: normal;
+		font-stretch: normal;
+		position: absolute;
+		margin-left: 48px;
+  }
+
+  .mobileHeader-option {
+    margin-left: 313px;
+    margin-top: -1px;
+		position: absolute;
+  }
+
+  #menu-drawer {
+		height: 550px;
+		margin-right: 504px;
+		margin-top: 103px;
+		position: absolute;
+		background: $bluish-gray;
+  }
+   
+  .md-data-table--responsive {
+    margin-top: -27px;
+  }
+
+  .mobileheader__drawer--close {
+		color: $drawer-gray;
+		margin-left: 124px;
+		margin-top: -5px;
+  }
+  
+  .mobileHeader_drawer-options {
+		color: $drawer-gray;
+		cursor: pointer;
+
+		.md-table-row >tbody .md-table-row--hover {
+		  color: $drawer-gray;	
+		}	
+  }
 }
-	
  
 	
  
