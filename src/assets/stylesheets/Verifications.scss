@@ -1,0 +1,110 @@
+@import './variables';
+
+.Verifications {
+  .Verifications__table {
+    max-height: 512px;
+    overflow-y: AUTO;
+    width: 358px;
+    margin-top: 32px;
+    background-color: $whitish;
+  }
+
+  .Verifications__table--header {
+    height: 102px;
+    background-color: $grey-50;
+  }
+
+  .Verifications__label {
+    width: 312px;
+    height: 40px;
+    font-size: 34px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.18;
+    letter-spacing: normal;
+    text-align: center;
+    color: $blue-grey;
+    margin-left: 61px;
+  }
+
+  .Verifications__hours {
+    width: 312px;
+    height: 32px;
+    font-size: 21px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.52;
+    letter-spacing: normal;
+    text-align: center;
+    color: $grey-600;
+    margin-left: 89px;
+  }
+
+  .Verifications__table--row {
+    width: 355px;
+    height: 68px;
+  }
+
+  .Verifications__serialization--code {
+    width: 264px;
+    height: 24px;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: $blue-grey;
+  }
+
+  .Verifications__status {
+    width: 264px;
+    height: 16px;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    text-align: left;
+    color: $grey-600;
+  } 
+
+  .Verifications__timestamp {
+    width: 264px;
+    height: 16px;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    text-align: left;
+    color: $grey-600;
+    margin-left: 3px;
+  } 
+
+  .Verifications__check--oval {
+    background-color: $teal;
+  }
+
+  .Verifications__hourglass--oval {
+    background-color: $cyan;
+  }
+
+  .Verifications__error--oval {
+    background-color: $orange-red;
+  }
+
+  .Verifications__close--oval {
+    background-color: $marigold;
+  }
+
+  .md-avatar {
+    width: 32px;
+    height: 32px;
+  }
+}

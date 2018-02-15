@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 
 import MobileHomePage from './MobileHomePage';
-
 import '../assets/stylesheets/MobileApp.css';
 import 'material-design-icons/iconfont/material-icons.css';
 

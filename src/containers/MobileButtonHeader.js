@@ -14,16 +14,22 @@ class MobileButtonHeader extends Component {
       position: 'left',
     };
 
-    this.onLogOutClick = this.onLogOutClick.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
     this.openDrawerLeft = this.openDrawerLeft.bind(this);
     this.openDrawerRight = this.openDrawerRight.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
     this.handleVisibility = this.handleVisibility.bind(this);
+    this.handleAllVerifications = this.handleAllVerifications.bind(this);
   }
 
-  onLogOutClick() {
+  handleLogout() {
     sessionStorage.clear();
     keycloak.logout();
+  }
+
+  handleAllVerifications() {
+    const { history } = this.props;
+    history.push('/verifications');
   }
 
   openDrawerLeft() {
@@ -62,7 +68,8 @@ class MobileButtonHeader extends Component {
         position={this.state.position}
         isLeft={isLeft}
         closeBtn={closeBtn}
-        onLogOutClick={this.onLogOutClick}
+        handleLogout={this.handleLogout}
+        handleAllVerifications={this.handleAllVerifications}
       />
     );
   }

@@ -12,9 +12,9 @@ class MobileHeader extends Component {
       <div className="mobileHeader">
         <div className="mobileHeader-header">
           <img src={mobile_header} alt="logo" />
-          <MobileTitle/>
+          <MobileTitle />
         </div>
-        <MobileButtonHeader/>
+        <MobileButtonHeader />
       </div>
     );
   }

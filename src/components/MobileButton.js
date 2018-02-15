@@ -11,14 +11,24 @@ import {
   TableRow,
   TableColumn,
 } from 'react-md';
-import { ALL_VERIFICATIONS, VERIFY_PRODUCT, LOGOUT, MESA_VERDE } from '../utils/constants';
+import {
+  ALL_VERIFICATIONS,
+  VERIFY_PRODUCT,
+  LOGOUT,
+  MESA_VERDE,
+} from '../utils/constants';
 
 const MobileButton = props => {
   return (
     <div className="mobileHeader-toolbar">
       <img src={mesaVerde_logo} className="mobileHeader-logo" alt="logo" />
       <label className="mobileHeader-title">{MESA_VERDE}</label>
-      <img src={option_button} onClick={props.openDrawerRight} className="mobileHeader-option" alt="logo" />
+      <img
+        src={option_button}
+        onClick={props.openDrawerRight}
+        className="mobileHeader-option"
+        alt="logo"
+      />
       <Drawer
         id="menu-drawer"
         className="md-data-table--responsive"
@@ -43,14 +53,17 @@ const MobileButton = props => {
                 </TableColumn>
               </TableRow>
               <TableRow className="md-table-row">
-                <TableColumn className="mobileHeader_drawer-options">
+                <TableColumn
+                  className="mobileHeader_drawer-options"
+                  onClick={props.handleAllVerifications}
+                >
                   {ALL_VERIFICATIONS}
                 </TableColumn>
               </TableRow>
               <TableRow className="md-table-row">
                 <TableColumn
                   className="mobileHeader_drawer-options"
-                  onClick={props.onLogOutClick}
+                  onClick={props.handleLogout}
                 >
                   {LOGOUT}
                 </TableColumn>
@@ -72,7 +85,8 @@ MobileButton.propTypes = {
   handleVisibility: PropTypes.func,
   isLeft: PropTypes.bool,
   closeBtn: PropTypes.string,
-  onLogOutClick: PropTypes.func,
+  handleLogout: PropTypes.func,
+  handleAllVerifications: PropTypes.func,
 };
 
 export default MobileButton;

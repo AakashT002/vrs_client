@@ -14,7 +14,7 @@ export class MobileHomePage extends Component {
           <br />
           <br />
           <div className="mobileHomePage-layout">
-            <MobileHeader dispatch={this.props.dispatch} />
+            <MobileHeader />
           </div>
         </div>
       </Paper>

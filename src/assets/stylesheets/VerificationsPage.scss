@@ -1,0 +1,22 @@
+@import './variables';
+
+.VerificationsPage {
+  background-color: $grey;
+  width: 100%;
+
+  .VerificationsPage-container {
+    height: 662px;
+    background-color: $bluish-gray;
+  }
+
+  .VerificationsPage-layout {
+    border: $grey 1px solid;
+    height: 640px;
+    width: 360px;
+    margin: auto;
+    padding-top: 10px;  
+    padding-bottom: 20px;
+    background-color: $disabled;
+    margin-top: -24px;
+  }
+}
