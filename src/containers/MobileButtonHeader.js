@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
 import MobileButton from '../components/MobileButton.js';
@@ -74,5 +75,9 @@ class MobileButtonHeader extends Component {
     );
   }
 }
+
+MobileButtonHeader.prototypes = {
+  history: PropTypes.object,
+};
 
 export default withRouter(MobileButtonHeader);
