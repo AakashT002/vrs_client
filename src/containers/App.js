@@ -5,7 +5,6 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 
 import Header from './Header';
 import HomePage from './HomePage';
-import RequireAuthentication from './RequireAuthentication';
 
 import '../assets/stylesheets/App.css';
 import 'material-design-icons/iconfont/material-icons.css';
@@ -18,12 +17,8 @@ export class App extends Component {
 
         <div className="App-content">
           <Switch>
-            <Route exact path="/" component={RequireAuthentication(HomePage)} />
-            <Route
-              exact
-              path="/home"
-              component={RequireAuthentication(HomePage)}
-            />
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/home" component={HomePage} />
           </Switch>
         </div>
       </div>
