@@ -7,6 +7,7 @@ import MobileHeader from './MobileHeader';
 import Verification from '.././components/Verification';
 import VerificationDetails from '.././components/VerificationDetails';
 import { verifyProductIdentifier } from '../store/verification/action';
+import { pageToBeRendered } from '../store/verification/action';
 
 import '../assets/stylesheets/MobileHomePage.css';
 
@@ -18,6 +19,12 @@ export class MobileHomePage extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.resetStateValues = this.resetStateValues.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.dispatch(pageToBeRendered());
+    this.setState({ pi: null });
   }
 
   handleChange(value) {
@@ -26,6 +33,10 @@ export class MobileHomePage extends Component {
 
   handleClick() {
     this.props.dispatch(verifyProductIdentifier(this.state.pi));
+  }
+
+  resetStateValues() {
+    this.setState({ pi: '' });
   }
 
   render() {
@@ -52,7 +63,10 @@ export class MobileHomePage extends Component {
           <br />
           <br />
           <div className="mobileHomePage-layout">
-            <MobileHeader />
+            <MobileHeader
+              dispatch={this.props.dispatch}
+              resetStateValues={this.resetStateValues}
+            />
             {componentToRender}
           </div>
         </div>

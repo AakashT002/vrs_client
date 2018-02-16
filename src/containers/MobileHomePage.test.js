@@ -6,8 +6,11 @@ describe('Container: MobileHomePage', () => {
   const props = {
     displayPage: 'Verification',
   };
+  const spy = jest.fn();
 
-  const wrapper = shallow(<MobileHomePage displayPage={props.displayPage} />);
+  const wrapper = shallow(
+    <MobileHomePage displayPage={props.displayPage} dispatch={spy} />
+  );
 
   it('renders without crashing', () => {
     expect(wrapper.exists()).toBe(true);

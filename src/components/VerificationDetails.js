@@ -11,10 +11,14 @@ import {
   PENDING,
   PENDING_LABEL,
   REQUESTING,
+  REQUESTOR_ID_LABEL,
+  RESPONDER_ID_LABEL,
+  SYSTEM_ERROR_LABEL,
   NOT_VERIFIED,
   NOT_VERIFIED_LABEL,
   VERIFIED,
   VERIFIED_LABEL,
+  UNVERIFIED,
 } from '../utils/constants';
 
 const VerificationDetails = props => {
@@ -25,7 +29,7 @@ const VerificationDetails = props => {
       return <i className="material-icons">access_time</i>;
     } else if (status === ERROR) {
       return <i className="material-icons">error</i>;
-    } else if (status === NOT_VERIFIED) {
+    } else if (status === UNVERIFIED || status === NOT_VERIFIED) {
       return <i className="material-icons">cancel</i>;
     }
   };
@@ -37,7 +41,7 @@ const VerificationDetails = props => {
       return 'verification-details__blue';
     } else if (status === ERROR) {
       return 'verification-details__orange';
-    } else if (status === NOT_VERIFIED) {
+    } else if (status === UNVERIFIED || status === NOT_VERIFIED) {
       return 'verification-details__amber';
     }
   };
@@ -49,7 +53,7 @@ const VerificationDetails = props => {
       return PENDING_LABEL;
     } else if (status === ERROR) {
       return ERROR_LABEL;
-    } else if (status === NOT_VERIFIED) {
+    } else if (status === UNVERIFIED) {
       return NOT_VERIFIED_LABEL;
     }
   };
@@ -60,6 +64,21 @@ const VerificationDetails = props => {
 
   const changeDateformat = date => {
     return moment(date).format('DD MMM YYYY H:MM:SS');
+  };
+
+  const entityCheck = event => {
+    if (event.eventStatus === VERIFIED) {
+      return RESPONDER_ID_LABEL + props.verifiedProduct.responderId;
+    } else if (
+      event.eventStatus === PENDING ||
+      event.eventStatus === REQUESTING
+    ) {
+      return REQUESTOR_ID_LABEL + props.verifiedProduct.requestorId;
+    } else if (event.status === ERROR) {
+      return SYSTEM_ERROR_LABEL;
+    } else if (event.status === UNVERIFIED) {
+      return RESPONDER_ID_LABEL + props.verifiedProduct.responderId;
+    }
   };
 
   const renderEvent = events => {
@@ -82,9 +101,7 @@ const VerificationDetails = props => {
                 <h className="md-cell verification-details__transaction-date">
                   {changeDateformat(event.eventTime)}
                 </h>
-                <p className="md-cell">
-                  Requester ID: {props.verifiedProduct.requestorId}
-                </p>
+                <p className="md-cell">{entityCheck(event)}</p>
                 <p className="md-cell">{event.eventMessage}</p>
               </div>
             </div>

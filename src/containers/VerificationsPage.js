@@ -25,7 +25,7 @@ class VerificationsPage extends Component {
           <br />
           <br />
           <div className="VerificationsPage-layout">
-            <MobileHeader />
+            <MobileHeader dispatch={this.props.dispatch} />
             <Verifications verificationList={this.props.verificationList} />
           </div>
         </div>

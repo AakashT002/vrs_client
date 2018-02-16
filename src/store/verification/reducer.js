@@ -19,6 +19,11 @@ export const verification = createReducer(initialState, {
   [ActionTypes.VERIFY_PI_FAILURE](state) {
     return { ...state, requesting: false };
   },
+  [ActionTypes.PAGE_TO_BE_RENDERED](state = initialState) {
+    return Object.assign({}, state, {
+      displayPage: 'Verification',
+    });
+  },
 });
 
 export default verification;

@@ -14,8 +14,9 @@ const Verification = props => {
           Enter a product identifier to verify
         </h2>
         <TextField
+          autoFocus
           id="floating-center-title"
-          label="Product Identifer"
+          label="Product Identifier"
           lineDirection="center"
           placeholder=""
           className="verification__serial-number-input"

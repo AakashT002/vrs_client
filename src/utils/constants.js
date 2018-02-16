@@ -12,8 +12,13 @@ export const ERROR = 'error';
 export const NOT_VERIFIED = 'not-verified';
 export const PENDING = 'pending';
 export const VERIFIED = 'verified';
+export const UNVERIFIED = 'Not verified';
 
 export const ERROR_LABEL = 'Error';
 export const NOT_VERIFIED_LABEL = 'Not Verified';
 export const PENDING_LABEL = 'Requested';
 export const VERIFIED_LABEL = 'Verified';
+
+export const RESPONDER_ID_LABEL = 'Responder ID: ';
+export const REQUESTOR_ID_LABEL = 'Requestor ID: ';
+export const SYSTEM_ERROR_LABEL = 'System error.Please rescan';

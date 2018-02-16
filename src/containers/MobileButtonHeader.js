@@ -6,6 +6,7 @@ import MobileButton from '../components/MobileButton.js';
 import { Button } from 'react-md';
 import '../assets/stylesheets/MobileHeader.css';
 import keycloak from '../keycloak-config';
+import { pageToBeRendered } from '../store/verification/action';
 
 class MobileButtonHeader extends Component {
   constructor(props) {
@@ -26,6 +27,14 @@ class MobileButtonHeader extends Component {
 
   handleVerifyProduct() {
     const { history } = this.props;
+    if (
+      history.location.pathname === '/home' ||
+      history.location.pathname === '/'
+    ) {
+      this.props.resetStateValues();
+    }
+    this.props.dispatch(pageToBeRendered());
+    this.closeDrawer();
     history.push('/home');
   }
 
@@ -36,6 +45,7 @@ class MobileButtonHeader extends Component {
 
   handleAllVerifications() {
     const { history } = this.props;
+    this.closeDrawer();
     history.push('/verifications');
   }
 
@@ -85,6 +95,8 @@ class MobileButtonHeader extends Component {
 
 MobileButtonHeader.propTypes = {
   history: PropTypes.object,
+  dispatch: PropTypes.func,
+  resetStateValues: PropTypes.func,
 };
 
 export default withRouter(MobileButtonHeader);

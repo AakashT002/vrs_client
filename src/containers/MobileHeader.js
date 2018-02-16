@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import MobileButtonHeader from './MobileButtonHeader';
 import MobileTitle from '../components/MobileTitle';
@@ -13,10 +14,18 @@ class MobileHeader extends Component {
           <img src={mobile_header} alt="logo" />
           <MobileTitle />
         </div>
-        <MobileButtonHeader />
+        <MobileButtonHeader
+          dispatch={this.props.dispatch}
+          resetStateValues={this.props.resetStateValues}
+        />
       </div>
     );
   }
 }
+
+MobileHeader.propTypes = {
+  dispatch: PropTypes.func,
+  resetStateValues: PropTypes.func,
+};
 
 export default MobileHeader;

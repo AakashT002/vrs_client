@@ -11,7 +11,11 @@ export const verifyProductIdentifier = pi => ({
     try {
       return await Verification.verify(pi);
     } catch (error) {
-      throw new Error(error.message);
+      throw new Error(error);
     }
   },
+});
+
+export const pageToBeRendered = () => ({
+  type: ActionTypes.PAGE_TO_BE_RENDERED,
 });
