@@ -46,7 +46,7 @@ const MobileButton = props => {
       >
         <div>
           <DataTable plain>
-            <TableBody>
+            <TableBody id="drawer_menu">
               <TableRow className="md-table-row">
                 <TableColumn
                   className="mobileHeader_drawer-options"
