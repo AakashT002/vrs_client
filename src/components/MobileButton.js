@@ -48,7 +48,10 @@ const MobileButton = props => {
           <DataTable plain>
             <TableBody>
               <TableRow className="md-table-row">
-                <TableColumn className="mobileHeader_drawer-options">
+                <TableColumn
+                  className="mobileHeader_drawer-options"
+                  onClick={props.handleVerifyProduct}
+                >
                   {VERIFY_PRODUCT}
                 </TableColumn>
               </TableRow>
@@ -85,6 +88,7 @@ MobileButton.propTypes = {
   handleVisibility: PropTypes.func,
   isLeft: PropTypes.bool,
   closeBtn: PropTypes.string,
+  handleVerifyProduct: PropTypes.func,
   handleLogout: PropTypes.func,
   handleAllVerifications: PropTypes.func,
 };

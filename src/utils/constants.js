@@ -7,6 +7,7 @@ export const MOBILE = 'mobile';
 export const VERIFY_PRODUCT = 'VERIFY PRODUCT';
 export const MESA_VERDE = 'MESA VERDE';
 
+export const REQUESTING = 'requesting';
 export const ERROR = 'error';
 export const NOT_VERIFIED = 'not-verified';
 export const PENDING = 'pending';

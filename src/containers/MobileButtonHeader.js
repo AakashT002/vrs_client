@@ -20,7 +20,13 @@ class MobileButtonHeader extends Component {
     this.openDrawerRight = this.openDrawerRight.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
     this.handleVisibility = this.handleVisibility.bind(this);
+    this.handleVerifyProduct = this.handleVerifyProduct.bind(this);
     this.handleAllVerifications = this.handleAllVerifications.bind(this);
+  }
+
+  handleVerifyProduct() {
+    const { history } = this.props;
+    history.push('/home');
   }
 
   handleLogout() {
@@ -69,6 +75,7 @@ class MobileButtonHeader extends Component {
         position={this.state.position}
         isLeft={isLeft}
         closeBtn={closeBtn}
+        handleVerifyProduct={this.handleVerifyProduct}
         handleLogout={this.handleLogout}
         handleAllVerifications={this.handleAllVerifications}
       />
@@ -76,7 +83,7 @@ class MobileButtonHeader extends Component {
   }
 }
 
-MobileButtonHeader.prototypes = {
+MobileButtonHeader.propTypes = {
   history: PropTypes.object,
 };
 

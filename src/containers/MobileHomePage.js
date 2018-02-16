@@ -1,13 +1,51 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Paper from 'react-md/lib/Papers';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
 import MobileHeader from './MobileHeader';
+import Verification from '.././components/Verification';
+import VerificationDetails from '.././components/VerificationDetails';
+import { verifyProductIdentifier } from '../store/verification/action';
+
 import '../assets/stylesheets/MobileHomePage.css';
 
 export class MobileHomePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pi: null,
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleChange(value) {
+    this.setState({ pi: value });
+  }
+
+  handleClick() {
+    this.props.dispatch(verifyProductIdentifier(this.state.pi));
+  }
+
   render() {
+    let componentToRender = null;
+    if (this.props.displayPage === 'Verification') {
+      componentToRender = (
+        <Verification
+          handleChange={this.handleChange}
+          pi={this.state.pi}
+          handleClick={this.handleClick}
+        />
+      );
+    } else {
+      componentToRender = (
+        <VerificationDetails
+          verifiedProduct={this.props.verifiedProduct}
+          pi={this.state.pi}
+        />
+      );
+    }
     return (
       <Paper className="mobileHomePage">
         <div className="mobileHomePage-container">
@@ -15,6 +53,7 @@ export class MobileHomePage extends Component {
           <br />
           <div className="mobileHomePage-layout">
             <MobileHeader />
+            {componentToRender}
           </div>
         </div>
       </Paper>
@@ -22,8 +61,17 @@ export class MobileHomePage extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    displayPage: state.verification.displayPage,
+    verifiedProduct: state.verification.verifiedProduct,
+  };
+}
+
 MobileHomePage.propTypes = {
   dispatch: PropTypes.func,
+  displayPage: PropTypes.string,
+  verifiedProduct: PropTypes.object,
 };
 
-export default connect()(MobileHomePage);
+export default connect(mapStateToProps)(MobileHomePage);

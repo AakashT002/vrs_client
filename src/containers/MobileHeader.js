@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import MobileButtonHeader from './MobileButtonHeader';
 import MobileTitle from '../components/MobileTitle';
@@ -19,9 +18,5 @@ class MobileHeader extends Component {
     );
   }
 }
-
-MobileHeader.propTypes = {
-  dispatch: PropTypes.func,
-};
 
 export default MobileHeader;
