@@ -28,6 +28,7 @@ This app is configured to interact with Keycloak for providing AuthN/AuthZ. Edit
 * **REACT_APP_API_URL**=`http://localhost:5000`
 * **REACT_APP_SASS**=`true`
 * **REACT_APP_DEVICE_TYPE**=`desktop`
+* **REACT_APP_REQUESTOR_ID**=`ABC_44545`
 
 **For Mobile**
 
@@ -37,6 +38,7 @@ This app is configured to interact with Keycloak for providing AuthN/AuthZ. Edit
 * **REACT_APP_API_URL**=`http://localhost:5000`
 * **REACT_APP_SASS**=`true`
 * **REACT_APP_DEVICE_TYPE**=`mobile`
+* **REACT_APP_REQUESTOR_ID**=`ABC_44545`
 
 ## Local Keycloak setup 
 * Download Keycloak and install it locally. Then create admin user at http://localhost:8080.
@@ -51,8 +53,6 @@ Then copy the unzipped folders to the `\keycloak-3.4.3.Final\themes` folder of k
 ## Deployment
 
 * **Heroku** - Use the create-react-app buildpack as described [here](https://blog.heroku.com/deploying-react-with-zero-configuration).
-
-* **AWS (S3/CloudFront)** - Follow along with this [blog post](https://medium.com/@omgwtfmarc/deploying-create-react-app-to-s3-or-cloudfront-48dae4ce0af).
 
 ## Features
 
