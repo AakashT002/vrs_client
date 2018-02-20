@@ -6,8 +6,8 @@ import { ConnectedRouter } from 'react-router-redux';
 import registerServiceWorker from './registerServiceWorker';
 import keycloak from './keycloak-config';
 
-import App from './containers/App';
-import MobileApp from './containers/MobileApp';
+import App from './containers/desktop/App';
+import MobileApp from './containers/mobile/MobileApp';
 import configureStore from './store/configureStore';
 import { authenticate } from './store/user/action.js';
 import 'lato-font';
@@ -19,8 +19,8 @@ import WebFont from 'webfontloader';
 import { DESKTOP, MOBILE } from './utils/constants';
 
 WebFont.load({
-  google: { families: ['Open Sans','Roboto','Material Icons','Interstate'] },
- });
+  google: { families: ['Open Sans', 'Roboto', 'Material Icons', 'Interstate'] },
+});
 
 const history = createBrowserHistory();
 const store = configureStore(history);
@@ -68,13 +68,13 @@ keycloak
 // when changes are made, without having to refresh.
 if (module.hot) {
   if (deviceType === DESKTOP) {
-    module.hot.accept('./containers/App', () => {
-      const NextApp = require('./containers/App').default;
+    module.hot.accept('./containers/desktop/App', () => {
+      const NextApp = require('./containers/desktop/App').default;
       render(NextApp);
     });
   } else if (deviceType === MOBILE) {
-    module.hot.accept('./containers/MobileApp', () => {
-      const NextApp = require('./containers/MobileApp').default;
+    module.hot.accept('./containers/mobile/MobileApp', () => {
+      const NextApp = require('./containers/mobile/MobileApp').default;
       render(NextApp);
     });
   }
