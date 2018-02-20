@@ -9,6 +9,7 @@ import {
 } from 'react-md';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import { SpinLoading } from 'respinner';
 
 import '../assets/stylesheets/Verifications.css';
 
@@ -23,7 +24,7 @@ import {
   VERIFIED_LABEL,
 } from '../utils/constants';
 
-const Verifications = ({ verificationList }) => {
+const Verifications = ({ verificationList, requesting }) => {
   const formatDate = date => {
     return moment(date, 'YYYY-MM-DD HH:mm:ss z').format(
       'DD MMM, YYYY HH:mm:ss'
@@ -83,23 +84,36 @@ const Verifications = ({ verificationList }) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {verificationList.map((verification, index) => (
-            <TableRow key={index} className="Verifications__table--row">
-              <TableColumn>
-                <font className="Verifications__serialization--code">
-                  {verification.srn}
-                </font>
-                <br />
-                <font className="Verifications__status">
-                  {renderStatusText(verification.status)}
-                </font>
-                <font className="Verifications__timestamp">
-                  {formatDate(verification.responseRcvTime)}
-                </font>
-              </TableColumn>
-              <TableColumn>{renderStatusIcon(verification.status)}</TableColumn>
-            </TableRow>
-          ))}
+        {requesting ? (
+            <div className="Verifications__loader">
+              <SpinLoading
+                stroke="$blue-grey"
+                borderRadius={2}
+                loading={true}
+                count={10}
+              />
+          </div>) :
+            verificationList.length !== 0 ? (
+              verificationList.map((verification, index) => (
+              <TableRow key={index} className="Verifications__table--row">
+                <TableColumn>
+                  <font className="Verifications__serialization--code">
+                    {verification.srn}
+                  </font>
+                  <br />
+                  <font className="Verifications__status">
+                    {renderStatusText(verification.status)}
+                  </font>
+                  <font className="Verifications__timestamp">
+                    {formatDate(verification.responseRcvTime)}
+                  </font>
+                </TableColumn>
+                <TableColumn>{renderStatusIcon(verification.status)}</TableColumn>
+              </TableRow>
+            ))) : (
+              <span className="Verifications-msg">No Verifications Data Found</span>
+            )
+          }
         </TableBody>
       </DataTable>
     </div>
@@ -108,6 +122,7 @@ const Verifications = ({ verificationList }) => {
 
 Verifications.propTypes = {
   verificationList: PropTypes.array,
+  requesting: PropTypes.bool,
 };
 
 export default Verifications;

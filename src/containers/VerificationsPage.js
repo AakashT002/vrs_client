@@ -26,7 +26,9 @@ class VerificationsPage extends Component {
           <br />
           <div className="VerificationsPage-layout">
             <MobileHeader dispatch={this.props.dispatch} />
-            <Verifications verificationList={this.props.verificationList} />
+            <Verifications
+              verificationList={this.props.verificationList}
+              requesting={this.props.requesting} />
           </div>
         </div>
       </Paper>
@@ -37,11 +39,13 @@ class VerificationsPage extends Component {
 VerificationsPage.propTypes = {
   verificationList: PropTypes.array,
   dispatch: PropTypes.func,
+  requesting: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
   return {
     verificationList: state.verifications.verificationList,
+    requesting: state.verifications.requesting,
   };
 }
 

@@ -4,6 +4,7 @@ import * as ActionTypes from '../actionTypes';
 const initialState = {
   displayPage: 'Verification',
   verifiedProduct: {},
+  requesting: false,
 };
 
 export const verification = createReducer(initialState, {
@@ -14,6 +15,7 @@ export const verification = createReducer(initialState, {
     return Object.assign({}, state, {
       verifiedProduct: action.response.result,
       displayPage: action.response.result.status,
+      requesting: false,
     });
   },
   [ActionTypes.VERIFY_PI_FAILURE](state) {

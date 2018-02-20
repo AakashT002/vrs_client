@@ -7,6 +7,7 @@ import MobileHeader from './MobileHeader';
 import Verification from '.././components/Verification';
 import VerificationDetails from '.././components/VerificationDetails';
 import { verifyProductIdentifier } from '../store/verification/action';
+import { SpinLoading } from 'respinner';
 import { pageToBeRendered } from '../store/verification/action';
 
 import '../assets/stylesheets/MobileHomePage.css';
@@ -67,7 +68,17 @@ export class MobileHomePage extends Component {
               dispatch={this.props.dispatch}
               resetStateValues={this.resetStateValues}
             />
-            {componentToRender}
+            {this.props.requesting ?
+              <div className="mobileHomePage-loader">
+                <SpinLoading
+                  stroke="$blue-grey"
+                  borderRadius={2}
+                  loading={true}
+                  count={10}
+                />
+              </div> :
+              componentToRender
+            }
           </div>
         </div>
       </Paper>
@@ -79,6 +90,7 @@ function mapStateToProps(state) {
   return {
     displayPage: state.verification.displayPage,
     verifiedProduct: state.verification.verifiedProduct,
+    requesting: state.verification.requesting,
   };
 }
 
@@ -86,6 +98,7 @@ MobileHomePage.propTypes = {
   dispatch: PropTypes.func,
   displayPage: PropTypes.string,
   verifiedProduct: PropTypes.object,
+  requesting: PropTypes.bool,
 };
 
 export default connect(mapStateToProps)(MobileHomePage);
