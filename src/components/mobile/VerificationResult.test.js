@@ -4,7 +4,8 @@ import VerificationResult from './VerificationResult';
 
 describe('Component: VerificationResults', () => {
   const props = {
-    pi: '31346131',
+    productIdentifier:
+      '(01)10350881006602(21)12345678904321(17)ABC1234(10)20190321',
     verificationResult: {
       srn: 1425,
       gtin: 12586,
@@ -27,8 +28,8 @@ describe('Component: VerificationResults', () => {
 
   const wrapper = shallow(
     <VerificationResult
-      pi={props.pi}
-      verificationResult={props.verificationResult}
+      productIdentifier={props.productIdentifier}
+      data={props.verificationResult}
     />
   );
 

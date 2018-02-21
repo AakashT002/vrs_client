@@ -54,7 +54,7 @@ export class MobileHomePage extends Component {
     } else {
       componentToRender = (
         <VerificationResult
-          verificationResult={this.props.verificationResult}
+          data={this.props.verificationResult}
           productIdentifier={this.state.productIdentifier}
         />
       );
@@ -97,7 +97,6 @@ function mapStateToProps(state) {
 
 MobileHomePage.propTypes = {
   dispatch: PropTypes.func,
-  displayPage: PropTypes.string,
   verificationResult: PropTypes.object,
   requesting: PropTypes.bool,
 };

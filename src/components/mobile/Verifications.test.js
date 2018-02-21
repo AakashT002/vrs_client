@@ -13,8 +13,8 @@ describe('Component: Verifications', () => {
       status: VERIFIED,
     },
     {
-      serializationCode: '1264837692650268',
-      TimeStamp: '2018-02-13T14:25:22.273Z',
+      srn: '1264837692650268',
+      responseRcvTime: '2018-02-13T14:25:22.273Z',
       status: PENDING,
     },
   ];

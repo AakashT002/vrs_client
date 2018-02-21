@@ -20,6 +20,7 @@ const PIVerification = props => {
             label="Product Identifier"
             lineDirection="center"
             placeholder=""
+            required
             className="pi-verification__serial-number-input"
             onChange={value => props.handleChange(value)}
             value={props.productIdentifier}

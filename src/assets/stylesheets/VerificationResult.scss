@@ -141,7 +141,7 @@
   }
 
   .verification-results__transaction-details {
-    margin: 8px 0px 0px 16px;
+    margin: 8px 0px 0px 14px;
     width: 256px;
     height: 48px;
     font-family: Open Sans;
@@ -159,7 +159,11 @@
     }    
 
     .verification-results__transaction-date {
+      height: 18px;
+      width: 116px;
+      margin-bottom: 4px;
       font-size: 12px;
+      font-family: Open Sans;
       color: $warm-grey-two;
     }
 
