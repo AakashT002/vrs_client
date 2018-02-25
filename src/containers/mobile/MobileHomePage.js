@@ -49,6 +49,7 @@ export class MobileHomePage extends Component {
           handleChange={this.handleChange}
           productIdentifier={this.state.productIdentifier}
           handleSubmit={this.handleSubmit}
+          handleClear={this.clearVerificationForm}
         />
       );
     } else {

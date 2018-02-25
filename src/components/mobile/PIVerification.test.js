@@ -11,6 +11,8 @@ describe('Component: PIVerification', () => {
     <PIVerification
       productIdentifier={props.productIdentifier}
       handleSubmit={spy}
+      handleClear={spy}
+      handleChange={spy}
     />
   );
 
@@ -43,11 +45,43 @@ describe('Component: PIVerification', () => {
     ).toBe(true);
   });
 
-  it('should call onClick when the verify button is clicked', () => {
+  it('should call handleSubmit when the verify button is clicked', () => {
+    const handleSubmit = spy;
     const wrapper = shallow(
-      <PIVerification productIdentifier={'456'} handleSubmit={spy} />
+      <PIVerification productIdentifier={'456'} handleSubmit={handleSubmit} />
     );
     wrapper.find('.pi-verification__verify-button-active').simulate('click');
-    expect(spy).toHaveBeenCalled();
+    expect(handleSubmit).toHaveBeenCalled();
+  });
+
+  it('renders the Inactive Clear Button', () => {
+    expect(
+      wrapper.find('.pi-verification__clear-button-inActive').exists()
+    ).toBe(true);
+  });
+
+  it('renders the Active Clear Button', () => {
+    const wrapper = shallow(<PIVerification productIdentifier={'456'} />);
+    expect(wrapper.find('.pi-verification__clear-button-active').exists()).toBe(
+      true
+    );
+  });
+
+  it('should call handleClear when the Clear button is clicked', () => {
+    const handleClear = jest.fn();
+    const wrapper = shallow(
+      <PIVerification productIdentifier={'456'} handleClear={handleClear} />
+    );
+    wrapper.find('.pi-verification__clear-button-active').simulate('click');
+    expect(handleClear.mock.calls.length).toEqual(1);
+  });
+
+  it('should call handleChange when productIdentifier is changed', () => {
+    const handleChange = jest.fn();
+    const wrapper = shallow(
+      <PIVerification productIdentifier={'456'} handleChange={handleChange} />
+    );
+    wrapper.find('.pi-verification__serial-number-input').simulate('change');
+    expect(handleChange.mock.calls.length).toEqual(1);
   });
 });

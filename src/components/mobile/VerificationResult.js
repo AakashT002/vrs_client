@@ -16,7 +16,6 @@ import {
   SYSTEM_ERROR_LABEL,
   NOT_VERIFIED,
   NOT_VERIFIED_LABEL,
-  UNVERIFIED,
   VERIFIED,
   VERIFIED_LABEL,
 } from '../../utils/constants';
@@ -39,7 +38,7 @@ const VerificationResult = props => {
       return <img src={access_time} alt="access_time" />;
     } else if (status === ERROR) {
       return <img src={error_outline} alt="error_outline" />;
-    } else if (status === UNVERIFIED || status === NOT_VERIFIED) {
+    } else if (status === NOT_VERIFIED) {
       return <img src={not_interested} alt="not_interested" />;
     }
   };
@@ -47,11 +46,11 @@ const VerificationResult = props => {
   const renderStatusIcon = status => {
     if (status === VERIFIED) {
       return <img src={verified} alt="verified" />;
-    } else if (status === PENDING || status === REQUESTING) {
+    } else if (status === PENDING) {
       return <img src={pending} alt="pending" />;
     } else if (status === ERROR) {
       return <img src={error} alt="error" />;
-    } else if (status === UNVERIFIED || status === NOT_VERIFIED) {
+    } else if (status === NOT_VERIFIED) {
       return <img src={not_verified} alt="not-verified" />;
     }
   };
@@ -63,7 +62,7 @@ const VerificationResult = props => {
       return 'verification-results__blue';
     } else if (status === ERROR) {
       return 'verification-results__orange';
-    } else if (status === UNVERIFIED || status === NOT_VERIFIED) {
+    } else if (status === NOT_VERIFIED) {
       return 'verification-results__amber';
     }
   };
@@ -75,7 +74,7 @@ const VerificationResult = props => {
       return PENDING_LABEL;
     } else if (status === ERROR) {
       return ERROR_LABEL;
-    } else if (status === UNVERIFIED) {
+    } else if (status === NOT_VERIFIED) {
       return NOT_VERIFIED_LABEL;
     }
   };
@@ -98,7 +97,7 @@ const VerificationResult = props => {
       return REQUESTOR_ID_LABEL + props.data.requestorId;
     } else if (event.status === ERROR) {
       return SYSTEM_ERROR_LABEL;
-    } else if (event.status === UNVERIFIED) {
+    } else if (event.status === NOT_VERIFIED) {
       return RESPONDER_ID_LABEL + props.data.responderId;
     }
   };

@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import '../../assets/stylesheets/PIVerification.css';
 
 const PIVerification = props => {
-  let classname = props.productIdentifier
-    ? 'pi-verification__verify-button-active'
-    : 'pi-verification__verify-button-inActive';
+  let classname = props.productIdentifier ? 'active' : 'inActive';
   return (
     <div className="pi-verification">
       <div className="pi-verification__container">
@@ -25,14 +23,21 @@ const PIVerification = props => {
             onChange={value => props.handleChange(value)}
             value={props.productIdentifier}
           />
-          <Button
-            className={classname}
-            type="submit"
-            onClick={props.handleSubmit}
-            raised
-          >
-            Verify
-          </Button>
+          <div className="md-grid pi-verification__buttons">
+            <Button
+              className={`md-cell pi-verification__clear-button-${classname}`}
+              onClick={props.handleClear}
+              raised
+              label="CLEAR"
+            />
+            <Button
+              className={`md-cell pi-verification__verify-button-${classname}`}
+              type="submit"
+              onClick={props.handleSubmit}
+              raised
+              label="VERIFY"
+            />
+          </div>
         </form>
       </div>
     </div>
@@ -43,6 +48,7 @@ PIVerification.propTypes = {
   handleChange: PropTypes.func,
   productIdentifier: PropTypes.string,
   handleSubmit: PropTypes.func,
+  handleClear: PropTypes.func,
 };
 
 export default PIVerification;

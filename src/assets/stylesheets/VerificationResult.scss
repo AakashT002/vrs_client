@@ -4,7 +4,7 @@
   text-align: center;
   align-content: center; 
   margin-top: 30px;
-  max-height: 490px;
+  max-height: 513px;
   overflow-y: auto;
   max-width: 358px;
   overflow-x: hidden;
@@ -88,9 +88,9 @@
     }
   }
   
-  .md-card{
+  .md-card {
     width: 312px;
-    margin: 10px 0px 0px 22px;
+    margin: 10px 0px 24px 22px;
   }
 
   .md-grid {
@@ -154,7 +154,7 @@
     text-align: left;
     color: $grey-600;
 
-    .verification-results__details-card{
+    .verification-results__details-card {
       height: 135px;
     }    
 
@@ -188,4 +188,13 @@
   .md-cell {
     margin: 2px;   
   }       
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $grey-600; 
+  border-radius: 10px;
 }
