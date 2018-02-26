@@ -19,7 +19,6 @@
     width: 312px;
     height: 40px;
     font-size: 34px;
-    font-family: Open Sans;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -34,7 +33,6 @@
     width: 312px;
     height: 32px;
     font-size: 21px;
-    font-family: Open Sans;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -54,7 +52,6 @@
     width: 264px;
     height: 24px;
     font-size: 16px;
-    font-family: Open Sans;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -68,7 +65,6 @@
     width: 264px;
     height: 16px;
     font-size: 12px;
-    font-family: Open Sans;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -82,7 +78,6 @@
     width: 264px;
     height: 16px;
     font-size: 12px;
-    font-family: Open Sans;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -94,15 +89,14 @@
   } 
 
   .Verifications__loader {
-    margin-left: 160px;
-    background-color: $grey-50;
+    margin-left: 150px;
+    overflow-y: hidden;
   }
 
   .Verifications-msg {
     width: 312px;
     height: 32px;
     font-size: 21px;
-    font-family: Open Sans;
     margin: 40px;
     font-weight: normal;
     font-style: normal;

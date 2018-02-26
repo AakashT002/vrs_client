@@ -8,7 +8,7 @@ import {
 } from 'react-md';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { SpinLoading } from 'respinner';
+import MDSpinner from 'react-md-spinner';
 
 import access_time from '../../assets/images/access_time.png';
 import check_circle from '../../assets/images/check_circle.png';
@@ -74,12 +74,7 @@ const Verifications = ({ data, requesting }) => {
         <TableBody>
           {requesting ? (
             <div className="Verifications__loader">
-              <SpinLoading
-                stroke="$blue-grey"
-                borderRadius={2}
-                loading={true}
-                count={10}
-              />
+              <MDSpinner size={50} singleColor="#00b8d4" />
             </div>
           ) : data.length !== 0 ? (
             data.map((verification, index) => (
@@ -102,10 +97,10 @@ const Verifications = ({ data, requesting }) => {
               </TableRow>
             ))
           ) : (
-            <span className="Verifications-msg">
-              No Verifications Data Found
+                <span className="Verifications-msg">
+                  No Verifications Data Found
             </span>
-          )}
+              )}
         </TableBody>
       </DataTable>
     </div>

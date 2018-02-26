@@ -1,28 +1,41 @@
 @import './variables';
 
-.HomePage-header {
-  background-color: #F5F5F5;
+.HomePage__header {
+  background-color: $disabled;
   height: 560px;
   padding: 20px;
-  color: #E0E0E0;
+  color: $light-grey;
   text-align: center;
 
   & > h2 {
     color: $white;
   }
 
-  HomePage__text {
-    color: $header-black;
+  .HomePage__title {
+    width: 1362px;
+    height: 94px;
+    background-color: $whitish;
+    font-size: 45px;
+    color: $blue-grey;
+    margin-top: -18px;
+    margin-left: -17px;
+    text-align: left;
+
+    .HomePage__title--text {
+      position: relative;
+      left: 78px;
+      top: 10px;
+      }
+  }
+
+  .HomePage__card {
+    width: 90.5%;
   }
 }
 
 .HomePage-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
-}
-
-.HomePage-intro {
-  font-size: large;
 }
 
 @keyframes App-logo-spin {

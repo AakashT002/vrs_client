@@ -15,12 +15,7 @@ import 'roboto-npm-webfont';
 import 'interstate-js';
 import 'typeface-muli';
 import './assets/stylesheets/index.css';
-import WebFont from 'webfontloader';
 import { DESKTOP, MOBILE } from './utils/constants';
-
-WebFont.load({
-  google: { families: ['Open Sans', 'Roboto', 'Material Icons', 'Interstate'] },
-});
 
 const history = createBrowserHistory();
 const store = configureStore(history);

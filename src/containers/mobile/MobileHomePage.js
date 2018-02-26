@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Paper from 'react-md/lib/Papers';
 import { connect } from 'react-redux';
-import { SpinLoading } from 'respinner';
+import MDSpinner from 'react-md-spinner';
 
 import MobileHeader from './MobileHeader';
 import PIVerification from '../../components/mobile/PIVerification';
@@ -72,16 +72,11 @@ export class MobileHomePage extends Component {
             />
             {this.props.requesting ? (
               <div className="mobileHomePage-loader">
-                <SpinLoading
-                  stroke="$blue-grey"
-                  borderRadius={2}
-                  loading={true}
-                  count={10}
-                />
+                <MDSpinner size={50} singleColor="#00b8d4" />
               </div>
             ) : (
-              componentToRender
-            )}
+                componentToRender
+              )}
           </div>
         </div>
       </Paper>

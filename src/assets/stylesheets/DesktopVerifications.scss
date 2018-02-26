@@ -1,0 +1,106 @@
+@import './variables';
+
+.DesktopVerifications {
+  .DesktopVerifications__table {
+    overflow-y: auto;
+    width: 1200px;
+    margin-top: 32px;
+  }
+  
+  .DesktopVerifications__table--header {
+    background-color: $grey-50;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1);
+  }
+
+  .DesktopVerifications__table--header-data {
+    color: #757575;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.33;
+    letter-spacing: 0.6px;
+    font-style: normal;
+    font-stretch: normal;
+  }
+
+  .DesktopVerifications__table--row {
+    height: 56px;	
+    background-color: $whitish;	
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1);
+  }
+
+  .DesktopVerifications__table--column {
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    text-align: left;
+    color: $header-black;
+  }
+
+  .DesktopVerifications__status--icon {
+    height: 16px;
+    width: 16px;
+  }
+
+  .DesktopVerifications__table--column-verifiedStatusText {
+    width: 78px;
+    color: $teal;
+    font-size: 14px;
+    line-height: 22px;
+    margin-left: 8px;
+  }
+
+  .DesktopVerifications__table--column-notVerifiedStatusText {
+    width: 78px;
+    color: $amber;
+    font-size: 14px;
+    line-height: 22px;
+    margin-left: 8px;
+  }
+
+  .DesktopVerifications__table--column-pendingStatusText {
+    width: 78px;
+    color: $cyan;
+    font-size: 14px;
+    line-height: 22px;
+    margin-left: 8px;
+  }
+
+  .DesktopVerifications__table--column-errorStatusText {
+    width: 78px;
+    color: $red-orange;
+    font-size: 14px;
+    line-height: 22px;
+    margin-left: 8px;
+  }
+
+  .DesktopVerifications__table--header-data-icon {
+    position: absolute;
+    right: 790px;
+    color: #102027;
+    top: 187px;
+  }
+
+  .DesktopVerifications__table--header-no-data-icon {
+    position: absolute;
+    right: 755px;
+    color: #102027;
+    top: 187px;
+  }
+
+  .DesktopVerifications__no-data-found {
+    top: 285px;
+    left: 439px;
+    position: absolute;
+    font-size: 39px;
+    font-weight: 600;
+  }
+
+  .DesktopVerifications__loader {
+    position: absolute;
+    top: 285px;
+    left: 625px;
+  }
+}

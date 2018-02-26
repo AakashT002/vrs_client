@@ -22,3 +22,5 @@ export const VERIFIED_LABEL = 'Verified';
 export const RESPONDER_ID_LABEL = 'Responder ID : ';
 export const REQUESTOR_ID_LABEL = 'Requestor ID : ';
 export const SYSTEM_ERROR_LABEL = 'System error. Please rescan';
+
+export const VERIFICATIONS_HEADER = ['SERIAL NUMBER','STATUS','LAST UPDATED','GTIN','PRODUCT','LOT','EXPIRATION'];
