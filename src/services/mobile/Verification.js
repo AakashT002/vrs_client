@@ -17,8 +17,7 @@ class Verification {
       }),
     });
     if (response.ok) {
-      const data = await response.json();
-      return data;
+      return await response.json();
     } else {
       throw new Error('Error while verifying product.');
     }
@@ -34,10 +33,25 @@ class Verification {
       },
     });
     if (response.ok) {
-      const data = await response.json();
-      return data;
+      return await response.json();
     } else {
       throw new Error('Verifications could not be fetched.');
+    }
+  }
+
+  static async getProductDetails(gtin, srn) {
+    const token = sessionStorage.kctoken;
+    const verificationUrl = `${API_URL}/api/verification/${gtin}/${srn}`;
+    const response = await fetch(verificationUrl, {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    });
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw new Error('Product details could not be fetched.');
     }
   }
 }

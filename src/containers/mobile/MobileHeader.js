@@ -48,6 +48,7 @@ class MobileHeader extends Component {
 
   handleAllVerifications() {
     const { history } = this.props;
+    this.props.dispatch(clearVerificationResult());
     this.closeDrawer();
     history.push('/verifications');
   }

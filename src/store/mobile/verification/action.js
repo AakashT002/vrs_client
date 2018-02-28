@@ -34,3 +34,18 @@ export const getVerificationList = () => ({
     }
   },
 });
+
+export const getProductDetails = (gtin, srn) => ({
+  types: [
+    ActionTypes.PRODUCT_DETAILS_REQUEST,
+    ActionTypes.PRODUCT_DETAILS_SUCCESS,
+    ActionTypes.PRODUCT_DETAILS_FAILURE,
+  ],
+  callAPI: async () => {
+    try {
+      return await Verification.getProductDetails(gtin, srn);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  },
+});

@@ -32,20 +32,20 @@ describe('Component: PIVerification', () => {
     );
   });
 
-  it('renders the Inactive Verify Button', () => {
+  it('renders the Inactive Verify Button if product identifier field is empty', () => {
     expect(
       wrapper.find('.pi-verification__verify-button-inActive').exists()
     ).toBe(true);
   });
 
-  it('renders the Active Verify Button', () => {
+  it('renders the Active Verify Button if product identifier field is not empty', () => {
     const wrapper = shallow(<PIVerification productIdentifier={'456'} />);
     expect(
       wrapper.find('.pi-verification__verify-button-active').exists()
     ).toBe(true);
   });
 
-  it('should call handleSubmit when the verify button is clicked', () => {
+  it('should call handleSubmit function when the verify button is clicked', () => {
     const handleSubmit = spy;
     const wrapper = shallow(
       <PIVerification productIdentifier={'456'} handleSubmit={handleSubmit} />
@@ -54,20 +54,20 @@ describe('Component: PIVerification', () => {
     expect(handleSubmit).toHaveBeenCalled();
   });
 
-  it('renders the Inactive Clear Button', () => {
+  it('renders the Inactive Clear Button if product identifier field is empty', () => {
     expect(
       wrapper.find('.pi-verification__clear-button-inActive').exists()
     ).toBe(true);
   });
 
-  it('renders the Active Clear Button', () => {
+  it('renders the Active Clear Button if product identifier field is not empty', () => {
     const wrapper = shallow(<PIVerification productIdentifier={'456'} />);
     expect(wrapper.find('.pi-verification__clear-button-active').exists()).toBe(
       true
     );
   });
 
-  it('should call handleClear when the Clear button is clicked', () => {
+  it('should call handleClear function when the Clear button is clicked', () => {
     const handleClear = jest.fn();
     const wrapper = shallow(
       <PIVerification productIdentifier={'456'} handleClear={handleClear} />
@@ -76,7 +76,7 @@ describe('Component: PIVerification', () => {
     expect(handleClear.mock.calls.length).toEqual(1);
   });
 
-  it('should call handleChange when productIdentifier is changed', () => {
+  it('should call handleChange function when productIdentifier is changed', () => {
     const handleChange = jest.fn();
     const wrapper = shallow(
       <PIVerification productIdentifier={'456'} handleChange={handleChange} />

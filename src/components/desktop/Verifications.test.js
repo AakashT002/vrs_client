@@ -6,7 +6,6 @@ import Verifications from './Verifications';
 import { VERIFIED } from '../../utils/constants';
 
 describe('Component: Verifications', () => {
-
   let verificationsList = [
     {
       srn: '13268255316404',
@@ -16,10 +15,10 @@ describe('Component: Verifications', () => {
       productName: 'Jakafi 60 ct bottle',
       lot: 'ABC1234',
       expDate: '20190321',
-    }
+    },
   ];
 
-  const wrapper = shallow(<Verifications data={verificationsList}/>);
+  const wrapper = shallow(<Verifications data={verificationsList} />);
 
   it('renders without crashing', () => {
     expect(wrapper.exists()).toBe(true);
@@ -30,23 +29,33 @@ describe('Component: Verifications', () => {
   });
 
   it('renders a verification table header', () => {
-    expect(wrapper.find('.DesktopVerifications__table--header').exists()).toBe(true);
+    expect(wrapper.find('.DesktopVerifications__table--header').exists()).toBe(
+      true
+    );
   });
 
   it('renders a verification tabel header data', () => {
-    expect(wrapper.find('.DesktopVerifications__table--header-data').exists()).toBe(true);
+    expect(
+      wrapper.find('.DesktopVerifications__table--header-data').exists()
+    ).toBe(true);
   });
 
   it('renders a verification table row', () => {
-    expect(wrapper.find('.DesktopVerifications__table--row').exists()).toBe(true);
+    expect(wrapper.find('.DesktopVerifications__table--row').exists()).toBe(
+      true
+    );
   });
 
   it('renders a verifications table each column', () => {
-    expect(wrapper.find('.DesktopVerifications__table--column').exists()).toBe(true);
+    expect(wrapper.find('.DesktopVerifications__table--column').exists()).toBe(
+      true
+    );
   });
 
   it('renders a verifications status icon', () => {
-    expect(wrapper.find('.DesktopVerifications__status--icon').exists()).toBe(true);
+    expect(wrapper.find('.DesktopVerifications__status--icon').exists()).toBe(
+      true
+    );
   });
 
   it('renders a verifications on loading', () => {
@@ -62,15 +71,21 @@ describe('Component: Verifications', () => {
   });
 
   it('renders a serial number for each verification in the list', () => {
-    expect(wrapper.find('.DesktopVerifications__serial--number').exists()).toBe(true);
+    expect(wrapper.find('.DesktopVerifications__serial--number').exists()).toBe(
+      true
+    );
   });
 
   it('renders the last updated for each verification in the list', () => {
-    expect(wrapper.find('.DesktopVerifications__last--updated').exists()).toBe(true);
+    expect(wrapper.find('.DesktopVerifications__last--updated').exists()).toBe(
+      true
+    );
   });
-  
+
   it('renders a product name for each verification in the list', () => {
-    expect(wrapper.find('.DesktopVerifications__product--name').exists()).toBe(true);
+    expect(wrapper.find('.DesktopVerifications__product--name').exists()).toBe(
+      true
+    );
   });
 
   it('renders a gtin number for each verification in the list', () => {
@@ -82,6 +97,8 @@ describe('Component: Verifications', () => {
   });
 
   it('renders the expiration for each verification in the list', () => {
-    expect(wrapper.find('.DesktopVerifications__expiration').exists()).toBe(true);
+    expect(wrapper.find('.DesktopVerifications__expiration').exists()).toBe(
+      true
+    );
   });
 });

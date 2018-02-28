@@ -4,7 +4,7 @@ import { MobileHomePage } from './MobileHomePage';
 
 describe('Container: MobileHomePage', () => {
   const props = {
-    verificationResult: {},
+    verificationResult: [],
   };
   const spy = jest.fn();
 

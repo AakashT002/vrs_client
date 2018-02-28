@@ -4,12 +4,12 @@
   background-color: $grey;
   width: 100%;
 
-  .VerificationsPage-container {
+  .VerificationsPage__container {
     height: 662px;
     background-color: $bluish-gray;
   }
 
-  .VerificationsPage-layout {
+  .VerificationsPage__layout {
     border: $grey 1px solid;
     height: 640px;
     width: 360px;
@@ -18,5 +18,12 @@
     padding-bottom: 20px;
     background-color: $disabled;
     margin-top: -24px;
+  }
+
+  .VerificationsPage__loader {
+    overflow-y: hidden;
+    margin-left: 160px;
+    color: $grey-50;
+    margin-top: 240px;
   }
 }

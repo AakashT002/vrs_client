@@ -59,7 +59,7 @@ describe('Component: Verifications', () => {
     expect(wrapper.find('.Verifications__timestamp').exists()).toBe(true);
   });
 
-  it('renders a verifications on loading', () => {
+  it('renders verifications on loading', () => {
     expect(wrapper.find('.Verifications__table--row').length).toBe(2);
   });
 });

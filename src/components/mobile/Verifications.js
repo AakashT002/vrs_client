@@ -8,7 +8,6 @@ import {
 } from 'react-md';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import MDSpinner from 'react-md-spinner';
 
 import access_time from '../../assets/images/access_time.png';
 import check_circle from '../../assets/images/check_circle.png';
@@ -23,12 +22,12 @@ import {
   NOT_VERIFIED,
   NOT_VERIFIED_LABEL,
   PENDING,
-  PENDING_LABEL,
+  REQUESTED_LABEL,
   VERIFIED,
   VERIFIED_LABEL,
 } from '../../utils/constants';
 
-const Verifications = ({ data, requesting }) => {
+const Verifications = ({ data, handleProductDetails }) => {
   const formatDate = date => {
     return moment(date, 'YYYY-MM-DD HH:mm:ss z').format(
       'DD MMM, YYYY HH:mm:ss'
@@ -39,7 +38,7 @@ const Verifications = ({ data, requesting }) => {
     if (status === VERIFIED) {
       return VERIFIED_LABEL;
     } else if (status === PENDING) {
-      return PENDING_LABEL;
+      return REQUESTED_LABEL;
     } else if (status === ERROR) {
       return ERROR_LABEL;
     } else if (status === NOT_VERIFIED) {
@@ -72,13 +71,15 @@ const Verifications = ({ data, requesting }) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {requesting ? (
-            <div className="Verifications__loader">
-              <MDSpinner size={50} singleColor="#00b8d4" />
-            </div>
-          ) : data.length !== 0 ? (
+          {data.length !== 0 ? (
             data.map((verification, index) => (
-              <TableRow key={index} className="Verifications__table--row">
+              <TableRow
+                key={index}
+                className="Verifications__table--row"
+                onClick={() => {
+                  handleProductDetails(verification);
+                }}
+              >
                 <TableColumn>
                   <font className="Verifications__serialization--code">
                     {verification.srn}
@@ -97,10 +98,10 @@ const Verifications = ({ data, requesting }) => {
               </TableRow>
             ))
           ) : (
-                <span className="Verifications-msg">
-                  No Verifications Data Found
+            <span className="Verifications-msg">
+              No Verifications Data Found
             </span>
-              )}
+          )}
         </TableBody>
       </DataTable>
     </div>
@@ -109,7 +110,7 @@ const Verifications = ({ data, requesting }) => {
 
 Verifications.propTypes = {
   data: PropTypes.array,
-  requesting: PropTypes.bool,
+  handleProductDetails: PropTypes.func,
 };
 
 export default Verifications;

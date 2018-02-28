@@ -10,22 +10,24 @@ import '../../assets/stylesheets/HomePage.css';
 import { getVerificationList } from '../../store/mobile/verification/action';
 
 export class HomePage extends Component {
-
   componentWillMount() {
     const { dispatch } = this.props;
     dispatch(getVerificationList());
   }
 
   render() {
-    
     return (
       <div className="HomePage">
         <div className="HomePage__header">
-          <div className="HomePage__title"><span className="HomePage__title--text">Verifications</span></div>
-            <Card className="HomePage__card">
-              <Verifications data={this.props.data} 
-                requesting={this.props.requesting}/>
-            </Card>
+          <div className="HomePage__title">
+            <span className="HomePage__title--text">Verifications</span>
+          </div>
+          <Card className="HomePage__card">
+            <Verifications
+              data={this.props.data}
+              requesting={this.props.requesting}
+            />
+          </Card>
         </div>
       </div>
     );

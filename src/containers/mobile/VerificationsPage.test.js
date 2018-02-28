@@ -9,12 +9,14 @@ describe('Component: VerificationsPage', () => {
   };
   let wrapper;
   let verifications = [];
+  let verificationResult = [];
 
   beforeEach(() => {
     wrapper = shallow(
       <VerificationsPage.WrappedComponent
         dispatch={dispatchStub}
         verificationList={verifications}
+        verificationResult={verificationResult}
       />
     );
   });
@@ -23,15 +25,15 @@ describe('Component: VerificationsPage', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it('renders a proper  verifications page', () => {
+  it('renders a proper verifications page', () => {
     expect(wrapper.find('.VerificationsPage').exists()).toBe(true);
   });
 
   it('renders a proper verification page container', () => {
-    expect(wrapper.find('.VerificationsPage-container').exists()).toBe(true);
+    expect(wrapper.find('.VerificationsPage__container').exists()).toBe(true);
   });
 
   it('renders a proper verification page layout', () => {
-    expect(wrapper.find('.VerificationsPage-layout').exists()).toBe(true);
+    expect(wrapper.find('.VerificationsPage__layout').exists()).toBe(true);
   });
 });

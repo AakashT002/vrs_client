@@ -2,34 +2,81 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Paper from 'react-md/lib/Papers';
+import MDSpinner from 'react-md-spinner';
 
 import MobileHeader from './MobileHeader';
 import Verifications from '../../components/mobile/Verifications';
+import VerificationResult from '../../components/mobile/VerificationResult';
 
 import 'font-awesome/css/font-awesome.min.css';
 import '../../assets/stylesheets/VerificationsPage.css';
 import '../../assets/stylesheets/MobileHomePage.css';
 
+import { clearVerificationResult } from '../../store/mobile/verification/action';
 import { getVerificationList } from '../../store/mobile/verification/action';
+import { getProductDetails } from '../../store/mobile/verification/action';
+
+import {
+  EXPDATE_INDEX,
+  GTIN_INDEX,
+  LOT_INDEX,
+  SRN_INDEX,
+} from '../../utils/constants';
 
 class VerificationsPage extends Component {
+  constructor(props) {
+    super(props);
+    this.handleProductDetails = this.handleProductDetails.bind(this);
+  }
+
   componentWillMount() {
     const { dispatch } = this.props;
-    dispatch(getVerificationList());
+    this.props.dispatch(clearVerificationResult()).then(() => {
+      dispatch(getVerificationList());
+    });
+  }
+
+  handleProductDetails(verification) {
+    this.props.dispatch(getProductDetails(verification.gtin, verification.srn));
   }
 
   render() {
+    let componentToRender = null;
+
+    if (this.props.verificationResult.length === 0) {
+      componentToRender = (
+        <Verifications
+          data={this.props.verificationList}
+          handleProductDetails={this.handleProductDetails}
+        />
+      );
+    } else {
+      const productIdentifier = `${GTIN_INDEX}${
+        this.props.verificationResult[0].gtin
+      }${SRN_INDEX}${this.props.verificationResult[0].srn}${LOT_INDEX}${
+        this.props.verificationResult[0].lot
+      }${EXPDATE_INDEX}${this.props.verificationResult[0].expDate}`;
+      componentToRender = (
+        <VerificationResult
+          data={this.props.verificationResult}
+          productIdentifier={productIdentifier}
+        />
+      );
+    }
     return (
       <Paper className="VerificationsPage">
-        <div className="VerificationsPage-container">
+        <div className="VerificationsPage__container">
           <br />
           <br />
-          <div className="VerificationsPage-layout">
+          <div className="VerificationsPage__layout">
             <MobileHeader dispatch={this.props.dispatch} />
-            <Verifications
-              data={this.props.verificationList}
-              requesting={this.props.requesting}
-            />
+            {this.props.requesting ? (
+              <div className="VerificationsPage__loader">
+                <MDSpinner size={50} singleColor="#00b8d4" />
+              </div>
+            ) : (
+              componentToRender
+            )}
           </div>
         </div>
       </Paper>
@@ -41,12 +88,14 @@ VerificationsPage.propTypes = {
   verificationList: PropTypes.array,
   dispatch: PropTypes.func,
   requesting: PropTypes.bool,
+  verificationResult: PropTypes.array,
 };
 
 function mapStateToProps(state) {
   return {
     verificationList: state.verification.verificationList,
     requesting: state.verification.requesting,
+    verificationResult: state.verification.verificationResult,
   };
 }
 

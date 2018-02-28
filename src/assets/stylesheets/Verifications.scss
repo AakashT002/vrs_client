@@ -6,7 +6,7 @@
     overflow-y: AUTO;
     width: 358px;
     margin-top: 32px;
-    background-color: $whitish;
+    background-color: $white;
     border-bottom: 1px solid $greyish-black;
   }
 
@@ -87,11 +87,6 @@
     color: $grey-600;
     margin-left: 3px;
   } 
-
-  .Verifications__loader {
-    margin-left: 150px;
-    overflow-y: hidden;
-  }
 
   .Verifications-msg {
     width: 312px;

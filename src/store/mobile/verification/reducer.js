@@ -2,7 +2,7 @@ import createReducer from '../../createReducer';
 import * as ActionTypes from '../../actionTypes';
 
 const initialState = {
-  verificationResult: {},
+  verificationResult: [],
   verificationList: [],
   requesting: false,
 };
@@ -22,14 +22,14 @@ export const verification = createReducer(initialState, {
   },
   [ActionTypes.CLEAR_VERIFICATION_RESULT](state = initialState) {
     return Object.assign({}, state, {
-      verificationResult: {},
+      verificationResult: [],
     });
   },
 
   [ActionTypes.FETCH_VERIFICATIONS_REQUEST](state) {
     return { ...state, requesting: true };
   },
-  [ActionTypes.FETCH_VERIFICATIONS_SUCCESS](state, action) {
+  [ActionTypes.FETCH_VERIFICATIONS_SUCCESS](state = initialState, action) {
     return {
       ...state,
       verificationList: action.response.result,
@@ -37,6 +37,20 @@ export const verification = createReducer(initialState, {
     };
   },
   [ActionTypes.FETCH_VERIFICATIONS_FAILURE](state) {
+    return { ...state, requesting: false };
+  },
+
+  [ActionTypes.PRODUCT_DETAILS_REQUEST](state) {
+    return { ...state, requesting: true };
+  },
+  [ActionTypes.PRODUCT_DETAILS_SUCCESS](state = initialState, action) {
+    return {
+      ...state,
+      verificationResult: action.response.result,
+      requesting: false,
+    };
+  },
+  [ActionTypes.PRODUCT_DETAILS_FAILURE](state) {
     return { ...state, requesting: false };
   },
 });

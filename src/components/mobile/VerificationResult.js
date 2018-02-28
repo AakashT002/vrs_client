@@ -87,23 +87,23 @@ const VerificationResult = props => {
     return moment(date).format('DD MMM YYYY H:MM:SS');
   };
 
-  const entityCheck = event => {
+  const entityCheck = (product, event) => {
     if (event.eventStatus === VERIFIED) {
-      return RESPONDER_ID_LABEL + props.data.responderId;
+      return RESPONDER_ID_LABEL + product.responderId;
     } else if (
       event.eventStatus === PENDING ||
       event.eventStatus === REQUESTING
     ) {
-      return REQUESTOR_ID_LABEL + props.data.requestorId;
-    } else if (event.status === ERROR) {
+      return REQUESTOR_ID_LABEL + product.requestorId;
+    } else if (event.eventStatus === ERROR) {
       return SYSTEM_ERROR_LABEL;
-    } else if (event.status === NOT_VERIFIED) {
-      return RESPONDER_ID_LABEL + props.data.responderId;
+    } else if (event.eventStatus === NOT_VERIFIED) {
+      return RESPONDER_ID_LABEL + product.responderId;
     }
   };
 
-  const renderEvent = events => {
-    return events.map((event, index) => (
+  const renderEvent = product => {
+    return product.events.map((event, index) => (
       <div key={index}>
         <div>
           <CardText className="md-grid">
@@ -121,7 +121,7 @@ const VerificationResult = props => {
                 <h3 className="md-cell verification-results__transaction-date">
                   {formatDate(event.eventTime)}
                 </h3>
-                <p className="md-cell">{entityCheck(event)}</p>
+                <p className="md-cell">{entityCheck(product, event)}</p>
                 <p className="md-cell">{event.eventMessage}</p>
               </div>
             </div>
@@ -136,41 +136,45 @@ const VerificationResult = props => {
     <div className="verification-results">
       <div
         className={`verification-results__quick-view ${renderbgColor(
-          props.data.status
+          props.data[0].status
         )}`}
       >
         <div className={'verification-results__quick-icon'}>
-          {renderStatusIcon(props.data.status)}
+          {renderStatusIcon(props.data[0].status)}
         </div>
         <h1 className="verification-results__status">
-          {renderStatusLabel(props.data.status)}
+          {renderStatusLabel(props.data[0].status)}
         </h1>
       </div>
       <h6 className="verification-results__pi">{props.productIdentifier}</h6>
       <div className="verification-results__details">
-        <p>GTIN: {props.data.gtin}</p>
+        <p>GTIN: {props.data[0].gtin}</p>
         <p className="verification-detail__serial-number">
-          Serial Number: {props.data.srn}
+          Serial Number: {props.data[0].srn}
         </p>
-        <p>Lot: {props.data.lot}</p>
-        <p>Expiration : {expirationDateFormat(props.data.expDate)}</p>
-        <p>Product: {props.data.product}</p>
+        <p>Lot: {props.data[0].lot}</p>
+        <p>Expiration : {expirationDateFormat(props.data[0].expDate)}</p>
+        <p>Product: {props.data[0].productName}</p>
       </div>
-      <Card className="md-block-centered md-paper--3 verification-results__details-card">
-        <CardTitle
-          className="verification-results__details-card-title"
-          title={`Transaction ID: ${props.data.transactionId}`}
-          subtitle=""
-        />
-        <hr />
-        {renderEvent(props.data.events)}
-      </Card>
+      {props.data.map((product, index) => (
+        <Card
+          key={index}
+          className="md-block-centered md-paper--3 verification-results__details-card"
+        >
+          <CardTitle
+            className="verification-results__details-card-title"
+            title={`Transaction ID: ${product.id}`}
+          />
+          <hr />
+          {renderEvent(product)}
+        </Card>
+      ))}
     </div>
   );
 };
 
 VerificationResult.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
   productIdentifier: PropTypes.string,
 };
 

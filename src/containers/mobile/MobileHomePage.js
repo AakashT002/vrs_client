@@ -43,7 +43,7 @@ export class MobileHomePage extends Component {
 
   render() {
     let componentToRender = null;
-    if (Object.keys(this.props.verificationResult).length === 0) {
+    if (this.props.verificationResult.length === 0) {
       componentToRender = (
         <PIVerification
           handleChange={this.handleChange}
@@ -75,8 +75,8 @@ export class MobileHomePage extends Component {
                 <MDSpinner size={50} singleColor="#00b8d4" />
               </div>
             ) : (
-                componentToRender
-              )}
+              componentToRender
+            )}
           </div>
         </div>
       </Paper>
@@ -93,7 +93,7 @@ function mapStateToProps(state) {
 
 MobileHomePage.propTypes = {
   dispatch: PropTypes.func,
-  verificationResult: PropTypes.object,
+  verificationResult: PropTypes.array,
   requesting: PropTypes.bool,
 };
 
