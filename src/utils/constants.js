@@ -21,9 +21,15 @@ export const RESPONDER_ID_LABEL = 'Responder ID : ';
 export const SORT_FIELD_LAST_UPDATED = 'LAST UPDATED';
 export const SRN_INDEX = '(21)';
 export const SYSTEM_ERROR_LABEL = 'System error. Please rescan';
-
-export const VERIFICATIONS_HEADER = ['SERIAL NUMBER','STATUS','LAST UPDATED','GTIN','PRODUCT','LOT','EXPIRATION'];
-
+export const VERIFICATIONS_HEADER = [
+  'SERIAL NUMBER',
+  'STATUS',
+  'LAST UPDATED',
+  'GTIN',
+  'PRODUCT',
+  'LOT',
+  'EXPIRATION',
+];
 export const VERIFIED = 'Verified';
 export const VERIFIED_LABEL = 'Verified';
 export const VERIFY_PRODUCT = 'VERIFY PRODUCT';

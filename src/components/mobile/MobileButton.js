@@ -1,93 +1,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../assets/stylesheets/MobileHeader.css';
+
+import '../../assets/stylesheets/MobileButton.css';
 import mesaVerde_logo from '../../assets/images/mesaverda_logo.jpg';
-import option_button from '../../assets/images/option_button.svg';
-import {
-  Drawer,
-  Toolbar,
-  DataTable,
-  TableBody,
-  TableRow,
-  TableColumn,
-} from 'react-md';
+
 import {
   ALL_VERIFICATIONS,
-  VERIFY_PRODUCT,
   LOGOUT,
   MESA_VERDE,
+  VERIFY_PRODUCT,
 } from '../../utils/constants';
 
 const MobileButton = props => {
   return (
-    <div className="mobileHeader-toolbar">
-      <img src={mesaVerde_logo} className="mobileHeader-logo" alt="logo" />
-      <label className="mobileHeader-title">{MESA_VERDE}</label>
-      <img
-        src={option_button}
-        onClick={props.openDrawerRight}
-        className="mobileHeader-option"
-        alt="logo"
-      />
-      <Drawer
-        id="menu-drawer"
-        className="md-data-table--responsive"
-        type={Drawer.DrawerTypes.TEMPORARY}
-        visible={props.visible}
-        position={props.position}
-        onVisibilityChange={props.handleVisibility}
-        header={
-          <Toolbar
-            nav={props.isLeft ? null : props.closeBtn}
-            actions={props.isLeft ? props.closeBtn : null}
-            className="md-divider-border md-divider-border--bottom"
-          />
-        }
+    <div className="mobileButton__toolbar">
+      <img src={mesaVerde_logo} className="mobileButton-logo" alt="logo" />
+      <label className="mobileButton__title">{MESA_VERDE}</label>
+      <i
+        className="material-icons mobileButton__option"
+        onClick={props.handleDrawer}
       >
-        <div>
-          <DataTable plain>
-            <TableBody id="drawer_menu">
-              <TableRow className="md-table-row">
-                <TableColumn
-                  className="mobileHeader_drawer-options"
-                  onClick={props.handleVerifyProduct}
-                >
-                  {VERIFY_PRODUCT}
-                </TableColumn>
-              </TableRow>
-              <TableRow className="md-table-row">
-                <TableColumn
-                  className="mobileHeader_drawer-options"
-                  onClick={props.handleAllVerifications}
-                >
-                  {ALL_VERIFICATIONS}
-                </TableColumn>
-              </TableRow>
-              <TableRow className="md-table-row">
-                <TableColumn
-                  className="mobileHeader_drawer-options"
-                  onClick={props.handleLogout}
-                >
-                  {LOGOUT}
-                </TableColumn>
-              </TableRow>
-            </TableBody>
-          </DataTable>
+        {props.visible ? 'close' : 'menu'}
+      </i>
+      <div
+        className={`mobileButton__menu-drawer ${
+          props.visible ? 'open' : 'close'
+        }`}
+      >
+        <hr />
+        <div className="mobileButton__row" onClick={props.handleVerifyProduct}>
+          <h1>{VERIFY_PRODUCT}</h1>
         </div>
-      </Drawer>
+        <hr />
+        <div
+          className="mobileButton__row"
+          onClick={props.handleAllVerifications}
+        >
+          <h1>{ALL_VERIFICATIONS}</h1>
+        </div>
+        <hr />
+        <div className="mobileButton__row" onClick={props.handleLogout}>
+          <h1>{LOGOUT}</h1>
+        </div>
+        <hr />
+      </div>
     </div>
   );
 };
 
 MobileButton.propTypes = {
-  location: PropTypes.object,
-  handleOnClick: PropTypes.func,
-  openDrawerRight: PropTypes.func,
+  handleDrawer: PropTypes.func,
   visible: PropTypes.bool,
-  position: PropTypes.string,
-  handleVisibility: PropTypes.func,
-  isLeft: PropTypes.bool,
-  closeBtn: PropTypes.string,
   handleVerifyProduct: PropTypes.func,
   handleLogout: PropTypes.func,
   handleAllVerifications: PropTypes.func,

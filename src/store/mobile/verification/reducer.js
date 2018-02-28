@@ -41,7 +41,11 @@ export const verification = createReducer(initialState, {
     return { ...state, requesting: false };
   },
   [ActionTypes.SORT_DATE_SUCCESS](state, action) {
-    return { ...state, verificationList: action.verificationList, isDescending: action.isDescending};
+    return {
+      ...state,
+      verificationList: action.verificationList,
+      isDescending: action.isDescending,
+    };
   },
   [ActionTypes.PRODUCT_DETAILS_REQUEST](state) {
     return { ...state, requesting: true };

@@ -2,17 +2,75 @@
 
 header.Header-toolbar {
   height: 44px;
+  background-color: $blue-grey;
 
   > h2.md-title {
     line-height: 48px;
     margin: 0 0 0 105px;
     font-family: Roboto;
   }
-  
-  .Header__title-username {
-    float: right;
-    margin-left: 880px;
+
+  .Header__username-dropDown {
     position: absolute;
+    right: 0px;
+    top: 0px; 
+    min-height: 44px;
+
+    .Header__title {
+      height: 44px;
+      width: 186px;     
+      vertical-align: middle;
+      
+      .Header__title-username {
+        position: absolute;
+        top: 14px;
+        right: 44px;
+        min-height: 16px;
+        width: 125px;
+        text-align: right;
+        font-family: Open Sans;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;   
+        letter-spacing: 0.6px;  
+        word-break: break-all; 
+      }
+
+      .Header__dropDown-icon {
+        position: absolute;
+        top: 14px;
+        right: 24px;
+        font-size: 16px;
+        margin-left: 4px;
+      }
+    }
+
+    .inActive {
+        color: $drawer-gray;
+        background-color: $blue-grey;      
+    }
+
+    .active {
+      color: $grey-50;
+      background-color: $bluishblack; 
+    }    
+    .Header__dropDown-item {
+      height: 38px;
+      width: 186px;  
+      background-color: $bluishblack;
+      color: $drawer-gray;
+      cursor: pointer;
+
+      a {
+        height: 16px;
+        width: 64px;
+        position: absolute;
+        right: 26px;
+        top:30px;
+        font-size: 14px;
+        font-family: Open Sans;
+      }
+    }
   }
 
   .md-list--menu-tr {
@@ -24,25 +82,9 @@ header.Header-toolbar {
   .md-text--secondary {
     color: $white;
   }
-  
-  #userMenu{
-    margin-left: 940px;
-    margin-top: -20px;
-  }
-
-  .material-icons {  
-    float: right ;
-    margin-left: 956px;
-    margin-top: -11px;
-    width: 10px;
-  } 
-}
-
-.Header__title-logo {
-  margin-left: 88px;
 }
 
 .Header__title-key {
   margin-top: -70px;
-  margin-left: 125px;
+  margin-left: 33px;
 }

@@ -29,23 +29,30 @@ describe('containers: Header', () => {
     expect(wrapper.find('.Header-toolbar').exists()).toBe(true);
   });
 
-  it('renders a Client name', () => {
-    expect(wrapper.find('.header__user-menu').exists()).toBe(true);
-  });
-
-  it('Menu Button is present or not', () => {
-    expect(wrapper.find('MenuButton').exists()).toBe(true);
+  it('renders Title logo', () => {
+    expect(wrapper.find('.Header__title-logo').exists()).toBe(true);
   });
 
   it('Dropdown Button is present or not', () => {
-    expect(wrapper.find('DropdownMenu').length).toBe(1);
+    expect(wrapper.find('.Header__dropDown-icon').exists()).toBe(true);
   });
 
   it('Username is present or not', () => {
     expect(wrapper.find('.Header__title-username').length).toBe(1);
   });
 
-  it('Username Button is present or not', () => {
-    expect(wrapper.find('Button').length).toBe(1);
+  it('DropDown items should not be displayed intially', () => {
+    expect(wrapper.find('.Header__dropDown-item').exists()).toBe(false);
+  });
+
+  it('DropDown items should be displayed when hovered on Username', () => {
+    wrapper.find('.Header__username-dropDown').simulate('mouseEnter');
+    expect(wrapper.find('.Header__dropDown-item').exists()).toBe(true);
+  });
+
+  it('DropDown items should not be displayed when focus is not on Username', () => {
+    wrapper.find('.Header__username-dropDown').simulate('mouseEnter');
+    wrapper.find('.Header__username-dropDown').simulate('mouseLeave');
+    expect(wrapper.find('.Header__dropDown-item').exists()).toBe(false);
   });
 });
