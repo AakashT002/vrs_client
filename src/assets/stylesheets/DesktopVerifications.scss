@@ -76,18 +76,11 @@
     margin-left: 8px;
   }
 
-  .DesktopVerifications__table--header-data-icon {
+  .DesktopVerifications__table--header-icon {
+    cursor: pointer;
     position: absolute;
-    right: 790px;
     color: #102027;
-    top: 187px;
-  }
-
-  .DesktopVerifications__table--header-no-data-icon {
-    position: absolute;
-    right: 755px;
-    color: #102027;
-    top: 187px;
+    top: 186px;
   }
 
   .DesktopVerifications__no-data-found {

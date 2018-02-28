@@ -5,6 +5,7 @@ const initialState = {
   verificationResult: [],
   verificationList: [],
   requesting: false,
+  isDescending: true,
 };
 
 export const verification = createReducer(initialState, {
@@ -39,7 +40,9 @@ export const verification = createReducer(initialState, {
   [ActionTypes.FETCH_VERIFICATIONS_FAILURE](state) {
     return { ...state, requesting: false };
   },
-
+  [ActionTypes.SORT_DATE_SUCCESS](state, action) {
+    return { ...state, verificationList: action.verificationList, isDescending: action.isDescending};
+  },
   [ActionTypes.PRODUCT_DETAILS_REQUEST](state) {
     return { ...state, requesting: true };
   },

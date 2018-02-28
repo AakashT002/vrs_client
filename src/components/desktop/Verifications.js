@@ -28,9 +28,11 @@ import {
   VERIFIED,
   VERIFIED_LABEL,
   VERIFICATIONS_HEADER,
+  SORT_FIELD_LAST_UPDATED,
 } from '../../utils/constants';
 
-const Verifications = ({ data, requesting }) => {
+const Verifications = ({ data, requesting, handleSort, isDescending }) => {
+
   const formatDate = date => {
     return moment(date, 'YYYY-MM-DD HH:mm:ss z').format('DD MMM YYYY HH:mm:ss');
   };
@@ -99,11 +101,13 @@ const Verifications = ({ data, requesting }) => {
     }
   };
 
-  const renderIconClassName = data => {
-    if (data.length !== 0) {
-      return 'material-icons DesktopVerifications__table--header-data-icon';
-    } else {
-      return 'material-icons DesktopVerifications__table--header-no-data-icon';
+  const renderHeaderAndSortable = (header, isDescending) => {
+    if (header === SORT_FIELD_LAST_UPDATED) {
+      return <label>{header}< i className="material-icons DesktopVerifications__table--header-icon" onClick={() => handleSort(isDescending)}>
+        {isDescending ? 'arrow_downward' : 'arrow_upward'}</i></label>;
+    }
+    else {
+      return header;
     }
   };
 
@@ -112,15 +116,8 @@ const Verifications = ({ data, requesting }) => {
       <DataTable className="DesktopVerifications__table" plain>
         <TableHeader>
           <TableRow className="DesktopVerifications__table--header">
-            {VERIFICATIONS_HEADER.map(header => (
-              <TableColumn
-                key={header}
-                className="DesktopVerifications__table--header-data"
-              >
-                {header}
-              </TableColumn>
-            ))}
-            <i className={renderIconClassName(data)}>arrow_downward</i>
+            {VERIFICATIONS_HEADER.map(header => <TableColumn key={header}
+              className="DesktopVerifications__table--header-data">{renderHeaderAndSortable(header, isDescending)}</TableColumn>)}
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -148,8 +145,7 @@ const Verifications = ({ data, requesting }) => {
                   </span>
                 </TableColumn>
                 <TableColumn className="DesktopVerifications__table--column">
-                  <font className="DesktopVerifications__last--updated">
-                    {formatDate(verification.requestSentTime)}
+                  <font className="DesktopVerifications__last--updated">{formatDate(verification.responseRcvTime)}
                   </font>
                 </TableColumn>
                 <TableColumn className="DesktopVerifications__table--column">
@@ -181,13 +177,15 @@ const Verifications = ({ data, requesting }) => {
           )}
         </TableBody>
       </DataTable>
-    </div>
+    </div >
   );
 };
 
 Verifications.propTypes = {
   data: PropTypes.array,
   requesting: PropTypes.bool,
+  handleSort: PropTypes.func,
+  isDescending: PropTypes.bool
 };
 
 export default Verifications;
