@@ -46,6 +46,8 @@
   .Verifications__table--row {
     width: 355px;
     height: 68px;
+    cursor: pointer;  
+    background-color: $white;
   }
 
   .Verifications__serialization--code {

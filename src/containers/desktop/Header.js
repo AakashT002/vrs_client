@@ -25,7 +25,7 @@ class Header extends Component {
   }
 
   renderTitle() {
-    var username = sessionStorage.getItem('username');
+    var username = sessionStorage.getItem('username').toUpperCase();
     if (username === 'undefined') {
       username = sessionStorage.getItem('user').toUpperCase();
     }
