@@ -1,4 +1,4 @@
-# LP02 - Team M : VRS : Requestor Client
+# LP02 - Team M : VRS Client
 
 This is a react/redux app that will be used by wholesalers largely to interact with the VRS system for their drug verification. Two applications one for desktop and mobile are deployed. `<App/>` component loads the desktop version and `<MobileApp/>` component loads the mobile version. Mobile app is accessible only by returns specialists.
 
