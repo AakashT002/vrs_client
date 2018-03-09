@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 
 import Header from './Header';
-import HomePage from './HomePage';
+import VerificationsPage from './VerificationsPage';
 
 import '../../assets/stylesheets/App.css';
 import 'material-design-icons/iconfont/material-icons.css';
@@ -17,8 +17,8 @@ export class App extends Component {
 
         <div className="App-content">
           <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/home" component={HomePage} />
+            <Route exact path="/" component={VerificationsPage} />
+            <Route exact path="/home" component={VerificationsPage} />
           </Switch>
         </div>
       </div>

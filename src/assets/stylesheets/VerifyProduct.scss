@@ -1,0 +1,22 @@
+@import './variables';
+
+.verifyProduct {
+  .verifyProduct__product-id {
+    top: 90px;
+    width: 440px;
+    color: $warm-grey-two;
+    font-family: "Open Sans";
+    font-size: 18px;
+    position: absolute;
+
+    .md-divider::after{
+      width: 440px;
+      height: 1px;
+      background-color: $warm-grey-two;
+      border: 0;
+      content: '';
+      display: block;
+      margin: 0;
+    }
+  }
+}  

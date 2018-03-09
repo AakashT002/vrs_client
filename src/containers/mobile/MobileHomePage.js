@@ -75,8 +75,8 @@ export class MobileHomePage extends Component {
                 <MDSpinner size={50} singleColor="#00b8d4" />
               </div>
             ) : (
-              componentToRender
-            )}
+                componentToRender
+              )}
           </div>
         </div>
       </Paper>
