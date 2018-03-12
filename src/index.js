@@ -36,8 +36,16 @@ keycloak
   .success(authenticated => {
     if (authenticated) {
       sessionStorage.setItem('kctoken', keycloak.token);
-      sessionStorage.setItem('username', keycloak.tokenParsed.name);
-      sessionStorage.setItem('user', keycloak.tokenParsed.preferred_username);
+      if (keycloak.tokenParsed.preferred_username) {
+        sessionStorage.setItem(
+          'username',
+          keycloak.tokenParsed.preferred_username
+        );
+      }
+      if (keycloak.tokenParsed.name) {
+        sessionStorage.setItem('fullname', keycloak.tokenParsed.name);
+      }
+
       store.dispatch(
         authenticate({
           id: sessionStorage.username,

@@ -22,7 +22,6 @@ import error from '../../assets/images/error.png';
 import not_verified from '../../assets/images/not-verified.png';
 
 const VerificationResult = props => {
-
   const renderStatusIcon = status => {
     if (status === VERIFIED) {
       return <img src={verified} alt="verified" />;
@@ -79,13 +78,21 @@ const VerificationResult = props => {
       </div>
       <h6 className="verification-results__pi">{props.productIdentifier}</h6>
       <div className="verification-product__details">
-        <p className="verification-product__details--gtin">GTIN: {props.data[0].gtin}</p>
+        <p className="verification-product__details--gtin">
+          GTIN: {props.data[0].gtin}
+        </p>
         <p className="verification-product__details--serial-number">
           Serial Number: {props.data[0].srn}
         </p>
-        <p className="verification-product__details--lot">Lot: {props.data[0].lot}</p>
-        <p className="verification-product__details--expiration">Expiration: {expirationDateFormat(props.data[0].expDate)}</p>
-        <p className="verification-product__details--product-name">Product: {props.data[0].productName}</p>
+        <p className="verification-product__details--lot">
+          Lot: {props.data[0].lot}
+        </p>
+        <p className="verification-product__details--expiration">
+          Expiration: {expirationDateFormat(props.data[0].expDate)}
+        </p>
+        <p className="verification-product__details--product-name">
+          Product: {props.data[0].productName}
+        </p>
       </div>
     </div>
   );

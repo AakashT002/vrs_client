@@ -6,6 +6,7 @@ const initialState = {
   verificationList: [],
   requesting: false,
   isDescending: true,
+  isScannerSelection: true,
 };
 
 export const verification = createReducer(initialState, {
@@ -59,6 +60,9 @@ export const verification = createReducer(initialState, {
   },
   [ActionTypes.PRODUCT_DETAILS_FAILURE](state) {
     return { ...state, requesting: false };
+  },
+  [ActionTypes.RESET_SELECT_SCANNER](state = initialState) {
+    return { ...state, isScannerSelection: false };
   },
 });
 

@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { Card, Button, DialogContainer } from 'react-md';
 import MDSpinner from 'react-md-spinner';
 
-import { verifyProductIdentifier, clearVerificationResult } from
-  '../../store/mobile/verification/action';
+import {
+  verifyProductIdentifier,
+  clearVerificationResult,
+} from '../../store/mobile/verification/action';
 import Verifications from '../../components/desktop/Verifications';
 import VerifyProduct from '../../components/desktop/VerifyProduct';
 import VerificationResult from '../../components/desktop/VerificationResult';
@@ -18,7 +20,6 @@ import {
 } from '../../store/mobile/verification/action';
 
 export class VerificationsPage extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -45,7 +46,9 @@ export class VerificationsPage extends Component {
   }
 
   handleVerify() {
-    this.props.dispatch(verifyProductIdentifier(this.state.productIdentifier.trim()));
+    this.props.dispatch(
+      verifyProductIdentifier(this.state.productIdentifier.trim())
+    );
   }
 
   handleNextProduct() {
@@ -54,11 +57,13 @@ export class VerificationsPage extends Component {
   }
 
   render() {
-    const renderId = this.props.verificationResult.length === 0 ?
-      'verifyProduct' : 'verificationResult';
+    const renderId =
+      this.props.verificationResult.length === 0
+        ? 'verifyProduct'
+        : 'verificationResult';
 
-    const renderTitle = this.props.verificationResult.length === 0 ?
-      'Verify Product' : null;
+    const renderTitle =
+      this.props.verificationResult.length === 0 ? 'Verify Product' : null;
 
     const verifyActions = [];
     verifyActions.push(
@@ -77,7 +82,10 @@ export class VerificationsPage extends Component {
         primary
         onClick={() => this.handleVerify()}
         className="VerificationsPage__verify--button"
-        disabled={this.state.productIdentifier === null || this.state.productIdentifier === ''}
+        disabled={
+          this.state.productIdentifier === null ||
+          this.state.productIdentifier === ''
+        }
       >
         VERIFY
       </Button>
@@ -105,16 +113,17 @@ export class VerificationsPage extends Component {
       </Button>
     );
 
-    const renderActions = this.props.verificationResult.length === 0 ? verifyActions : verificationResultActions;
+    const renderActions =
+      this.props.verificationResult.length === 0
+        ? verifyActions
+        : verificationResultActions;
 
     let componentToRender = null;
     if (this.props.verificationResult.length === 0) {
       componentToRender = (
         <VerifyProduct
           productIdentifier={this.state.productIdentifier}
-          handleChange={(value) =>
-            this.handleChange(value)
-          }
+          handleChange={value => this.handleChange(value)}
         />
       );
     } else {
@@ -129,7 +138,9 @@ export class VerificationsPage extends Component {
       <div className="DesktopVerificationsPage">
         <div className="VerificationsPage__header">
           <div className="VerificationsPage__title">
-            <span className="VerificationsPage__title--text">Verifications</span>
+            <span className="VerificationsPage__title--text">
+              Verifications
+            </span>
             <DialogContainer
               id={`VerificationsPage__${renderId}--dialogContainer`}
               visible={this.state.isPIVerificationModalVisible}
@@ -145,10 +156,14 @@ export class VerificationsPage extends Component {
               ) : null}
             </DialogContainer>
             <a
-              onClick={() => this.setState({ isPIVerificationModalVisible: true })}
+              onClick={() =>
+                this.setState({ isPIVerificationModalVisible: true })
+              }
               label="VERIFY PRODUCT"
               className="VerificationsPage__verify-product--button"
-            >VERIFY PRODUCT</a>
+            >
+              VERIFY PRODUCT
+            </a>
           </div>
           <Card className="VerificationsPage__card">
             <Verifications

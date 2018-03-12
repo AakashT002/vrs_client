@@ -10,7 +10,7 @@ import VerificationResult from '../../components/mobile/VerificationResult';
 
 import 'font-awesome/css/font-awesome.min.css';
 import '../../assets/stylesheets/VerificationsPage.css';
-import '../../assets/stylesheets/MobileHomePage.css';
+import '../../assets/stylesheets/ProductVerification.css';
 
 import { clearVerificationResult } from '../../store/mobile/verification/action';
 import { getVerificationList } from '../../store/mobile/verification/action';

@@ -1,15 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { MobileHomePage } from './MobileHomePage';
+import { ProductVerification } from './ProductVerification';
 
-describe('Container: MobileHomePage', () => {
+describe('Container: ProductVerification', () => {
   const props = {
     verificationResult: [],
   };
   const spy = jest.fn();
 
   const wrapper = shallow(
-    <MobileHomePage
+    <ProductVerification
       verificationResult={props.verificationResult}
       dispatch={spy}
     />
@@ -20,9 +20,9 @@ describe('Container: MobileHomePage', () => {
   });
 
   it('renders the mobile home page', () => {
-    expect(wrapper.find('.mobileHomePage-layout').exists()).toBe(true);
+    expect(wrapper.find('.productVerification-layout').exists()).toBe(true);
   });
   it('renders the mobile layout', () => {
-    expect(wrapper.find('.mobileHomePage-layout').exists()).toBe(true);
+    expect(wrapper.find('.productVerification-layout').exists()).toBe(true);
   });
 });

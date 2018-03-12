@@ -25,9 +25,11 @@ class Header extends Component {
   }
 
   renderTitle() {
-    var username = sessionStorage.getItem('username').toUpperCase();
-    if (username === 'UNDEFINED') {
-      username = sessionStorage.getItem('user').toUpperCase();
+    var fullname = sessionStorage.getItem('fullname');
+    if (fullname) {
+      fullname = fullname.toUpperCase();
+    } else {
+      fullname = sessionStorage.getItem('username').toUpperCase();
     }
 
     const renderDropDown = () => {
@@ -57,7 +59,7 @@ class Header extends Component {
           >
             <div className={`Header__title ${dropDownState()}`}>
               <p className={`Header__title-username ${dropDownState()}`}>
-                {username}
+                {fullname}
               </p>
               <FontIcon
                 className={`material-icons Header__dropDown-icon ${dropDownState()}`}

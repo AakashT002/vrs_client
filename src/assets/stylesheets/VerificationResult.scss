@@ -87,19 +87,20 @@
   
   .md-card {
     width: 312px;
-    margin: 18px 0px 0px 22px;
+    margin: 18px 0px 10px 22px;
   }
 
   .md-grid {
     padding: 0px;
-    height: 90px;
+    height: 95px;
   }
 
   .md-card-title--large {
     width: 244px;
     height: 35px;
     padding: 0px;
-    font-size: 14px;
+    font-size: 15px;
+    font-family: Open Sans;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -155,7 +156,7 @@
     .verification-results__transaction-date {
       height: 18px;
       width: 116px;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
       font-size: 12px;
       font-family: Open Sans;
       color: $warm-grey-two;
@@ -168,6 +169,7 @@
       font-size: 16px;
       line-height: 1.67;
       color: $grey-600;
+      margin: 3px;
     }
   }
 
@@ -189,5 +191,5 @@
 
 ::-webkit-scrollbar-thumb {
   background: $grey-600; 
-  border-radius: 10px;
+  border-radius: 1px;
 }

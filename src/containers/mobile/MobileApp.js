@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 
-import MobileHomePage from './MobileHomePage';
+import ProductVerification from './ProductVerification';
 import VerificationsPage from './VerificationsPage';
+
 import '../../assets/stylesheets/MobileApp.css';
 import 'material-design-icons/iconfont/material-icons.css';
 
@@ -14,8 +15,8 @@ export class MobileApp extends Component {
       <div className="MobileApp">
         <div className="MobileApp-content">
           <Switch>
-            <Route exact path="/" component={MobileHomePage} />
-            <Route exact path="/home" component={MobileHomePage} />
+            <Route exact path="/" component={ProductVerification} />
+            <Route exact path="/home" component={ProductVerification} />
             <Route exact path="/verifications" component={VerificationsPage} />
           </Switch>
         </div>

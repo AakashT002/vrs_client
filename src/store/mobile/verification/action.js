@@ -1,7 +1,7 @@
 import * as ActionTypes from '../../actionTypes';
 import Verification from '../../../services/mobile/Verification';
 
-export const verifyProductIdentifier = pi => ({
+export const verifyProductIdentifier = (pi, scannerId) => ({
   types: [
     ActionTypes.VERIFY_PI_REQUEST,
     ActionTypes.VERIFY_PI_SUCCESS,
@@ -9,7 +9,7 @@ export const verifyProductIdentifier = pi => ({
   ],
   callAPI: async () => {
     try {
-      return await Verification.verify(pi);
+      return await Verification.verify(pi, scannerId);
     } catch (error) {
       throw new Error(error);
     }
@@ -65,4 +65,8 @@ export const getProductDetails = (gtin, srn) => ({
       throw new Error(error.message);
     }
   },
+});
+
+export const resetSelectScanner = () => ({
+  type: ActionTypes.RESET_SELECT_SCANNER,
 });

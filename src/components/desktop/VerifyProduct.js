@@ -7,14 +7,14 @@ import '../../assets/stylesheets/VerifyProduct.css';
 const VerifyProduct = props => {
   return (
     <div className="verifyProduct">
-        <TextField
-          id="product id"
-          className="verifyProduct__product-id"
-          label="PRODUCT ID"
-          placeholder="PRODUCT ID"
-          value={props.productIdentifier}
-          onChange={value => props.handleChange(value)}
-        />
+      <TextField
+        id="product id"
+        className="verifyProduct__product-id"
+        label="PRODUCT ID"
+        placeholder="PRODUCT ID"
+        value={props.productIdentifier}
+        onChange={value => props.handleChange(value)}
+      />
     </div>
   );
 };

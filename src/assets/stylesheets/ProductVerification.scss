@@ -1,15 +1,15 @@
 @import './variables';
 
-.mobileHomePage {
+.productVerification {
   background-color: $grey;
   width: 100%;
 
-  .mobileHomePage-container {
+  .productVerification-container {
     height: 662px;
     background-color: $bluish-gray;
   }
 
-  .mobileHomePage-layout {
+  .productVerification-layout {
     border: $grey 1px solid;
     height: 640px;
     width: 360px;
@@ -20,7 +20,7 @@
     margin-top: -24px;
   }
 
-  .mobileHomePage-loader {
+  .productVerification-loader {
     margin-top: 240px; 
     margin-left: 160px;
   }
