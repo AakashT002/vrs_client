@@ -111,7 +111,7 @@ export class ProductVerification extends Component {
               dispatch={this.props.dispatch}
               clearVerificationForm={this.clearVerificationForm}
             />
-            {this.props.requesting ? (
+            {this.props.piRequesting ? (
               <div className="productVerification-loader">
                 <MDSpinner size={50} singleColor="#00b8d4" />
               </div>
@@ -128,7 +128,7 @@ export class ProductVerification extends Component {
 function mapStateToProps(state) {
   return {
     verificationResult: state.verification.verificationResult,
-    requesting: state.verification.requesting,
+    piRequesting: state.verification.piRequesting,
     isScannerSelection: state.verification.isScannerSelection,
   };
 }
@@ -136,7 +136,7 @@ function mapStateToProps(state) {
 ProductVerification.propTypes = {
   dispatch: PropTypes.func,
   verificationResult: PropTypes.array,
-  requesting: PropTypes.bool,
+  piRequesting: PropTypes.bool,
   isScannerSelection: PropTypes.bool,
 };
 

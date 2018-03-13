@@ -14,7 +14,7 @@ import '../../assets/stylesheets/ProductVerification.css';
 
 import { clearVerificationResult } from '../../store/mobile/verification/action';
 import { getVerificationList } from '../../store/mobile/verification/action';
-import { getProductDetails } from '../../store/mobile/verification/action';
+import { getVerificationDetails } from '../../store/mobile/verification/action';
 
 import {
   EXPDATE_INDEX,
@@ -26,7 +26,7 @@ import {
 class VerificationsPage extends Component {
   constructor(props) {
     super(props);
-    this.handleProductDetails = this.handleProductDetails.bind(this);
+    this.handleVerificationDetails = this.handleVerificationDetails.bind(this);
   }
 
   componentWillMount() {
@@ -36,8 +36,10 @@ class VerificationsPage extends Component {
     });
   }
 
-  handleProductDetails(verification) {
-    this.props.dispatch(getProductDetails(verification.gtin, verification.srn));
+  handleVerificationDetails(verification) {
+    this.props.dispatch(
+      getVerificationDetails(verification.gtin, verification.srn)
+    );
   }
 
   render() {
@@ -47,7 +49,7 @@ class VerificationsPage extends Component {
       componentToRender = (
         <Verifications
           data={this.props.verificationList}
-          handleProductDetails={this.handleProductDetails}
+          handleVerificationDetails={this.handleVerificationDetails}
         />
       );
     } else {

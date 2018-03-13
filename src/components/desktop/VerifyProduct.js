@@ -10,8 +10,8 @@ const VerifyProduct = props => {
       <TextField
         id="product id"
         className="verifyProduct__product-id"
-        label="PRODUCT ID"
-        placeholder="PRODUCT ID"
+        label="Product ID"
+        placeholder="Product ID"
         value={props.productIdentifier}
         onChange={value => props.handleChange(value)}
       />

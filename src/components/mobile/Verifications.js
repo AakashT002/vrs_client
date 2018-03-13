@@ -27,7 +27,7 @@ import {
   VERIFIED_LABEL,
 } from '../../utils/constants';
 
-const Verifications = ({ data, handleProductDetails }) => {
+const Verifications = ({ data, handleVerificationDetails }) => {
   const formatDate = date => {
     return moment(date, 'YYYY-MM-DD HH:mm:ss z').format(
       'DD MMM, YYYY HH:mm:ss'
@@ -77,7 +77,7 @@ const Verifications = ({ data, handleProductDetails }) => {
                 key={index}
                 className="Verifications__table--row"
                 onClick={() => {
-                  handleProductDetails(verification);
+                  handleVerificationDetails(verification);
                 }}
               >
                 <TableColumn>
@@ -110,7 +110,7 @@ const Verifications = ({ data, handleProductDetails }) => {
 
 Verifications.propTypes = {
   data: PropTypes.array,
-  handleProductDetails: PropTypes.func,
+  handleVerificationDetails: PropTypes.func,
 };
 
 export default Verifications;

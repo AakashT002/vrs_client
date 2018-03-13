@@ -11,27 +11,6 @@
     & > h2 {
       color: $white;
     }
-
-    .VerificationsPage__title {
-      width: 1362px;
-      height: 94px;
-      background-color: $white;
-      font-size: 45px;
-      color: $blue-grey;
-      margin-top: -18px;
-      margin-left: -17px;
-      text-align: left;
-
-      .VerificationsPage__title--text {
-        position: relative;
-        left: 78px;
-        top: 10px;
-        }
-    }
-
-    .VerificationsPage__card {
-      width: 90.5%;
-    }
   }
 
   .VerificationsPage-logo {
@@ -47,150 +26,16 @@
       transform: rotate(360deg);
     }
   }
-
-  .VerificationsPage__verify-product--button {
-    height: 14px;
-    color: $cyan;
-    font-family: "Open Sans";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 14px;
-    text-align: center;
-    position: relative;
-    left: 910px;
-    top: 4px;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  #VerificationsPage__verifyProduct--dialogContainer {
-    height: 275px;
-    width: 520px;
-    border-radius: 2px;
-    background-color: $white;
-    box-shadow: 0 2px 25px 0 $black-24;
-
-    .md-title--dialog {
-      margin-bottom: 0;
-      padding: 24px;
-      padding-bottom: 20px;
-      white-space: normal;
-      height: 3.66%;
-      color: $blue-grey;
-      font-family: "Open Sans";
-      font-size: 24px;
-      line-height: 32px;
-    }
-  }
   
-  #VerificationsPage__verificationResult--dialogContainer {
-      width: 520px;
-      height: 524px;
-      border-radius: 2px;
-      background-color: $grey-100;
-      box-shadow: 0 2px 25px 0 $black-24;
-  }
-
-  .VerificationsPage__verify--button {
-    width: 132px;
-    height: 40px;
-    font-family: "Open Sans";
-    font-size: 15px;
-    font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.33;
-    letter-spacing: 0.7px;
-    text-align: center;
-    color: $white;
-    border-radius: 100px;
-    background-color: $cyan;
-    box-shadow: 0 3px 1px -2px $greyish-black, 0 2px 2px 0 $black-14, 0 1px 5px 0 $black-2;
-    top: 120px;
-    right: 53px;
-
-    &:disabled {
-    border-radius: 100px;
-    background-color: $blue-grey-12;
-    box-shadow: 0 1px 5px 0 $black-2, 0 2px 2px 0 $black-14, 0 3px 1px -2px $greyish-black; 
-    top: 120px;
-    right: 53px;
-    color: $blue-grey-26;
-    font-family: "Open Sans";
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 20px;
-    text-align: center;
-    width: 132px;
-    height: 40px;
-    border-radius: 100px;
-    background-color: $blue-grey-12;
-    }
-  }
-  
-  .VerificationsPage__cancel--button {
-    height: 14px;
-    width: 125px;
-    color: $cyan;
-    font-family: "Open Sans";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 14px;
-    text-align: center;
-    top: 124px;
-    left: -35px;
-
-    &:hover {
-      background-color: $white;
-    }
-  }
-
-  .VerificationsPage__view-details--button {
-    line-height: 14px;
-    text-align: center;
-    top: 358px;
-    left: -73px;
-    height: 14px;
-    font-family: "Open Sans";
-    font-size: 14px;
-    font-weight: 400;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1;
-    letter-spacing: 0.7px;
-    text-align: center;
-    color: $cyan;
-
-    &:hover {
-      background-color: $grey-100;
-    }
-  }
-
-  .VerificationsPage__next-product--button {
-    width: 200px;
-    height: 40px;
-    font-family: "Open Sans";
-    font-size: 15px;
-    font-weight: 400;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.33;
-    letter-spacing: 0.7px;
-    text-align: center;
-    color: $white;
-    border-radius: 100px;
-    background-color: $cyan;
-    box-shadow: 0 3px 1px -2px $grey-100, 0 2px 2px 0 $black-14, 0 1px 5px 0 $black-2;
-    top: 350px;
-    right: 53px;
-    border-radius: 100px;
-  }
-
   .VerificationsPage__verify-product--loader {
     position: absolute;
     left: 482px;
     bottom: 28px;
   }
+}
+
+.VerificationsPage__loader {
+  position: absolute;
+  top: 254px;
+  left: 635px;
 }

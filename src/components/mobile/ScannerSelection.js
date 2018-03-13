@@ -28,10 +28,11 @@ const ScannerSelection = props => {
           onChange={value => props.handleFieldChange(value)}
         />
         <Checkbox
-          name="{item.name}"
+          name="scanner-id-Checkbox"
+          id="scanner-id-Checkbox"
           className="scannerSelection__check-box"
           label="Use this phone as scanner"
-          onClick={() => props.handleCheckBoxSelection()}
+          onChange={() => props.handleCheckBoxSelection()}
           checked={props.isMobileScannerChecked}
         />
         <Button

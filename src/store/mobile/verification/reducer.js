@@ -6,28 +6,28 @@ const initialState = {
   verificationList: [],
   requesting: false,
   isDescending: true,
+  piRequesting: false,
   isScannerSelection: true,
 };
 
 export const verification = createReducer(initialState, {
   [ActionTypes.VERIFY_PI_REQUEST](state) {
-    return { ...state, requesting: true };
+    return { ...state, piRequesting: true };
   },
   [ActionTypes.VERIFY_PI_SUCCESS](state = initialState, action) {
     return Object.assign({}, state, {
       verificationResult: action.response.result,
-      requesting: false,
+      piRequesting: false,
     });
   },
   [ActionTypes.VERIFY_PI_FAILURE](state) {
-    return { ...state, requesting: false };
+    return { ...state, piRequesting: false };
   },
   [ActionTypes.CLEAR_VERIFICATION_RESULT](state = initialState) {
     return Object.assign({}, state, {
       verificationResult: [],
     });
   },
-
   [ActionTypes.FETCH_VERIFICATIONS_REQUEST](state) {
     return { ...state, requesting: true };
   },

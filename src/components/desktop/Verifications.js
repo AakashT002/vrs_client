@@ -5,10 +5,16 @@ import {
   TableBody,
   TableRow,
   TableColumn,
+  Button,
+  Card,
+  DialogContainer,
 } from 'react-md';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import MDSpinner from 'react-md-spinner';
+
+import VerifyProduct from './VerifyProduct';
+import VerificationResult from './VerificationResult';
 
 import access_time from '../../assets/images/access_time.png';
 import check_circle from '../../assets/images/check_circle.png';
@@ -31,7 +37,21 @@ import {
   SORT_FIELD_LAST_UPDATED,
 } from '../../utils/constants';
 
-const Verifications = ({ data, requesting, handleSort, isDescending }) => {
+const Verifications = ({
+  data,
+  handleSort,
+  isDescending,
+  handleVerificationDetails,
+  handleVerifyProduct,
+  handleNextProduct,
+  handleCancel,
+  handleVerify,
+  verificationResult,
+  handleChange,
+  productIdentifier,
+  isPIVerificationModalVisible,
+  piRequesting,
+}) => {
   const formatDate = date => {
     return moment(date, 'YYYY-MM-DD HH:mm:ss z').format('DD MMM YYYY HH:mm:ss');
   };
@@ -118,79 +138,183 @@ const Verifications = ({ data, requesting, handleSort, isDescending }) => {
     }
   };
 
+  let renderModalContent = null;
+  if (verificationResult.length === 0) {
+    renderModalContent = (
+      <VerifyProduct
+        productIdentifier={productIdentifier}
+        handleChange={value => handleChange(value)}
+      />
+    );
+  } else {
+    renderModalContent = (
+      <VerificationResult
+        data={verificationResult}
+        productIdentifier={productIdentifier}
+      />
+    );
+  }
+
+  const renderId =
+    verificationResult.length === 0 ? 'verifyProduct' : 'verificationResult';
+
+  const verifyActions = [];
+  verifyActions.push(
+    <Button
+      flat
+      secondary
+      onClick={handleCancel}
+      className="DesktopVerifications__cancel--button"
+    >
+      Cancel
+    </Button>
+  );
+  verifyActions.push(
+    <Button
+      flat
+      primary
+      onClick={handleVerify}
+      className="DesktopVerifications__verify--button"
+      disabled={productIdentifier === null || productIdentifier === ''}
+      y
+    >
+      VERIFY
+    </Button>
+  );
+
+  const verificationResultActions = [];
+  verificationResultActions.push(
+    <Button
+      flat
+      secondary
+      onClick={() =>
+        handleVerificationDetails(
+          verificationResult[0].gtin,
+          verificationResult[0].srn
+        )
+      }
+      className="DesktopVerifications__view-details--button"
+    >
+      VIEW DETAILS
+    </Button>
+  );
+  verificationResultActions.push(
+    <Button
+      flat
+      primary
+      onClick={handleNextProduct}
+      className="DesktopVerifications__next-product--button"
+    >
+      NEXT PRODUCT
+    </Button>
+  );
+
+  const renderActions =
+    verificationResult.length === 0 ? verifyActions : verificationResultActions;
+
+  const renderTitle = verificationResult.length === 0 ? 'Verify Product' : null;
+
   return (
     <div className="DesktopVerifications">
-      <DataTable className="DesktopVerifications__table" plain>
-        <TableHeader>
-          <TableRow className="DesktopVerifications__table--header">
-            {VERIFICATIONS_HEADER.map(header => (
-              <TableColumn
-                key={header}
-                className="DesktopVerifications__table--header-data"
-              >
-                {renderHeaderAndSortable(header, isDescending)}
-              </TableColumn>
-            ))}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {requesting ? (
+      <div className="DesktopVerifications__title">
+        <span className="DesktopVerifications__title--text">Verifications</span>
+        <DialogContainer
+          id={`DesktopVerifications__${renderId}--dialogContainer`}
+          visible={isPIVerificationModalVisible}
+          onHide={handleCancel}
+          actions={renderActions}
+          title={renderTitle}
+        >
+          {renderModalContent}
+          {piRequesting ? (
             <div className="DesktopVerifications__loader">
-              <MDSpinner size={90} singleColor="#00b8d4" />
+              <MDSpinner size={20} singleColor="#00b8d4" />
             </div>
-          ) : data.length !== 0 ? (
-            data.map((verification, index) => (
-              <TableRow
-                key={index}
-                className="DesktopVerifications__table--row"
-              >
-                <TableColumn className="DesktopVerifications__table--column">
-                  <font className="DesktopVerifications__serial--number">
-                    {verification.srn}
-                  </font>
-                </TableColumn>
-                <TableColumn className="DesktopVerifications__table--column">
-                  {renderStatusIcon(verification.status)}
-                  <span className={renderClassName(verification.status)}>
-                    <font className="DesktopVerifications__status">
-                      {renderStatusText(verification.status)}
-                    </font>
-                  </span>
-                </TableColumn>
-                <TableColumn className="DesktopVerifications__table--column">
-                  <font className="DesktopVerifications__last--updated">
-                    {formatDate(verification.responseRcvTime)}
-                  </font>
-                </TableColumn>
-                <TableColumn className="DesktopVerifications__table--column">
-                  <font className="DesktopVerifications__gtin">
-                    {verification.gtin}
-                  </font>
-                </TableColumn>
-                <TableColumn className="DesktopVerifications__table--column">
-                  <font className="DesktopVerifications__product--name">
-                    {verification.productName}
-                  </font>
-                </TableColumn>
-                <TableColumn className="DesktopVerifications__table--column">
-                  <font className="DesktopVerifications__lot">
-                    {verification.lot}
-                  </font>
-                </TableColumn>
-                <TableColumn className="DesktopVerifications__table--column">
-                  <font className="DesktopVerifications__expiration">
-                    {formatExpiryDate(verification.expDate)}
-                  </font>
-                </TableColumn>
+          ) : null}
+        </DialogContainer>
+        <Card className="DesktopVerifications__card">
+          <DataTable className="DesktopVerifications__table" plain>
+            <a
+              onClick={handleVerifyProduct}
+              label="VERIFY PRODUCT"
+              className="DesktopVerifications__verify-product--button"
+            >
+              VERIFY PRODUCT
+            </a>
+            <TableHeader>
+              <TableRow className="DesktopVerifications__table--header">
+                {VERIFICATIONS_HEADER.map(header => (
+                  <TableColumn
+                    key={header}
+                    className="DesktopVerifications__table--header-data"
+                  >
+                    {renderHeaderAndSortable(header, isDescending)}
+                  </TableColumn>
+                ))}
               </TableRow>
-            ))
-          ) : (
-            <span className="DesktopVerifications__no-data-found">
-              No Verifications Data Found
-            </span>
-          )}
-        </TableBody>
-      </DataTable>
+            </TableHeader>
+            <TableBody>
+              {data.length !== 0 ? (
+                data.map((verification, index) => (
+                  <TableRow
+                    key={index}
+                    className="DesktopVerifications__table--row"
+                    onClick={() => {
+                      handleVerificationDetails(
+                        verification.gtin,
+                        verification.srn
+                      );
+                    }}
+                  >
+                    <TableColumn className="DesktopVerifications__table--column">
+                      <font className="DesktopVerifications__serial--number">
+                        {verification.srn}
+                      </font>
+                    </TableColumn>
+                    <TableColumn className="DesktopVerifications__table--column">
+                      {renderStatusIcon(verification.status)}
+                      <span className={renderClassName(verification.status)}>
+                        <font className="DesktopVerifications__status">
+                          {renderStatusText(verification.status)}
+                        </font>
+                      </span>
+                    </TableColumn>
+                    <TableColumn className="DesktopVerifications__table--column">
+                      <font className="DesktopVerifications__last--updated">
+                        {formatDate(verification.responseRcvTime)}
+                      </font>
+                    </TableColumn>
+                    <TableColumn className="DesktopVerifications__table--column">
+                      <font className="DesktopVerifications__gtin">
+                        {verification.gtin}
+                      </font>
+                    </TableColumn>
+                    <TableColumn className="DesktopVerifications__table--column">
+                      <font className="DesktopVerifications__product--name">
+                        {verification.productName}
+                      </font>
+                    </TableColumn>
+                    <TableColumn className="DesktopVerifications__table--column">
+                      <font className="DesktopVerifications__lot">
+                        {verification.lot}
+                      </font>
+                    </TableColumn>
+                    <TableColumn className="DesktopVerifications__table--column">
+                      <font className="DesktopVerifications__expiration">
+                        {formatExpiryDate(verification.expDate)}
+                      </font>
+                    </TableColumn>
+                  </TableRow>
+                ))
+              ) : (
+                <span className="DesktopVerifications__no-data-found">
+                  No Verifications Data Found
+                </span>
+              )}
+            </TableBody>
+          </DataTable>
+        </Card>
+      </div>
     </div>
   );
 };
@@ -198,8 +322,19 @@ const Verifications = ({ data, requesting, handleSort, isDescending }) => {
 Verifications.propTypes = {
   data: PropTypes.array,
   requesting: PropTypes.bool,
+  piRequesting: PropTypes.bool,
   handleSort: PropTypes.func,
   isDescending: PropTypes.bool,
+  handleVerificationDetails: PropTypes.func,
+  handleVerifyProduct: PropTypes.func,
+  handleNextProduct: PropTypes.func,
+  handleNextCancel: PropTypes.func,
+  verificationResult: PropTypes.array,
+  handleVerify: PropTypes.func,
+  handleChange: PropTypes.func,
+  productIdentifier: PropTypes.string,
+  handleCancel: PropTypes.func,
+  isPIVerificationModalVisible: PropTypes.bool,
 };
 
 export default Verifications;

@@ -1,7 +1,7 @@
 import * as ActionTypes from '../../actionTypes';
 import Verification from '../../../services/mobile/Verification';
 
-export const verifyProductIdentifier = (pi, scannerId) => ({
+export const verifyProductIdentifier = (pi, deviceType) => ({
   types: [
     ActionTypes.VERIFY_PI_REQUEST,
     ActionTypes.VERIFY_PI_SUCCESS,
@@ -9,7 +9,7 @@ export const verifyProductIdentifier = (pi, scannerId) => ({
   ],
   callAPI: async () => {
     try {
-      return await Verification.verify(pi, scannerId);
+      return await Verification.verify(pi, deviceType);
     } catch (error) {
       throw new Error(error);
     }
@@ -52,7 +52,7 @@ export function sort(verificationList, isDescending) {
   };
 }
 
-export const getProductDetails = (gtin, srn) => ({
+export const getVerificationDetails = (gtin, srn) => ({
   types: [
     ActionTypes.PRODUCT_DETAILS_REQUEST,
     ActionTypes.PRODUCT_DETAILS_SUCCESS,
@@ -60,7 +60,7 @@ export const getProductDetails = (gtin, srn) => ({
   ],
   callAPI: async () => {
     try {
-      return await Verification.getProductDetails(gtin, srn);
+      return await Verification.getVerificationDetails(gtin, srn);
     } catch (error) {
       throw new Error(error.message);
     }

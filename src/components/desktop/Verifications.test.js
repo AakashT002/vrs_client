@@ -18,7 +18,19 @@ describe('Component: Verifications', () => {
     },
   ];
 
-  const wrapper = shallow(<Verifications data={verificationsList} />);
+  let verificationResult = [];
+
+  const spy = jest.fn();
+  const wrapper = shallow(
+    <Verifications
+      data={verificationsList}
+      onSubmit={spy}
+      handleVerifyProduct={spy}
+      verificationResult={verificationResult}
+      isPIVerificationModalVisible={true}
+      handleCancel={spy}
+    />
+  );
 
   it('renders without crashing', () => {
     expect(wrapper.exists()).toBe(true);
@@ -32,6 +44,36 @@ describe('Component: Verifications', () => {
     expect(wrapper.find('.DesktopVerifications__table--header').exists()).toBe(
       true
     );
+  });
+
+  it('renders the verifications page title', () => {
+    expect(wrapper.find('.DesktopVerifications__title').exists()).toBe(true);
+  });
+
+  it('renders the verifications page title', () => {
+    expect(wrapper.find('.DesktopVerifications__title--text').exists()).toBe(
+      true
+    );
+  });
+
+  it('renders the verifications page title', () => {
+    expect(wrapper.find('.DesktopVerifications__title--text').text()).toContain(
+      'Verifications'
+    );
+  });
+
+  it('renders the verifications page verify product button', () => {
+    expect(
+      wrapper.find('.DesktopVerifications__verify-product--button').exists()
+    ).toBe(true);
+  });
+
+  it('should call onSubmit when the verify product button is clicked', () => {
+    const submitButton = wrapper.find(
+      '.DesktopVerifications__verify-product--button'
+    );
+    submitButton.simulate('click');
+    expect(spy).toHaveBeenCalled();
   });
 
   it('renders a verification tabel header data', () => {

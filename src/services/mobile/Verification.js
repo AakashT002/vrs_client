@@ -39,7 +39,7 @@ class Verification {
     }
   }
 
-  static async getProductDetails(gtin, srn) {
+  static async getVerificationDetails(gtin, srn) {
     const token = sessionStorage.kctoken;
     const verificationUrl = `${API_URL}/api/verification/${gtin}/${srn}`;
     const response = await fetch(verificationUrl, {
