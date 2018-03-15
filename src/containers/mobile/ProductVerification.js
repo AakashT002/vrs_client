@@ -13,7 +13,7 @@ import '../../assets/stylesheets/ProductVerification.css';
 
 import { verifyProductIdentifier } from '../../store/mobile/verification/action';
 import { clearVerificationResult } from '../../store/mobile/verification/action';
-import { resetSelectScanner } from '../../store/mobile/verification/action';
+import { updateDeviceType } from '../../store/mobile/verification/action';
 
 export class ProductVerification extends Component {
   constructor(props) {
@@ -48,10 +48,7 @@ export class ProductVerification extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const pi = this.state.productIdentifier;
-    const scannerId = this.state.scannerId;
-    var deviceType = this.state.isMobileScannerChecked
-      ? process.env.REACT_APP_DEVICE_TYPE
-      : scannerId;
+    const deviceType = this.props.deviceType;
     this.props.dispatch(verifyProductIdentifier(pi, deviceType));
   }
 
@@ -60,7 +57,12 @@ export class ProductVerification extends Component {
   }
 
   handleScannerSignIn() {
-    this.props.dispatch(resetSelectScanner());
+    const scannerId = this.state.scannerId;
+    var deviceType = this.state.isMobileScannerChecked
+      ? process.env.REACT_APP_DEVICE_TYPE
+      : scannerId;
+    sessionStorage.setItem('deviceType', deviceType);
+    this.props.dispatch(updateDeviceType());
   }
 
   handleCheckBoxSelection() {
@@ -72,7 +74,7 @@ export class ProductVerification extends Component {
 
   render() {
     let componentToRender = null;
-    if (this.props.isScannerSelection === true) {
+    if (!this.props.deviceType) {
       componentToRender = (
         <ScannerSelection
           scannerId={this.state.scannerId}
@@ -129,7 +131,7 @@ function mapStateToProps(state) {
   return {
     verificationResult: state.verification.verificationResult,
     piRequesting: state.verification.piRequesting,
-    isScannerSelection: state.verification.isScannerSelection,
+    deviceType: state.verification.deviceType,
   };
 }
 
@@ -137,7 +139,7 @@ ProductVerification.propTypes = {
   dispatch: PropTypes.func,
   verificationResult: PropTypes.array,
   piRequesting: PropTypes.bool,
-  isScannerSelection: PropTypes.bool,
+  deviceType: PropTypes.string,
 };
 
 export default connect(mapStateToProps)(ProductVerification);

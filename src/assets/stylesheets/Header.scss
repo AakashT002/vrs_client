@@ -15,6 +15,7 @@ header.Header-toolbar {
     right: 0px;
     top: 0px; 
     min-height: 44px;
+    z-index: 10;
 
     .Header__title {
       height: 44px;

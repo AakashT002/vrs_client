@@ -67,6 +67,6 @@ export const getVerificationDetails = (gtin, srn) => ({
   },
 });
 
-export const resetSelectScanner = () => ({
-  type: ActionTypes.RESET_SELECT_SCANNER,
+export const updateDeviceType = () => ({
+  type: ActionTypes.UPDATE_DEVICE_TYPE,
 });
