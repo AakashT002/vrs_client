@@ -38,11 +38,11 @@ export const getVerificationList = () => ({
 export function sort(verificationList, isDescending) {
   if (isDescending) {
     verificationList.sort(function(a, b) {
-      return new Date(b.responseRcvTime) - new Date(a.responseRcvTime);
+      return new Date(b.requestSentTime) - new Date(a.requestSentTime);
     });
   } else {
     verificationList.sort(function(a, b) {
-      return new Date(a.responseRcvTime) - new Date(b.responseRcvTime);
+      return new Date(a.requestSentTime) - new Date(b.requestSentTime);
     });
   }
   return {

@@ -34,36 +34,42 @@ export class VerificationsPage extends Component {
     this.handleVerificationDetails = this.handleVerificationDetails.bind(this);
     this.handleBackToVerifications = this.handleBackToVerifications.bind(this);
     this.handleVerifyProduct = this.handleVerifyProduct.bind(this);
+    this.escFunction = this.escFunction.bind(this);
   }
 
   componentWillMount() {
     this.props.dispatch(getVerificationList());
+    document.removeEventListener('keydown', this.escFunction, false);
   }
 
   handleSort(isDescending) {
     this.props.dispatch(sort(this.props.data, !isDescending));
   }
 
-  handleCancel() {
+  async handleCancel() {
     this.setState({
       isPIVerificationModalVisible: false,
       productIdentifier: null,
     });
-    this.props.dispatch(getVerificationList());
+    await this.props.dispatch(clearVerificationResult());
   }
 
   handleChange(value) {
-    this.setState({ productIdentifier: value, disableVerify: false});
+    this.setState({ productIdentifier: value, disableVerify: false });
   }
 
   handleVerify(e) {
     e.preventDefault();
-    this.props.dispatch(
-      verifyProductIdentifier(
-        this.state.productIdentifier.trim(),
-        process.env.REACT_APP_DEVICE_TYPE
+    this.props
+      .dispatch(
+        verifyProductIdentifier(
+          this.state.productIdentifier.trim(),
+          process.env.REACT_APP_DEVICE_TYPE
+        )
       )
-    );
+      .then(() => {
+        this.props.dispatch(sort(this.props.data, this.props.isDescending));
+      });
     this.setState({ disableVerify: true });
   }
 
@@ -82,12 +88,27 @@ export class VerificationsPage extends Component {
     await this.props.dispatch(clearVerificationResult());
     this.setState({ productIdentifier: null });
     this.setState({ isPIVerificationModalVisible: false });
-    await this.props.dispatch(getVerificationList());
     this.props.history.push('/home');
   }
 
   handleVerifyProduct() {
-    this.setState({ isPIVerificationModalVisible: true });
+    this.setState({
+      isPIVerificationModalVisible: true,
+      productIdentifier: null,
+    });
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.escFunction, false);
+  }
+
+  escFunction(event) {
+    if (event.keyCode === 27) {
+      this.setState({
+        isPIVerificationModalVisible: false,
+      });
+    }
+    this.props.dispatch(clearVerificationResult());
   }
 
   render() {
@@ -127,9 +148,9 @@ export class VerificationsPage extends Component {
       } else {
         const productIdentifier = `${GTIN_INDEX}${
           this.props.verificationResult[0].gtin
-          }${SRN_INDEX}${this.props.verificationResult[0].srn}${LOT_INDEX}${
+        }${SRN_INDEX}${this.props.verificationResult[0].srn}${LOT_INDEX}${
           this.props.verificationResult[0].lot
-          }${EXPDATE_INDEX}${this.props.verificationResult[0].expDate}`;
+        }${EXPDATE_INDEX}${this.props.verificationResult[0].expDate}`;
         componentToRender = (
           <VerificationDetails
             data={this.props.verificationResult}

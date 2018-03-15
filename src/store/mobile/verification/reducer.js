@@ -7,6 +7,8 @@ const initialState = {
   requesting: false,
   isDescending: true,
   piRequesting: false,
+  isScannerSelection: true,
+  isDuplicate: false,
   deviceType: sessionStorage.getItem('deviceType'),
 };
 
@@ -15,9 +17,25 @@ export const verification = createReducer(initialState, {
     return { ...state, piRequesting: true };
   },
   [ActionTypes.VERIFY_PI_SUCCESS](state = initialState, action) {
+
+    state.verificationList.forEach(verification => {
+      if (verification.srn === action.response.result[0].srn) {
+        verification.requestSentTime = action.response.result[0].requestSentTime;
+        state.isDuplicate = true;
+        if (verification.status !== action.response.result[0].status) {
+          verification.status = action.response.result[0].status;
+          state.isDuplicate = true;
+        }
+      }
+    });
+
+    if (!state.isDuplicate) {
+      state.verificationList.unshift(action.response.result[0]);
+    }
     return Object.assign({}, state, {
       verificationResult: action.response.result,
       piRequesting: false,
+      verificationList: state.verificationList
     });
   },
   [ActionTypes.VERIFY_PI_FAILURE](state) {

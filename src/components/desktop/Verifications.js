@@ -225,6 +225,7 @@ const Verifications = ({
           onHide={handleCancel}
           actions={renderActions}
           title={renderTitle}
+          modal
         >
           {renderModalContent}
           {piRequesting ? (
@@ -282,7 +283,7 @@ const Verifications = ({
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
                       <font className="DesktopVerifications__last--updated">
-                        {formatDate(verification.responseRcvTime)}
+                        {formatDate(verification.requestSentTime)}
                       </font>
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
