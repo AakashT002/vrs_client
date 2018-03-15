@@ -51,6 +51,7 @@ const Verifications = ({
   productIdentifier,
   isPIVerificationModalVisible,
   piRequesting,
+  disableVerify,
 }) => {
   const formatDate = date => {
     return moment(date, 'YYYY-MM-DD HH:mm:ss z').format('DD MMM YYYY HH:mm:ss');
@@ -144,6 +145,7 @@ const Verifications = ({
       <VerifyProduct
         productIdentifier={productIdentifier}
         handleChange={value => handleChange(value)}
+        handleVerify={handleVerify}
       />
     );
   } else {
@@ -175,8 +177,7 @@ const Verifications = ({
       primary
       onClick={handleVerify}
       className="DesktopVerifications__verify--button"
-      disabled={productIdentifier === null || productIdentifier === ''}
-      y
+      disabled={productIdentifier === null || productIdentifier === '' || disableVerify}
     >
       VERIFY
     </Button>
@@ -335,6 +336,7 @@ Verifications.propTypes = {
   productIdentifier: PropTypes.string,
   handleCancel: PropTypes.func,
   isPIVerificationModalVisible: PropTypes.bool,
+  disableVerify: PropTypes.bool
 };
 
 export default Verifications;

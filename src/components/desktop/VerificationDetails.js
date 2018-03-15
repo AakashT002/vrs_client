@@ -74,7 +74,7 @@ const VerificationDetails = props => {
   };
 
   const transactionEventDateFormat = date => {
-    return moment(date).format('DD MMM YYYY H:MM:SS');
+    return moment(date, 'YYYY-MM-DD HH:mm:ss z').format('DD MMM YYYY HH:mm:ss');
   };
 
   const entityCheck = (transaction, event) => {

@@ -29,6 +29,7 @@ export class VerificationsPage extends Component {
     this.state = {
       productIdentifier: null,
       isPIVerificationModalVisible: false,
+      disableVerify: false,
     };
     this.handleVerificationDetails = this.handleVerificationDetails.bind(this);
     this.handleBackToVerifications = this.handleBackToVerifications.bind(this);
@@ -48,19 +49,22 @@ export class VerificationsPage extends Component {
       isPIVerificationModalVisible: false,
       productIdentifier: null,
     });
+    this.props.dispatch(getVerificationList());
   }
 
   handleChange(value) {
-    this.setState({ productIdentifier: value });
+    this.setState({ productIdentifier: value, disableVerify: false});
   }
 
-  handleVerify() {
+  handleVerify(e) {
+    e.preventDefault();
     this.props.dispatch(
       verifyProductIdentifier(
         this.state.productIdentifier.trim(),
         process.env.REACT_APP_DEVICE_TYPE
       )
     );
+    this.setState({ disableVerify: true });
   }
 
   handleNextProduct() {
@@ -78,6 +82,7 @@ export class VerificationsPage extends Component {
     await this.props.dispatch(clearVerificationResult());
     this.setState({ productIdentifier: null });
     this.setState({ isPIVerificationModalVisible: false });
+    await this.props.dispatch(getVerificationList());
     this.props.history.push('/home');
   }
 
@@ -116,14 +121,15 @@ export class VerificationsPage extends Component {
             handleChange={this.handleChange.bind(this)}
             productIdentifier={this.state.productIdentifier}
             piRequesting={this.props.piRequesting}
+            disableVerify={this.state.disableVerify}
           />
         );
       } else {
         const productIdentifier = `${GTIN_INDEX}${
           this.props.verificationResult[0].gtin
-        }${SRN_INDEX}${this.props.verificationResult[0].srn}${LOT_INDEX}${
+          }${SRN_INDEX}${this.props.verificationResult[0].srn}${LOT_INDEX}${
           this.props.verificationResult[0].lot
-        }${EXPDATE_INDEX}${this.props.verificationResult[0].expDate}`;
+          }${EXPDATE_INDEX}${this.props.verificationResult[0].expDate}`;
         componentToRender = (
           <VerificationDetails
             data={this.props.verificationResult}
