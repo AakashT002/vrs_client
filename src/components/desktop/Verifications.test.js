@@ -29,6 +29,8 @@ describe('Component: Verifications', () => {
       verificationResult={verificationResult}
       isPIVerificationModalVisible={true}
       handleCancel={spy}
+      expirationDateFormat={spy}
+      transactionEventDateFormat={spy}
     />
   );
 

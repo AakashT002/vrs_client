@@ -9,7 +9,6 @@ import {
   Card,
   DialogContainer,
 } from 'react-md';
-import moment from 'moment';
 import PropTypes from 'prop-types';
 import MDSpinner from 'react-md-spinner';
 
@@ -52,15 +51,9 @@ const Verifications = ({
   isPIVerificationModalVisible,
   piRequesting,
   disableVerify,
+  expirationDateFormat,
+  transactionEventDateFormat,
 }) => {
-  const formatDate = date => {
-    return moment(date, 'YYYY-MM-DD HH:mm:ss z').format('DD MMM YYYY HH:mm:ss');
-  };
-
-  const formatExpiryDate = date => {
-    return moment(date, 'YYYY-MM-DD HH:mm:ss z').format('DD MMM YYYY');
-  };
-
   const renderStatusText = status => {
     if (status === VERIFIED) {
       return VERIFIED_LABEL;
@@ -177,7 +170,9 @@ const Verifications = ({
       primary
       onClick={handleVerify}
       className="DesktopVerifications__verify--button"
-      disabled={productIdentifier === null || productIdentifier === '' || disableVerify}
+      disabled={
+        productIdentifier === null || productIdentifier === '' || disableVerify
+      }
     >
       VERIFY
     </Button>
@@ -283,7 +278,9 @@ const Verifications = ({
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
                       <font className="DesktopVerifications__last--updated">
-                        {formatDate(verification.requestSentTime)}
+                        {transactionEventDateFormat(
+                          verification.requestSentTime
+                        )}
                       </font>
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
@@ -303,7 +300,7 @@ const Verifications = ({
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
                       <font className="DesktopVerifications__expiration">
-                        {formatExpiryDate(verification.expDate)}
+                        {expirationDateFormat(verification.expDate)}
                       </font>
                     </TableColumn>
                   </TableRow>
@@ -337,7 +334,9 @@ Verifications.propTypes = {
   productIdentifier: PropTypes.string,
   handleCancel: PropTypes.func,
   isPIVerificationModalVisible: PropTypes.bool,
-  disableVerify: PropTypes.bool
+  disableVerify: PropTypes.bool,
+  expirationDateFormat: PropTypes.func,
+  transactionEventDateFormat: PropTypes.func,
 };
 
 export default Verifications;

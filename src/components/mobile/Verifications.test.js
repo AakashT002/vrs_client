@@ -18,8 +18,10 @@ describe('Component: Verifications', () => {
       status: PENDING,
     },
   ];
-
-  const wrapper = shallow(<Verifications data={verificationsList} />);
+  const spy = jest.fn();
+  const wrapper = shallow(
+    <Verifications data={verificationsList} transactionEventDateFormat={spy} />
+  );
 
   it('renders without crashing', () => {
     expect(wrapper.exists()).toBe(true);

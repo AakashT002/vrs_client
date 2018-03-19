@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, CardTitle, CardText, Avatar } from 'react-md';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 
 import '../../assets/stylesheets/VerificationResult.css';
 
@@ -79,14 +78,6 @@ const VerificationResult = props => {
     }
   };
 
-  const expirationDateFormat = date => {
-    return moment(date).format('DD MMM YYYY');
-  };
-
-  const formatDate = date => {
-    return moment(date, 'YYYY-MM-DD HH:mm:ss z').format('DD MMM YYYY HH:mm:ss');
-  };
-
   const entityCheck = (product, event) => {
     if (event.eventStatus === VERIFIED) {
       return RESPONDER_ID_LABEL + product.responderId;
@@ -119,7 +110,7 @@ const VerificationResult = props => {
             <div className="md-cell ">
               <div className="verification-results__transaction-details">
                 <h3 className="md-cell verification-results__transaction-date">
-                  {formatDate(event.eventTime)}
+                  {props.transactionEventDateFormat(event.eventTime)}
                 </h3>
                 <p className="md-cell">{entityCheck(product, event)}</p>
                 <p className="md-cell">{event.eventMessage}</p>
@@ -153,7 +144,7 @@ const VerificationResult = props => {
           Serial Number: {props.data[0].srn}
         </p>
         <p>Lot: {props.data[0].lot}</p>
-        <p>Expiration : {expirationDateFormat(props.data[0].expDate)}</p>
+        <p>Expiration : {props.expirationDateFormat(props.data[0].expDate)}</p>
         <p>Product: {props.data[0].productName}</p>
       </div>
       {props.data.map((product, index) => (
@@ -176,6 +167,8 @@ const VerificationResult = props => {
 VerificationResult.propTypes = {
   data: PropTypes.array,
   productIdentifier: PropTypes.string,
+  expirationDateFormat: PropTypes.func,
+  transactionEventDateFormat: PropTypes.func,
 };
 
 export default VerificationResult;

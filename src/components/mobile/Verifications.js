@@ -6,7 +6,6 @@ import {
   TableRow,
   TableColumn,
 } from 'react-md';
-import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import access_time from '../../assets/images/access_time.png';
@@ -27,13 +26,11 @@ import {
   VERIFIED_LABEL,
 } from '../../utils/constants';
 
-const Verifications = ({ data, handleVerificationDetails }) => {
-  const formatDate = date => {
-    return moment(date, 'YYYY-MM-DD HH:mm:ss z').format(
-      'DD MMM, YYYY HH:mm:ss'
-    );
-  };
-
+const Verifications = ({
+  data,
+  handleVerificationDetails,
+  transactionEventDateFormat,
+}) => {
   const renderStatusText = status => {
     if (status === VERIFIED) {
       return VERIFIED_LABEL;
@@ -89,7 +86,7 @@ const Verifications = ({ data, handleVerificationDetails }) => {
                     {renderStatusText(verification.status)}
                   </font>
                   <font className="Verifications__timestamp">
-                    {formatDate(verification.responseRcvTime)}
+                    {transactionEventDateFormat(verification.responseRcvTime)}
                   </font>
                 </TableColumn>
                 <TableColumn>
@@ -111,6 +108,7 @@ const Verifications = ({ data, handleVerificationDetails }) => {
 Verifications.propTypes = {
   data: PropTypes.array,
   handleVerificationDetails: PropTypes.func,
+  transactionEventDateFormat: PropTypes.func,
 };
 
 export default Verifications;

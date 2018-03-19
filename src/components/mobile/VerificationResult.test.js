@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+
 import VerificationResult from './VerificationResult';
 
 describe('Component: VerificationResults', () => {
@@ -45,11 +46,13 @@ describe('Component: VerificationResults', () => {
       },
     ],
   };
-
+  const spy = jest.fn();
   const wrapper = shallow(
     <VerificationResult
       productIdentifier={props.productIdentifier}
       data={props.verificationResult}
+      expirationDateFormat={spy}
+      transactionEventDateFormat={spy}
     />
   );
 

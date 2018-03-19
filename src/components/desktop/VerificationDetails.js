@@ -1,5 +1,4 @@
 import { Card } from 'react-md';
-import moment from 'moment';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -69,14 +68,6 @@ const VerificationDetails = props => {
     }
   };
 
-  const expirationDateFormat = date => {
-    return moment(date).format('DD MMM YYYY');
-  };
-
-  const transactionEventDateFormat = date => {
-    return moment(date, 'YYYY-MM-DD HH:mm:ss z').format('DD MMM YYYY HH:mm:ss');
-  };
-
   const entityCheck = (transaction, event) => {
     if (event.eventStatus === VERIFIED) {
       return RESPONDER_ID_LABEL + transaction.responderId;
@@ -109,7 +100,7 @@ const VerificationDetails = props => {
         </TableColumn>
         <TableColumn>
           <span className="VerificationDetails__eventTime">
-            {transactionEventDateFormat(event.eventTime)}
+            {props.transactionEventDateFormat(event.eventTime)}
           </span>
         </TableColumn>
       </TableRow>
@@ -162,7 +153,9 @@ const VerificationDetails = props => {
           <p>GTIN: {props.data[0].gtin}</p>
           <p>Serial Number: {props.data[0].srn}</p>
           <p>Lot: {props.data[0].lot}</p>
-          <p>Expiration : {expirationDateFormat(props.data[0].expDate)}</p>
+          <p>
+            Expiration : {props.expirationDateFormat(props.data[0].expDate)}
+          </p>
           <p>Product: {props.data[0].productName}</p>
         </div>
       </div>
@@ -179,6 +172,8 @@ VerificationDetails.propTypes = {
   data: PropTypes.array,
   productIdentifier: PropTypes.string,
   handleBackToVerifications: PropTypes.func,
+  expirationDateFormat: PropTypes.func,
+  transactionEventDateFormat: PropTypes.func,
 };
 
 export default VerificationDetails;

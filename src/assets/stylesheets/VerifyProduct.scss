@@ -18,5 +18,14 @@
       display: block;
       margin: 0;
     }
+
+    .md-floating-label--inactive-sized {
+      font-size: 16px;
+    }
+
+    .md-floating-label--floating {
+      font-size: 16px;
+      color: $warm-grey-two;
+    }
   }
 }  

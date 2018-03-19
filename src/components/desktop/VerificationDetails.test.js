@@ -53,6 +53,8 @@ describe('Component: VerificationDetails', () => {
       productIdentifier={props.productIdentifier}
       data={props.verificationResult}
       handleBackToVerifications={spy}
+      expirationDateFormat={spy}
+      transactionEventDateFormat={spy}
     />
   );
 
