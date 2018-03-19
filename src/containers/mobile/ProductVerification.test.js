@@ -12,6 +12,8 @@ describe('Container: ProductVerification', () => {
     <ProductVerification
       verificationResult={props.verificationResult}
       dispatch={spy}
+      expirationDateFormat={spy}
+      transactionEventDateFormat={spy}
     />
   );
 
