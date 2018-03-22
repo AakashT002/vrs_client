@@ -60,28 +60,6 @@ describe('Component: VerificationResults', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it('renders Status Icon', () => {
-    expect(wrapper.find('.verification-results__quick-icon').exists()).toBe(
-      true
-    );
-  });
-
-  it('renders Status of verification', () => {
-    expect(wrapper.find('.verification-results__status').exists()).toBe(true);
-  });
-
-  it('renders Serial number field', () => {
-    expect(wrapper.find('.verification-detail__serial-number').exists()).toBe(
-      true
-    );
-  });
-
-  it('renders Exact Serial number', () => {
-    expect(wrapper.find('.verification-detail__serial-number').text()).toEqual(
-      'Serial Number: 1425'
-    );
-  });
-
   it('renders status icon with in the transaction details card', () => {
     expect(
       wrapper.find('.verification-results_status-icon-small').exists()

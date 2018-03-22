@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Paper from 'react-md/lib/Papers';
 import { connect } from 'react-redux';
 import MDSpinner from 'react-md-spinner';
-import moment from 'moment';
-import 'moment-timezone';
 
 import MobileHeader from './MobileHeader';
 import ScannerSelection from '../../components/mobile/ScannerSelection';
@@ -16,6 +14,7 @@ import '../../assets/stylesheets/ProductVerification.css';
 import { verifyProductIdentifier } from '../../store/mobile/verification/action';
 import { clearVerificationResult } from '../../store/mobile/verification/action';
 import { updateDeviceType } from '../../store/mobile/verification/action';
+import DateFormat from '../../utils/dateFormat';
 
 export class ProductVerification extends Component {
   constructor(props) {
@@ -36,18 +35,6 @@ export class ProductVerification extends Component {
   componentWillMount() {
     this.props.dispatch(clearVerificationResult());
     this.setState({ productIdentifier: null });
-  }
-
-  expirationDateFormat(date) {
-    return moment(date, 'YYYY-MM-DD HH:mm:ss z').format('DD MMM YYYY');
-  }
-
-  transactionEventDateFormat(date) {
-    var gmtDateTime = moment.utc(date, 'YYYY-MM-DD HH:mm:ss z');
-    var localDateTime = gmtDateTime.local().format('DD MMM YYYY HH:mm:ss');
-    var localTimeZone = moment.tz.guess();
-    var localTimeZoneName = moment.tz(localTimeZone).zoneAbbr();
-    return localDateTime + ' ' + localTimeZoneName;
   }
 
   handleChange(value) {
@@ -113,8 +100,8 @@ export class ProductVerification extends Component {
           <VerificationResult
             data={this.props.verificationResult}
             productIdentifier={this.state.productIdentifier}
-            expirationDateFormat={this.expirationDateFormat}
-            transactionEventDateFormat={this.transactionEventDateFormat}
+            expirationDateFormat={DateFormat.expirationDateFormat}
+            transactionEventDateFormat={DateFormat.transactionEventDateFormat}
           />
         );
       }

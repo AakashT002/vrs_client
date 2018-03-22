@@ -1,0 +1,62 @@
+
+@import './variables';
+
+.Status {
+
+.Status__bgColor-desktop {
+  width: 520px;
+  height: 216px;
+  border-radius: 2px;
+  position: absolute;
+  top: 0px;
+  left: 0px; 
+  
+  img {
+    margin-top: 25px;
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.Status__bgColor-mobile {
+  width: 358px;
+  height: 180px;   
+  
+  img {
+    margin-top: 25px;
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.Status__label {
+  margin: auto;
+  width: 340px;
+  height: 48px;
+  font-size: 45px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.07;
+  letter-spacing: normal;
+  text-align: center;
+  color: $grey-50;
+}  
+
+.Status__blue {
+  background-color: $cyan;
+}
+
+.Status__green {
+  background-color: $teal;
+}
+
+.Status__orange {
+  background-color: $deep-orange;     
+}
+
+.Status__amber {
+  background-color: $amber;
+}
+
+}

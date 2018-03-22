@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Paper from 'react-md/lib/Papers';
 import MDSpinner from 'react-md-spinner';
-import moment from 'moment';
-import 'moment-timezone';
 
 import MobileHeader from './MobileHeader';
 import Verifications from '../../components/mobile/Verifications';
@@ -24,6 +22,7 @@ import {
   LOT_INDEX,
   SRN_INDEX,
 } from '../../utils/constants';
+import DateFormat from '../../utils/dateFormat';
 
 class VerificationsPage extends Component {
   constructor(props) {
@@ -36,18 +35,6 @@ class VerificationsPage extends Component {
     this.props.dispatch(clearVerificationResult()).then(() => {
       dispatch(getVerificationList());
     });
-  }
-
-  expirationDateFormat(date) {
-    return moment(date, 'YYYY-MM-DD HH:mm:ss z').format('DD MMM YYYY');
-  }
-
-  transactionEventDateFormat(date) {
-    var gmtDateTime = moment.utc(date, 'YYYY-MM-DD HH:mm:ss z');
-    var localDateTime = gmtDateTime.local().format('DD MMM YYYY HH:mm:ss');
-    var localTimeZone = moment.tz.guess();
-    var localTimeZoneName = moment.tz(localTimeZone).zoneAbbr();
-    return localDateTime + ' ' + localTimeZoneName;
   }
 
   handleVerificationDetails(verification) {
@@ -64,7 +51,7 @@ class VerificationsPage extends Component {
         <Verifications
           data={this.props.verificationList}
           handleVerificationDetails={this.handleVerificationDetails}
-          transactionEventDateFormat={this.transactionEventDateFormat}
+          transactionEventDateFormat={DateFormat.transactionEventDateFormat}
         />
       );
     } else {
@@ -77,8 +64,8 @@ class VerificationsPage extends Component {
         <VerificationResult
           data={this.props.verificationResult}
           productIdentifier={productIdentifier}
-          expirationDateFormat={this.expirationDateFormat}
-          transactionEventDateFormat={this.transactionEventDateFormat}
+          expirationDateFormat={DateFormat.expirationDateFormat}
+          transactionEventDateFormat={DateFormat.transactionEventDateFormat}
         />
       );
     }

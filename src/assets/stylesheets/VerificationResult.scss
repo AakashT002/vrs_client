@@ -50,40 +50,6 @@
     text-align: center;
     color: $grey-50;
   }  
-
-  .verification-results__pi {
-    width: 312px;
-    height: 28px;
-    font-size: 12px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.33;
-    letter-spacing: normal;
-    text-align: left;
-    color: $grey-600;
-    margin: 24px 24px 8px 24px;
-    position: relative;
-    word-break: break-all; 
-  }
-  
-  .verification-results__details {
-    width: 312px;
-    height: 118px;
-    margin: 8px 24px 20px 24px;
-
-    p {
-      margin-bottom: 0px;
-      font-size: 16px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: 1.5;
-      letter-spacing: normal;
-      text-align: left;
-      color: $blue-grey;
-    }
-  }
   
   .md-card {
     width: 312px;

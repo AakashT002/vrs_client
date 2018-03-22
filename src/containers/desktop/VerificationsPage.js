@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MDSpinner from 'react-md-spinner';
-import moment from 'moment';
-import 'moment-timezone';
 
 import Verifications from '../../components/desktop/Verifications';
 import VerificationDetails from '../../components/desktop/VerificationDetails';
@@ -17,6 +15,7 @@ import {
   clearVerificationResult,
   getVerificationDetails,
 } from '../../store/mobile/verification/action';
+import DateFormat from '../../utils/dateFormat';
 
 import {
   EXPDATE_INDEX,
@@ -55,18 +54,6 @@ export class VerificationsPage extends Component {
         this.props.dispatch(clearVerificationResult());
       }
     };
-  }
-
-  transactionEventDateFormat(date) {
-    var gmtDateTime = moment.utc(date, 'YYYY-MM-DD HH:mm:ss z');
-    var localDateTime = gmtDateTime.local().format('DD MMM YYYY HH:mm:ss');
-    var localTimeZone = moment.tz.guess();
-    var localTimeZoneName = moment.tz(localTimeZone).zoneAbbr();
-    return localDateTime + ' ' + localTimeZoneName;
-  }
-
-  expirationDateFormat(date) {
-    return moment(date, 'YYYY-MM-DD HH:mm:ss z').format('DD MMM YYYY');
   }
 
   handleSort(isDescending) {
@@ -157,8 +144,8 @@ export class VerificationsPage extends Component {
             productIdentifier={this.state.productIdentifier}
             piRequesting={this.props.piRequesting}
             disableVerify={this.state.disableVerify}
-            expirationDateFormat={this.expirationDateFormat}
-            transactionEventDateFormat={this.transactionEventDateFormat}
+            expirationDateFormat={DateFormat.expirationDateFormat}
+            transactionEventDateFormat={DateFormat.transactionEventDateFormat}
           />
         );
       } else {
@@ -172,8 +159,11 @@ export class VerificationsPage extends Component {
             data={this.props.verificationResult}
             productIdentifier={productIdentifier}
             handleBackToVerifications={this.handleBackToVerifications}
-            expirationDateFormat={this.expirationDateFormat}
-            transactionEventDateFormat={this.transactionEventDateFormat}
+            expirationDateFormat={DateFormat.expirationDateFormat}
+            transactionEventDateFormat={DateFormat.transactionEventDateFormat}
+            isPIVerificationModalVisible={
+              this.state.isPIVerificationModalVisible
+            }
           />
         );
       }

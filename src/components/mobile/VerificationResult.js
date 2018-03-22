@@ -2,32 +2,26 @@ import React from 'react';
 import { Card, CardTitle, CardText, Avatar } from 'react-md';
 import PropTypes from 'prop-types';
 
+import Status from '../common/Status.js';
+import ProductDetails from '../common/ProductDetails.js';
+
 import '../../assets/stylesheets/VerificationResult.css';
 
 import {
   ERROR,
-  ERROR_LABEL,
   PENDING,
-  PENDING_LABEL,
   REQUESTING,
   REQUESTOR_ID_LABEL,
   RESPONDER_ID_LABEL,
   SYSTEM_ERROR_LABEL,
   NOT_VERIFIED,
-  NOT_VERIFIED_LABEL,
   VERIFIED,
-  VERIFIED_LABEL,
 } from '../../utils/constants';
 
 import access_time from '../../assets/images/access_time.png';
 import check_circle from '../../assets/images/check_circle.png';
 import error_outline from '../../assets/images/error_outline.png';
 import not_interested from '../../assets/images/not_interested.png';
-
-import verified from '../../assets/images/verified.png';
-import pending from '../../assets/images/pending.png';
-import error from '../../assets/images/error.png';
-import not_verified from '../../assets/images/not-verified.png';
 
 const VerificationResult = props => {
   const renderStatusThumbnail = status => {
@@ -42,18 +36,6 @@ const VerificationResult = props => {
     }
   };
 
-  const renderStatusIcon = status => {
-    if (status === VERIFIED) {
-      return <img src={verified} alt="verified" />;
-    } else if (status === PENDING) {
-      return <img src={pending} alt="pending" />;
-    } else if (status === ERROR) {
-      return <img src={error} alt="error" />;
-    } else if (status === NOT_VERIFIED) {
-      return <img src={not_verified} alt="not-verified" />;
-    }
-  };
-
   const renderbgColor = status => {
     if (status === VERIFIED) {
       return 'verification-results__green';
@@ -63,18 +45,6 @@ const VerificationResult = props => {
       return 'verification-results__orange';
     } else if (status === NOT_VERIFIED) {
       return 'verification-results__amber';
-    }
-  };
-
-  const renderStatusLabel = status => {
-    if (status === VERIFIED) {
-      return VERIFIED_LABEL;
-    } else if (status === PENDING) {
-      return PENDING_LABEL;
-    } else if (status === ERROR) {
-      return ERROR_LABEL;
-    } else if (status === NOT_VERIFIED) {
-      return NOT_VERIFIED_LABEL;
     }
   };
 
@@ -125,28 +95,16 @@ const VerificationResult = props => {
 
   return (
     <div className="verification-results">
-      <div
-        className={`verification-results__quick-view ${renderbgColor(
-          props.data[0].status
-        )}`}
-      >
-        <div className={'verification-results__quick-icon'}>
-          {renderStatusIcon(props.data[0].status)}
-        </div>
-        <h1 className="verification-results__status">
-          {renderStatusLabel(props.data[0].status)}
-        </h1>
-      </div>
-      <h6 className="verification-results__pi">{props.productIdentifier}</h6>
-      <div className="verification-results__details">
-        <p>GTIN: {props.data[0].gtin}</p>
-        <p className="verification-detail__serial-number">
-          Serial Number: {props.data[0].srn}
-        </p>
-        <p>Lot: {props.data[0].lot}</p>
-        <p>Expiration : {props.expirationDateFormat(props.data[0].expDate)}</p>
-        <p>Product: {props.data[0].productName}</p>
-      </div>
+      <Status value={props.data[0].status} />
+      <ProductDetails
+        productIdentifier={props.productIdentifier}
+        gtin={props.data[0].gtin}
+        srn={props.data[0].srn}
+        lot={props.data[0].lot}
+        expDate={props.data[0].expDate}
+        productName={props.data[0].productName}
+        showInModal={false}
+      />
       {props.data.map((product, index) => (
         <Card
           key={index}

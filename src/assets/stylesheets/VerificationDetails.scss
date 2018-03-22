@@ -44,18 +44,17 @@
     text-align: left;
     color: $bluish-gray;
     position: relative;
-    right: 415px;
+    right: 409px;
     bottom: -3px;
   }
 
   .VerificationDetails__quick-icon {
     position: relative;
-    right: 405px;
+    right: 400px;
     top: 3px;
   }
 
   .VerificationDetails__status {
-   // width: 122px;
     height: 40px;
     font-family: "Open Sans";
     font-size: 34px;
@@ -70,43 +69,6 @@
     right: 757px;
     top: 44px;
   }  
-
-  .VerificationDetails__pi {
-    width: 347px;
-    height: 20px;
-    font-family: "Open Sans";
-    font-size: 14px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.43;
-    letter-spacing: normal;
-    text-align: left;
-    color: $grey-600;
-    position: relative;
-    top: 25px;
-    left: 40px;
-  }
-
-  .VerificationDetails__productDetails {
-    width: 360px;
-    height: 160px;
-    line-height: 1.52;
-    position: relative;
-    left: 40px;
-    top: 30px;
-
-    p {
-      font-family: "Open Sans";
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      letter-spacing: normal;
-      text-align: left;
-      color: $blue-grey;
-      font-size: 21px;
-    }
-  }
 
   .VerificationDetails__details-card {
     width: 1284px;
@@ -200,6 +162,7 @@
 
   .VerificationDetails__blue {
     color: $cyan;
+    left: 500px;
   }
 
   .VerificationDetails__green {

@@ -9,6 +9,8 @@ import {
   TableColumn,
 } from 'react-md';
 
+import ProductDetails from '../common/ProductDetails.js';
+
 import '../../assets/stylesheets/VerificationDetails.css';
 
 import {
@@ -148,16 +150,15 @@ const VerificationDetails = props => {
             {renderStatusLabel(props.data[0].status)}
           </span>
         </div>
-        <h6 className="VerificationDetails__pi">{props.productIdentifier}</h6>
-        <div className="VerificationDetails__productDetails">
-          <p>GTIN: {props.data[0].gtin}</p>
-          <p>Serial Number: {props.data[0].srn}</p>
-          <p>Lot: {props.data[0].lot}</p>
-          <p>
-            Expiration : {props.expirationDateFormat(props.data[0].expDate)}
-          </p>
-          <p>Product: {props.data[0].productName}</p>
-        </div>
+        <ProductDetails
+          productIdentifier={props.productIdentifier}
+          gtin={props.data[0].gtin}
+          srn={props.data[0].srn}
+          lot={props.data[0].lot}
+          expDate={props.data[0].expDate}
+          productName={props.data[0].productName}
+          showInModal={props.isPIVerificationModalVisible}
+        />
       </div>
       <Card className="VerificationDetails__details-card">
         {renderTransactions(props.data)}
@@ -174,6 +175,7 @@ VerificationDetails.propTypes = {
   handleBackToVerifications: PropTypes.func,
   expirationDateFormat: PropTypes.func,
   transactionEventDateFormat: PropTypes.func,
+  isPIVerificationModalVisible: PropTypes.bool,
 };
 
 export default VerificationDetails;

@@ -82,16 +82,6 @@ describe('Component: VerificationDetails', () => {
     expect(wrapper.find('.VerificationDetails__status').exists()).toBe(true);
   });
 
-  it('renders a pi', () => {
-    expect(wrapper.find('.VerificationDetails__pi').exists()).toBe(true);
-  });
-
-  it('renders the product details', () => {
-    expect(wrapper.find('.VerificationDetails__productDetails').exists()).toBe(
-      true
-    );
-  });
-
   it('renders status icon with in the transaction details card', () => {
     expect(
       wrapper.find('.VerificationDetails__status--Thumbnail').exists()

@@ -146,6 +146,8 @@ const Verifications = ({
       <VerificationResult
         data={verificationResult}
         productIdentifier={productIdentifier}
+        expirationDateFormat={expirationDateFormat}
+        isPIVerificationModalVisible={isPIVerificationModalVisible}
       />
     );
   }

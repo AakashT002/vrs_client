@@ -1,0 +1,119 @@
+@import './variables';
+
+.ProductDetails {
+
+.ProductDetails__pi-desktop-modal {
+  width: 312px;
+  height: 28px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  position: absolute;
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: left;
+  color: $grey-600;
+  top: 239px;
+}
+
+.ProductDetails__details-desktop-modal {
+  width: 312px;
+  height: 120px;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: $blue-grey;
+  position: absolute;
+  top: 270px;
+
+  p {
+    margin-bottom: 0px;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: $blue-grey;
+  }
+}  
+
+.ProductDetails__pi-mobile {
+  width: 312px;
+  height: 28px;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  text-align: left;
+  color: $grey-600;
+  margin: 24px 24px 8px 24px;
+  position: relative;
+  word-break: break-all; 
+}
+
+.ProductDetails__details-mobile {
+  width: 312px;
+  height: 118px;
+  margin: 8px 24px 20px 24px;
+
+  p {
+    margin-bottom: 0px;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: $blue-grey;
+  }
+}
+
+.ProductDetails__pi-desktop {
+  width: 347px;
+  height: 20px;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: left;
+  color: $grey-600;
+  position: relative;
+  top: 25px;
+  left: 40px;
+}
+
+.ProductDetails__details-desktop {
+  width: 360px;
+  height: 160px;
+  line-height: 1.52;
+  position: relative;
+  left: 40px;
+  top: 30px;
+
+  p {
+    font-family: "Open Sans";
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: $blue-grey;
+    font-size: 21px;
+  }
+}
+
+}
