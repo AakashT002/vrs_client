@@ -13,6 +13,7 @@ describe('Component: ProductDetails', () => {
     expDate: '20190321',
     productName: 'jakafi 60 ct bottle',
     lot: 'ABC1234',
+    deviceType: process.env.REACT_APP_DEVICE_TYPE,
   };
   const spy = jest.fn();
   const wrapper = shallow(
@@ -25,11 +26,12 @@ describe('Component: ProductDetails', () => {
       productName={props.productName}
       expirationDateFormat={spy}
       showInModal={props.isPIVerificationModalVisible}
+      deviceType={props.deviceType}
     />
   );
   const renderClassName = props.isPIVerificationModalVisible
     ? 'desktop-modal'
-    : process.env.REACT_APP_DEVICE_TYPE;
+    : props.deviceType;
   it('renders without crashing', () => {
     expect(wrapper.exists()).toBe(true);
   });

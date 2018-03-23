@@ -17,7 +17,7 @@ describe('Component: Verifications', () => {
       expDate: '20190321',
     },
   ];
-
+  let deviceType= process.env.REACT_APP_DEVICE_TYPE;
   let verificationResult = [];
 
   const spy = jest.fn();
@@ -31,6 +31,7 @@ describe('Component: Verifications', () => {
       handleCancel={spy}
       expirationDateFormat={spy}
       transactionEventDateFormat={spy}
+      deviceType={deviceType}
     />
   );
 
