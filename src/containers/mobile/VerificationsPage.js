@@ -67,6 +67,7 @@ class VerificationsPage extends Component {
           productIdentifier={productIdentifier}
           expirationDateFormat={DateFormat.expirationDateFormat}
           transactionEventDateFormat={DateFormat.transactionEventDateFormat}
+          deviceType={process.env.REACT_APP_DEVICE_TYPE}
         />
       );
     }
