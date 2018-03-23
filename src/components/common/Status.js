@@ -20,7 +20,8 @@ import not_verified from '../../assets/images/not-verified.png';
 
 import '../../assets/stylesheets/Status.css';
 
-const Status = ({ value }) => {
+const Status = ({ value, deviceType }) => {
+
   const renderStatusIcon = value => {
     if (value === VERIFIED) {
       return <img src={verified} alt="verified" />;
@@ -61,7 +62,7 @@ const Status = ({ value }) => {
     <div className="Status">
       <div
         className={`Status__bgColor-${
-          process.env.REACT_APP_DEVICE_TYPE
+          deviceType
         } ${renderbgColor(value)}`}
       >
         <div className={'Status__icon'}>{renderStatusIcon(value)}</div>
@@ -73,6 +74,7 @@ const Status = ({ value }) => {
 
 Status.propTypes = {
   value: PropTypes.string,
+  deviceType: PropTypes.string
 };
 
 export default Status;

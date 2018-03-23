@@ -21,10 +21,11 @@ const ProductDetails = ({
   expDate,
   productName,
   showInModal,
+  deviceType,
 }) => {
   const renderClassName = showInModal
     ? 'desktop-modal'
-    : process.env.REACT_APP_DEVICE_TYPE;
+    :deviceType;
   return (
     <div className="ProductDetails">
       <h6 className={`ProductDetails__pi-${renderClassName}`}>
@@ -60,6 +61,7 @@ ProductDetails.propTypes = {
   productIdentifier: PropTypes.string,
   expirationDateFormat: PropTypes.func,
   showInModal: PropTypes.bool,
+  deviceType: PropTypes.string
 };
 
 export default ProductDetails;

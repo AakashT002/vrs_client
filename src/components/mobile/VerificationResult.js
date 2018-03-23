@@ -95,7 +95,10 @@ const VerificationResult = props => {
 
   return (
     <div className="verification-results">
-      <Status value={props.data[0].status} />
+      <Status
+        value={props.data[0].status}
+        deviceType={props.deviceType}
+      />
       <ProductDetails
         productIdentifier={props.productIdentifier}
         gtin={props.data[0].gtin}
@@ -104,6 +107,7 @@ const VerificationResult = props => {
         expDate={props.data[0].expDate}
         productName={props.data[0].productName}
         showInModal={false}
+        deviceType={props.deviceType}
       />
       {props.data.map((product, index) => (
         <Card
@@ -127,6 +131,7 @@ VerificationResult.propTypes = {
   productIdentifier: PropTypes.string,
   expirationDateFormat: PropTypes.func,
   transactionEventDateFormat: PropTypes.func,
+  deviceType: PropTypes.string
 };
 
 export default VerificationResult;

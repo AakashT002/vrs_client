@@ -15,8 +15,8 @@ import {
   clearVerificationResult,
   getVerificationDetails,
 } from '../../store/mobile/verification/action';
-import DateFormat from '../../utils/dateFormat';
 
+import DateFormat from '../../utils/dateFormat';
 import {
   EXPDATE_INDEX,
   GTIN_INDEX,
@@ -30,7 +30,7 @@ export class VerificationsPage extends Component {
     this.state = {
       productIdentifier: null,
       isPIVerificationModalVisible: false,
-      disableVerify: false,
+      disableOnSubmit: false,
     };
     this.handleVerificationDetails = this.handleVerificationDetails.bind(this);
     this.handleBackToVerifications = this.handleBackToVerifications.bind(this);
@@ -69,7 +69,7 @@ export class VerificationsPage extends Component {
   }
 
   handleChange(value) {
-    this.setState({ productIdentifier: value, disableVerify: false });
+    this.setState({ productIdentifier: value, disableOnSubmit: false });
   }
 
   handleVerify(e) {
@@ -84,7 +84,7 @@ export class VerificationsPage extends Component {
       .then(() => {
         this.props.dispatch(sort(this.props.data, this.props.isDescending));
       });
-    this.setState({ disableVerify: true });
+    this.setState({ disableOnSubmit: true });
   }
 
   handleNextProduct() {
@@ -143,9 +143,10 @@ export class VerificationsPage extends Component {
             handleChange={this.handleChange.bind(this)}
             productIdentifier={this.state.productIdentifier}
             piRequesting={this.props.piRequesting}
-            disableVerify={this.state.disableVerify}
+            disableOnSubmit={this.state.disableOnSubmit}
             expirationDateFormat={DateFormat.expirationDateFormat}
             transactionEventDateFormat={DateFormat.transactionEventDateFormat}
+            deviceType={process.env.REACT_APP_DEVICE_TYPE}
           />
         );
       } else {
@@ -164,6 +165,7 @@ export class VerificationsPage extends Component {
             isPIVerificationModalVisible={
               this.state.isPIVerificationModalVisible
             }
+            deviceType={process.env.REACT_APP_DEVICE_TYPE}
           />
         );
       }
@@ -184,6 +186,7 @@ VerificationsPage.propTypes = {
   verificationResult: PropTypes.array,
   history: PropTypes.object,
   piRequesting: PropTypes.bool,
+  deviceType: PropTypes.bool
 };
 
 const mapStateToProps = state => ({

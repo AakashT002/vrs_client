@@ -22,6 +22,7 @@ import {
   LOT_INDEX,
   SRN_INDEX,
 } from '../../utils/constants';
+
 import DateFormat from '../../utils/dateFormat';
 
 class VerificationsPage extends Component {

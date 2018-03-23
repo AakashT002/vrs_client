@@ -77,7 +77,7 @@ const Verifications = ({
                   handleVerificationDetails(verification);
                 }}
               >
-                <TableColumn>
+                <TableColumn className="Verifications__table--column">
                   <font className="Verifications__serialization--code">
                     {verification.srn}
                   </font>

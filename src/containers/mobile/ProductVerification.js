@@ -6,7 +6,7 @@ import MDSpinner from 'react-md-spinner';
 
 import MobileHeader from './MobileHeader';
 import ScannerSelection from '../../components/mobile/ScannerSelection';
-import PIVerification from '../../components/mobile/PIVerification';
+import PIVerificationForm from '../../components/common/PIVerificationForm';
 import VerificationResult from '../../components/mobile/VerificationResult';
 
 import '../../assets/stylesheets/ProductVerification.css';
@@ -14,6 +14,7 @@ import '../../assets/stylesheets/ProductVerification.css';
 import { verifyProductIdentifier } from '../../store/mobile/verification/action';
 import { clearVerificationResult } from '../../store/mobile/verification/action';
 import { updateDeviceType } from '../../store/mobile/verification/action';
+
 import DateFormat from '../../utils/dateFormat';
 
 export class ProductVerification extends Component {
@@ -88,11 +89,12 @@ export class ProductVerification extends Component {
     } else {
       if (this.props.verificationResult.length === 0) {
         componentToRender = (
-          <PIVerification
+          <PIVerificationForm
             handleChange={this.handleChange}
             productIdentifier={this.state.productIdentifier}
             handleSubmit={this.handleSubmit}
-            handleClear={this.clearVerificationForm}
+            handleReset={this.clearVerificationForm}
+            deviceType={process.env.REACT_APP_DEVICE_TYPE}
           />
         );
       } else {
@@ -102,6 +104,7 @@ export class ProductVerification extends Component {
             productIdentifier={this.state.productIdentifier}
             expirationDateFormat={DateFormat.expirationDateFormat}
             transactionEventDateFormat={DateFormat.transactionEventDateFormat}
+            deviceType={process.env.REACT_APP_DEVICE_TYPE}
           />
         );
       }

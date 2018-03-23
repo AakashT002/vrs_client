@@ -158,6 +158,7 @@ const VerificationDetails = props => {
           expDate={props.data[0].expDate}
           productName={props.data[0].productName}
           showInModal={props.isPIVerificationModalVisible}
+          deviceType={props.deviceType}
         />
       </div>
       <Card className="VerificationDetails__details-card">
@@ -176,6 +177,7 @@ VerificationDetails.propTypes = {
   expirationDateFormat: PropTypes.func,
   transactionEventDateFormat: PropTypes.func,
   isPIVerificationModalVisible: PropTypes.bool,
+  deviceType: PropTypes.string
 };
 
 export default VerificationDetails;

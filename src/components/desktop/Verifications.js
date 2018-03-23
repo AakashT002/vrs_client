@@ -5,15 +5,14 @@ import {
   TableBody,
   TableRow,
   TableColumn,
-  Button,
   Card,
   DialogContainer,
 } from 'react-md';
 import PropTypes from 'prop-types';
 import MDSpinner from 'react-md-spinner';
 
-import VerifyProduct from './VerifyProduct';
 import VerificationResult from './VerificationResult';
+import PIVerificationForm from '../../components/common/PIVerificationForm';
 
 import access_time from '../../assets/images/access_time.png';
 import check_circle from '../../assets/images/check_circle.png';
@@ -50,9 +49,10 @@ const Verifications = ({
   productIdentifier,
   isPIVerificationModalVisible,
   piRequesting,
-  disableVerify,
+  disableOnSubmit,
   expirationDateFormat,
   transactionEventDateFormat,
+  deviceType
 }) => {
   const renderStatusText = status => {
     if (status === VERIFIED) {
@@ -135,10 +135,13 @@ const Verifications = ({
   let renderModalContent = null;
   if (verificationResult.length === 0) {
     renderModalContent = (
-      <VerifyProduct
+      <PIVerificationForm
         productIdentifier={productIdentifier}
         handleChange={value => handleChange(value)}
-        handleVerify={handleVerify}
+        handleSubmit={handleVerify}
+        handleReset={handleCancel}
+        disableOnSubmit={disableOnSubmit}
+        deviceType={deviceType}
       />
     );
   } else {
@@ -148,67 +151,15 @@ const Verifications = ({
         productIdentifier={productIdentifier}
         expirationDateFormat={expirationDateFormat}
         isPIVerificationModalVisible={isPIVerificationModalVisible}
+        handleNextProduct={handleNextProduct}
+        handleVerificationDetails={handleVerificationDetails}
+        deviceType={deviceType}
       />
     );
   }
 
   const renderId =
     verificationResult.length === 0 ? 'verifyProduct' : 'verificationResult';
-
-  const verifyActions = [];
-  verifyActions.push(
-    <Button
-      flat
-      secondary
-      onClick={handleCancel}
-      className="DesktopVerifications__cancel--button"
-    >
-      Cancel
-    </Button>
-  );
-  verifyActions.push(
-    <Button
-      flat
-      primary
-      onClick={handleVerify}
-      className="DesktopVerifications__verify--button"
-      disabled={
-        productIdentifier === null || productIdentifier === '' || disableVerify
-      }
-    >
-      VERIFY
-    </Button>
-  );
-
-  const verificationResultActions = [];
-  verificationResultActions.push(
-    <Button
-      flat
-      secondary
-      onClick={() =>
-        handleVerificationDetails(
-          verificationResult[0].gtin,
-          verificationResult[0].srn
-        )
-      }
-      className="DesktopVerifications__view-details--button"
-    >
-      VIEW DETAILS
-    </Button>
-  );
-  verificationResultActions.push(
-    <Button
-      flat
-      primary
-      onClick={handleNextProduct}
-      className="DesktopVerifications__next-product--button"
-    >
-      NEXT PRODUCT
-    </Button>
-  );
-
-  const renderActions =
-    verificationResult.length === 0 ? verifyActions : verificationResultActions;
 
   const renderTitle = verificationResult.length === 0 ? 'Verify Product' : null;
 
@@ -220,7 +171,6 @@ const Verifications = ({
           id={`DesktopVerifications__${renderId}--dialogContainer`}
           visible={isPIVerificationModalVisible}
           onHide={handleCancel}
-          actions={renderActions}
           title={renderTitle}
           modal
         >
@@ -336,9 +286,10 @@ Verifications.propTypes = {
   productIdentifier: PropTypes.string,
   handleCancel: PropTypes.func,
   isPIVerificationModalVisible: PropTypes.bool,
-  disableVerify: PropTypes.bool,
+  disableOnSubmit: PropTypes.bool,
   expirationDateFormat: PropTypes.func,
   transactionEventDateFormat: PropTypes.func,
+  deviceType: PropTypes.string
 };
 
 export default Verifications;

@@ -96,8 +96,8 @@
 
   .DesktopVerifications__loader {
     position: absolute;
-    top: 183px;
-    left: 480px;
+    top: 174px;
+    left: 486px;
   }
 
   .DesktopVerifications__title {
@@ -137,102 +137,7 @@
       cursor: pointer;
     }
   }
-
-  .DesktopVerifications__cancel--button {
-    height: 14px;
-    width: 125px;
-    color: $cyan;
-    font-family: "Open Sans";
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 14px;
-    text-align: center;
-    top: 124px;
-    left: -35px;
-
-    &:hover {
-      background-color: $white;
-    }
-  }
-
-  .DesktopVerifications__verify--button {
-    width: 132px;
-    height: 40px;
-    font-family: "Open Sans";
-    font-size: 15px;
-    font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.33;
-    letter-spacing: 0.7px;
-    text-align: center;
-    color: $white;
-    border-radius: 100px;
-    background-color: $cyan;
-    box-shadow: 0 3px 1px -2px $greyish-black, 0 2px 2px 0 $black-14, 0 1px 5px 0 $black-2;
-    top: 120px;
-    right: 53px;
-
-    &:disabled {
-      border-radius: 100px;
-      background-color: $blue-grey-12;
-      box-shadow: 0 1px 5px 0 $black-2, 0 2px 2px 0 $black-14, 0 3px 1px -2px $greyish-black; 
-      top: 120px;
-      right: 53px;
-      color: $blue-grey-26;
-      font-family: "Open Sans";
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 20px;
-      text-align: center;
-      width: 132px;
-      height: 40px;
-      border-radius: 100px;
-      background-color: $blue-grey-12;
-    }
-  }
-
-  .DesktopVerifications__view-details--button {
-    line-height: 14px;
-    text-align: center;
-    top: 358px;
-    left: -73px;
-    height: 14px;
-    font-family: "Open Sans";
-    font-size: 14px;
-    font-weight: 400;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1;
-    letter-spacing: 0.7px;
-    text-align: center;
-    color: $cyan;
-
-    &:hover {
-      background-color: $grey-100;
-    }
-  }
-
-  .DesktopVerifications__next-product--button {
-    width: 200px;
-    height: 40px;
-    font-family: "Open Sans";
-    font-size: 15px;
-    font-weight: 400;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.33;
-    letter-spacing: 0.7px;
-    text-align: center;
-    color: $white;
-    border-radius: 100px;
-    background-color: $cyan;
-    box-shadow: 0 3px 1px -2px $grey-100, 0 2px 2px 0 $black-14, 0 1px 5px 0 $black-2;
-    top: 350px;
-    right: 53px;
-    border-radius: 100px;
-  }
-
+  
   #DesktopVerifications__verifyProduct--dialogContainer {
     height: 276px;
     width: 520px;
