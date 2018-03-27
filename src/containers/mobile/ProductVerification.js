@@ -51,7 +51,8 @@ export class ProductVerification extends Component {
     e.preventDefault();
     const pi = this.state.productIdentifier;
     const deviceType = this.props.deviceType;
-    this.props.dispatch(verifyProductIdentifier(pi, deviceType));
+    const deviceId = sessionStorage.getItem('deviceId');
+    this.props.dispatch(verifyProductIdentifier(pi, deviceType, deviceId));
   }
 
   clearVerificationForm() {
@@ -59,11 +60,13 @@ export class ProductVerification extends Component {
   }
 
   handleScannerSignIn() {
-    const scannerId = this.state.scannerId;
-    var deviceType = this.state.isMobileScannerChecked
-      ? process.env.REACT_APP_DEVICE_TYPE
-      : scannerId;
-    sessionStorage.setItem('deviceType', deviceType);
+    if (this.state.scannerId) {
+      sessionStorage.setItem('deviceType', 'scanner');
+      sessionStorage.setItem('deviceId', this.state.scannerId);
+    } else {
+      sessionStorage.setItem('deviceType', process.env.REACT_APP_DEVICE_TYPE);
+      sessionStorage.setItem('deviceId', null);
+    }
     this.props.dispatch(updateDeviceType());
   }
 

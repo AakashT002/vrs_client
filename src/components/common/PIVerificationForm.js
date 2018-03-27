@@ -4,12 +4,9 @@ import { TextField, Button } from 'react-md';
 
 import '../../assets/stylesheets/PIVerificationForm.css';
 
-import {
-  DESKTOP
-} from '../../utils/constants';
+import { DESKTOP } from '../../utils/constants';
 
 const PIVerificationForm = props => {
-
   const verifyActions = [];
   verifyActions.push(
     <Button
@@ -18,8 +15,12 @@ const PIVerificationForm = props => {
       onClick={props.handleReset}
       label={props.deviceType === DESKTOP ? 'Cancel' : 'Clear'}
       className="PIVerificationForm__reset--button"
-      disabled={props.deviceType === DESKTOP ? false :
-        (props.productIdentifier === null || props.productIdentifier === '' || props.disableOnSubmit)
+      disabled={
+        props.deviceType === DESKTOP
+          ? false
+          : props.productIdentifier === null ||
+            props.productIdentifier === '' ||
+            props.disableOnSubmit
       }
     />
   );
@@ -28,27 +29,30 @@ const PIVerificationForm = props => {
       flat
       primary
       onClick={props.handleSubmit}
-      label='VERIFY'
+      label="VERIFY"
       className="PIVerificationForm__verify--button"
       disabled={
-        props.productIdentifier === null || props.productIdentifier === '' }
+        props.productIdentifier === null || props.productIdentifier === ''
+      }
     />
   );
   return (
     <div className={`PIVerificationForm-${props.deviceType}`}>
-    {props.deviceType === DESKTOP ? null :
-      <div className="PIVerificationForm__container">
-        <h2 className="PIVerificationForm__instruction">
-          Enter a product identifier to verify
-        </h2>
-      </div>
-    }
+      {props.deviceType === DESKTOP ? null : (
+        <div className="PIVerificationForm__container">
+          <h2 className="PIVerificationForm__instruction">
+            Enter a product identifier to verify
+          </h2>
+        </div>
+      )}
       <form onSubmit={props.handleSubmit}>
         <TextField
           autoFocus
           id="product id"
           className="PIVerificationForm__product-id-input"
-          label={props.deviceType === DESKTOP ? 'Product ID' : 'Product Identifier'}
+          label={
+            props.deviceType === DESKTOP ? 'Product ID' : 'Product Identifier'
+          }
           lineDirection="center"
           required
           value={props.productIdentifier}
@@ -66,7 +70,7 @@ PIVerificationForm.propTypes = {
   productIdentifier: PropTypes.string,
   handleSubmit: PropTypes.func,
   handleReset: PropTypes.func,
-  deviceType: PropTypes.string
+  deviceType: PropTypes.string,
 };
 
 export default PIVerificationForm;

@@ -74,11 +74,13 @@ export class VerificationsPage extends Component {
 
   handleVerify(e) {
     e.preventDefault();
+    var deviceId = null;
     this.props
       .dispatch(
         verifyProductIdentifier(
           this.state.productIdentifier.trim(),
-          process.env.REACT_APP_DEVICE_TYPE
+          process.env.REACT_APP_DEVICE_TYPE,
+          deviceId
         )
       )
       .then(() => {
@@ -186,7 +188,7 @@ VerificationsPage.propTypes = {
   verificationResult: PropTypes.array,
   history: PropTypes.object,
   piRequesting: PropTypes.bool,
-  deviceType: PropTypes.bool
+  deviceType: PropTypes.string,
 };
 
 const mapStateToProps = state => ({

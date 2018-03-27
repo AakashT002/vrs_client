@@ -1,7 +1,7 @@
 import * as ActionTypes from '../../actionTypes';
 import Verification from '../../../services/mobile/Verification';
 
-export const verifyProductIdentifier = (pi, deviceType) => ({
+export const verifyProductIdentifier = (pi, deviceType, deviceId) => ({
   types: [
     ActionTypes.VERIFY_PI_REQUEST,
     ActionTypes.VERIFY_PI_SUCCESS,
@@ -9,7 +9,7 @@ export const verifyProductIdentifier = (pi, deviceType) => ({
   ],
   callAPI: async () => {
     try {
-      return await Verification.verify(pi, deviceType);
+      return await Verification.verify(pi, deviceType, deviceId);
     } catch (error) {
       throw new Error(error);
     }
