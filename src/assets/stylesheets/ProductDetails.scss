@@ -32,7 +32,7 @@
   position: absolute;
   top: 270px;
 
-  p {
+  p { 
     margin-bottom: 0px;
     font-size: 16px;
     font-weight: normal;
@@ -43,7 +43,15 @@
     text-align: left;
     color: $blue-grey;
   }
-}  
+  .ProductDetails__error-message {
+    height: auto;
+    width: 400px;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Open Sans";
+  }
+}    
 
 .ProductDetails__pi-mobile {
   width: 312px;

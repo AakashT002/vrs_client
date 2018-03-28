@@ -19,13 +19,13 @@ export const PENDING_LABEL = 'Pending';
 export const PRODUCT_LABEL = 'Product';
 export const PROJECT_TITLE = 'vrs.mesaverde.com';
 export const REQUESTED_LABEL = 'Requested';
-export const REQUESTING = 'Request received';
+export const REQUEST_RCVD = 'Request received';
 export const REQUESTOR_ID_LABEL = 'Requestor ID : ';
 export const RESPONDER_ID_LABEL = 'Responder ID : ';
 export const SERIAL_NUMBER_LABEL = 'Serial Number';
 export const SORT_FIELD_LAST_UPDATED = 'LAST UPDATED';
 export const SRN_INDEX = '(21)';
-export const SYSTEM_ERROR_LABEL = 'System error. Please rescan';
+export const ERROR_ID_LABEL = 'Error ID: ';
 export const VERIFICATIONS_HEADER = [
   'SERIAL NUMBER',
   'STATUS',

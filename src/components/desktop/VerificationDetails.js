@@ -20,10 +20,10 @@ import {
   NOT_VERIFIED_LABEL,
   PENDING,
   PENDING_LABEL,
-  REQUESTING,
+  REQUEST_RCVD,
   REQUESTOR_ID_LABEL,
   RESPONDER_ID_LABEL,
-  SYSTEM_ERROR_LABEL,
+  ERROR_ID_LABEL,
   VERIFIED,
   VERIFIED_LABEL,
 } from '../../utils/constants';
@@ -37,7 +37,7 @@ const VerificationDetails = props => {
   const renderStatusThumbnail = status => {
     if (status === VERIFIED) {
       return <img src={check_circle} alt="check_circle" />;
-    } else if (status === PENDING || status === REQUESTING) {
+    } else if (status === PENDING || status === REQUEST_RCVD) {
       return <img src={access_time} alt="access_time" />;
     } else if (status === ERROR) {
       return <img src={error_outline} alt="error_outline" />;
@@ -49,7 +49,7 @@ const VerificationDetails = props => {
   const renderStatusLabelColor = status => {
     if (status === VERIFIED) {
       return 'VerificationDetails__green';
-    } else if (status === PENDING || status === REQUESTING) {
+    } else if (status === PENDING) {
       return 'VerificationDetails__blue';
     } else if (status === ERROR) {
       return 'VerificationDetails__orange';
@@ -75,11 +75,11 @@ const VerificationDetails = props => {
       return RESPONDER_ID_LABEL + transaction.responderId;
     } else if (
       event.eventStatus === PENDING ||
-      event.eventStatus === REQUESTING
+      event.eventStatus === REQUEST_RCVD
     ) {
       return REQUESTOR_ID_LABEL + transaction.requestorId;
     } else if (event.eventStatus === ERROR) {
-      return SYSTEM_ERROR_LABEL;
+      return ERROR_ID_LABEL + event.statusCode;
     } else if (event.eventStatus === NOT_VERIFIED) {
       return RESPONDER_ID_LABEL + transaction.responderId;
     }
@@ -177,7 +177,7 @@ VerificationDetails.propTypes = {
   expirationDateFormat: PropTypes.func,
   transactionEventDateFormat: PropTypes.func,
   isPIVerificationModalVisible: PropTypes.bool,
-  deviceType: PropTypes.string
+  deviceType: PropTypes.string,
 };
 
 export default VerificationDetails;

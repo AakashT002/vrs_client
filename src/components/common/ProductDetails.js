@@ -22,16 +22,16 @@ const ProductDetails = ({
   productName,
   showInModal,
   deviceType,
+  errorMessage,
 }) => {
-  const renderClassName = showInModal
-    ? 'desktop-modal'
-    :deviceType;
+  const renderClassName = showInModal ? 'desktop-modal' : deviceType;
   return (
     <div className="ProductDetails">
       <h6 className={`ProductDetails__pi-${renderClassName}`}>
         {productIdentifier}
       </h6>
       <div className={`ProductDetails__details-${renderClassName}`}>
+        <p className="ProductDetails__error-message">{errorMessage}</p>
         <p className="ProductDetails__gtin">
           {GTIN_LABEL}: {gtin}
         </p>
@@ -61,7 +61,8 @@ ProductDetails.propTypes = {
   productIdentifier: PropTypes.string,
   expirationDateFormat: PropTypes.func,
   showInModal: PropTypes.bool,
-  deviceType: PropTypes.string
+  deviceType: PropTypes.string,
+  errorMessage: PropTypes.string,
 };
 
 export default ProductDetails;

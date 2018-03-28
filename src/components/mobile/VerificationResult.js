@@ -10,10 +10,10 @@ import '../../assets/stylesheets/VerificationResult.css';
 import {
   ERROR,
   PENDING,
-  REQUESTING,
+  REQUEST_RCVD,
   REQUESTOR_ID_LABEL,
   RESPONDER_ID_LABEL,
-  SYSTEM_ERROR_LABEL,
+  ERROR_ID_LABEL,
   NOT_VERIFIED,
   VERIFIED,
 } from '../../utils/constants';
@@ -27,7 +27,7 @@ const VerificationResult = props => {
   const renderStatusThumbnail = status => {
     if (status === VERIFIED) {
       return <img src={check_circle} alt="check_circle" />;
-    } else if (status === PENDING || status === REQUESTING) {
+    } else if (status === PENDING || status === REQUEST_RCVD) {
       return <img src={access_time} alt="access_time" />;
     } else if (status === ERROR) {
       return <img src={error_outline} alt="error_outline" />;
@@ -39,7 +39,7 @@ const VerificationResult = props => {
   const renderbgColor = status => {
     if (status === VERIFIED) {
       return 'verification-results__green';
-    } else if (status === PENDING || status === REQUESTING) {
+    } else if (status === PENDING || status === REQUEST_RCVD) {
       return 'verification-results__blue';
     } else if (status === ERROR) {
       return 'verification-results__orange';
@@ -53,11 +53,11 @@ const VerificationResult = props => {
       return RESPONDER_ID_LABEL + product.responderId;
     } else if (
       event.eventStatus === PENDING ||
-      event.eventStatus === REQUESTING
+      event.eventStatus === REQUEST_RCVD
     ) {
       return REQUESTOR_ID_LABEL + product.requestorId;
     } else if (event.eventStatus === ERROR) {
-      return SYSTEM_ERROR_LABEL;
+      return ERROR_ID_LABEL + event.statusCode;
     } else if (event.eventStatus === NOT_VERIFIED) {
       return RESPONDER_ID_LABEL + product.responderId;
     }
@@ -95,10 +95,7 @@ const VerificationResult = props => {
 
   return (
     <div className="verification-results">
-      <Status
-        value={props.data[0].status}
-        deviceType={props.deviceType}
-      />
+      <Status value={props.data[0].status} deviceType={props.deviceType} />
       <ProductDetails
         productIdentifier={props.productIdentifier}
         gtin={props.data[0].gtin}
@@ -131,7 +128,7 @@ VerificationResult.propTypes = {
   productIdentifier: PropTypes.string,
   expirationDateFormat: PropTypes.func,
   transactionEventDateFormat: PropTypes.func,
-  deviceType: PropTypes.string
+  deviceType: PropTypes.string,
 };
 
 export default VerificationResult;

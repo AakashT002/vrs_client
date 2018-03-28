@@ -7,8 +7,20 @@ import ProductDetails from '../common/ProductDetails.js';
 
 import '../../assets/stylesheets/DesktopVerificationResult.css';
 
+import { ERROR } from '../../utils/constants';
+
 const VerificationResult = props => {
   const verificationResultActions = [];
+  var errorMessage;
+  if (props.data[0].status === ERROR && props.isPIVerificationModalVisible) {
+    props.data[0].events.map(event => {
+      if (event.eventStatus === ERROR) {
+        errorMessage = 'Error ' + event.statusCode + ': ' + event.eventMessage;
+      }
+      return errorMessage;
+    });
+  }
+
   verificationResultActions.push(
     <Button
       flat
@@ -44,6 +56,7 @@ const VerificationResult = props => {
         productName={props.data[0].productName}
         showInModal={props.isPIVerificationModalVisible}
         deviceType={props.deviceType}
+        errorMessage={errorMessage}
       />
       {verificationResultActions}
     </div>

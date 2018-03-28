@@ -8,7 +8,6 @@ import {
   NOT_VERIFIED_LABEL,
   PENDING,
   PENDING_LABEL,
-  REQUESTING,
   VERIFIED,
   VERIFIED_LABEL,
 } from '../../utils/constants';
@@ -21,7 +20,6 @@ import not_verified from '../../assets/images/not-verified.png';
 import '../../assets/stylesheets/Status.css';
 
 const Status = ({ value, deviceType }) => {
-
   const renderStatusIcon = value => {
     if (value === VERIFIED) {
       return <img src={verified} alt="verified" />;
@@ -37,7 +35,7 @@ const Status = ({ value, deviceType }) => {
   const renderbgColor = value => {
     if (value === VERIFIED) {
       return 'Status__green';
-    } else if (value === PENDING || value === REQUESTING) {
+    } else if (value === PENDING) {
       return 'Status__blue';
     } else if (value === ERROR) {
       return 'Status__orange';
@@ -60,11 +58,7 @@ const Status = ({ value, deviceType }) => {
 
   return (
     <div className="Status">
-      <div
-        className={`Status__bgColor-${
-          deviceType
-        } ${renderbgColor(value)}`}
-      >
+      <div className={`Status__bgColor-${deviceType} ${renderbgColor(value)}`}>
         <div className={'Status__icon'}>{renderStatusIcon(value)}</div>
         <h1 className="Status__label">{renderStatusLabel(value)}</h1>
       </div>
@@ -74,7 +68,7 @@ const Status = ({ value, deviceType }) => {
 
 Status.propTypes = {
   value: PropTypes.string,
-  deviceType: PropTypes.string
+  deviceType: PropTypes.string,
 };
 
 export default Status;
