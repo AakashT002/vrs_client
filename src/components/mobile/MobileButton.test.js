@@ -1,8 +1,10 @@
 import React from 'react';
 import MobileButton from './MobileButton';
+import SessionStorage from '../../__mocks__/mockSessionStorage';
 import { mount } from 'enzyme';
 
 describe('Component: MobileButton', () => {
+  window.sessionStorage = new SessionStorage();
   const props = {
     visible: true,
   };

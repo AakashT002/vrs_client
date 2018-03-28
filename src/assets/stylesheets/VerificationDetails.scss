@@ -110,6 +110,10 @@
     height: 80px;
   }
 
+  .md-table-row--hover {
+    background-color: $white;
+  }
+
   .VerificationDetails__status--Thumbnail {
     position: relative;
     top: 16px;
@@ -177,6 +181,11 @@
   .VerificationDetails__amber {
     color: $amber;
     right: 686px;
+  }
+
+  .img_resolution {
+    width: 32px;
+    height: 32px;
   }
 }
 

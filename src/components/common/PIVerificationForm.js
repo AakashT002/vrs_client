@@ -38,7 +38,9 @@ const PIVerificationForm = props => {
   );
   return (
     <div className={`PIVerificationForm-${props.deviceType}`}>
-      {props.deviceType === DESKTOP ? null : (
+      {props.deviceType === DESKTOP ? (
+        <h2 className="PIVerificationForm__title">Verify Product</h2>
+      ) : (
         <div className="PIVerificationForm__container">
           <h2 className="PIVerificationForm__instruction">
             Enter a product identifier to verify
@@ -54,7 +56,6 @@ const PIVerificationForm = props => {
             props.deviceType === DESKTOP ? 'Product ID' : 'Product Identifier'
           }
           lineDirection="center"
-          required
           value={props.productIdentifier}
           onChange={value => props.handleChange(value)}
         />

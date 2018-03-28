@@ -52,7 +52,7 @@ const Verifications = ({
   disableOnSubmit,
   expirationDateFormat,
   transactionEventDateFormat,
-  deviceType
+  deviceType,
 }) => {
   const renderStatusText = status => {
     if (status === VERIFIED) {
@@ -75,6 +75,18 @@ const Verifications = ({
       return 'DesktopVerifications__table--column-errorStatusText';
     } else if (status === NOT_VERIFIED) {
       return 'DesktopVerifications__table--column-notVerifiedStatusText';
+    }
+  };
+
+  const renderOnHoverClassName = status => {
+    if (status === VERIFIED) {
+      return 'DesktopVerifications__table--row-verified';
+    } else if (status === PENDING) {
+      return 'DesktopVerifications__table--row-pending';
+    } else if (status === ERROR) {
+      return 'DesktopVerifications__table--row-error';
+    } else if (status === NOT_VERIFIED) {
+      return 'DesktopVerifications__table--row-notVerified';
     }
   };
 
@@ -117,7 +129,7 @@ const Verifications = ({
   const renderHeaderAndSortable = (header, isDescending) => {
     if (header === SORT_FIELD_LAST_UPDATED) {
       return (
-        <label>
+        <label className="DesktopVerifications__last-updated">
           {header}
           <i
             className="material-icons DesktopVerifications__table--header-icon"
@@ -161,8 +173,6 @@ const Verifications = ({
   const renderId =
     verificationResult.length === 0 ? 'verifyProduct' : 'verificationResult';
 
-  const renderTitle = verificationResult.length === 0 ? 'Verify Product' : null;
-
   return (
     <div className="DesktopVerifications">
       <div className="DesktopVerifications__title">
@@ -171,7 +181,6 @@ const Verifications = ({
           id={`DesktopVerifications__${renderId}--dialogContainer`}
           visible={isPIVerificationModalVisible}
           onHide={handleCancel}
-          title={renderTitle}
           modal
         >
           {renderModalContent}
@@ -207,7 +216,9 @@ const Verifications = ({
                 data.map((verification, index) => (
                   <TableRow
                     key={index}
-                    className="DesktopVerifications__table--row"
+                    className={`DesktopVerifications__table--row ${renderOnHoverClassName(
+                      verification.status
+                    )}`}
                     onClick={() => {
                       handleVerificationDetails(
                         verification.gtin,
@@ -242,7 +253,9 @@ const Verifications = ({
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
                       <font className="DesktopVerifications__product--name">
-                        {verification.productName}
+                        {verification.productName === null
+                          ? '--'
+                          : verification.productName}
                       </font>
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
@@ -289,7 +302,7 @@ Verifications.propTypes = {
   disableOnSubmit: PropTypes.bool,
   expirationDateFormat: PropTypes.func,
   transactionEventDateFormat: PropTypes.func,
-  deviceType: PropTypes.string
+  deviceType: PropTypes.string,
 };
 
 export default Verifications;

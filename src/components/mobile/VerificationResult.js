@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardTitle, CardText, Avatar } from 'react-md';
+import { Card, CardTitle, CardText } from 'react-md';
 import PropTypes from 'prop-types';
 
 import Status from '../common/Status.js';
@@ -36,18 +36,6 @@ const VerificationResult = props => {
     }
   };
 
-  const renderbgColor = status => {
-    if (status === VERIFIED) {
-      return 'verification-results__green';
-    } else if (status === PENDING || status === REQUEST_RCVD) {
-      return 'verification-results__blue';
-    } else if (status === ERROR) {
-      return 'verification-results__orange';
-    } else if (status === NOT_VERIFIED) {
-      return 'verification-results__amber';
-    }
-  };
-
   const entityCheck = (product, event) => {
     if (event.eventStatus === VERIFIED) {
       return RESPONDER_ID_LABEL + product.responderId;
@@ -69,13 +57,7 @@ const VerificationResult = props => {
         <div>
           <CardText className="md-grid">
             <div className="verification-results_status-icon-small md-cell">
-              <Avatar
-                className={`verification-results_avatar ${renderbgColor(
-                  event.eventStatus
-                )}`}
-              >
-                {renderStatusThumbnail(event.eventStatus)}
-              </Avatar>
+              {renderStatusThumbnail(event.eventStatus)}
             </div>
             <div className="md-cell ">
               <div className="verification-results__transaction-details">
@@ -109,7 +91,7 @@ const VerificationResult = props => {
       {props.data.map((product, index) => (
         <Card
           key={index}
-          className="md-block-centered md-paper--3 verification-results__details-card"
+          className="md-block-centered md-paper--1 verification-results__details-card"
         >
           <CardTitle
             className="verification-results__details-card-title"

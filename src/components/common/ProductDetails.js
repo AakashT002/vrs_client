@@ -45,7 +45,7 @@ const ProductDetails = ({
           {EXPIRATION_LABEL}: {DateFormat.expirationDateFormat(expDate)}
         </p>
         <p className="ProductDetails__product-name">
-          {PRODUCT_LABEL}: {productName}
+          {PRODUCT_LABEL}: {productName === null ? '--' : productName}
         </p>
       </div>
     </div>

@@ -16,12 +16,14 @@ const MobileButton = props => {
     <div className="mobileButton__toolbar">
       <img src={mesaVerde_logo} className="mobileButton-logo" alt="logo" />
       <label className="mobileButton__title">{MESA_VERDE}</label>
-      <i
-        className="material-icons mobileButton__option"
-        onClick={props.handleDrawer}
-      >
-        {props.visible ? 'close' : 'menu'}
-      </i>
+      {sessionStorage.getItem('deviceType') ? (
+        <i
+          className="material-icons mobileButton__option"
+          onClick={props.handleDrawer}
+        >
+          {props.visible ? 'close' : 'menu'}
+        </i>
+      ) : null}
       <div
         className={`mobileButton__menu-drawer ${
           props.visible ? 'open' : 'close'

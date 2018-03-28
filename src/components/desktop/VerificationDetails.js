@@ -36,13 +36,29 @@ import not_interested from '../../assets/images/not_interested.png';
 const VerificationDetails = props => {
   const renderStatusThumbnail = status => {
     if (status === VERIFIED) {
-      return <img src={check_circle} alt="check_circle" />;
+      return (
+        <img className="img_resolution" src={check_circle} alt="check_circle" />
+      );
     } else if (status === PENDING || status === REQUEST_RCVD) {
-      return <img src={access_time} alt="access_time" />;
+      return (
+        <img className="img_resolution" src={access_time} alt="access_time" />
+      );
     } else if (status === ERROR) {
-      return <img src={error_outline} alt="error_outline" />;
+      return (
+        <img
+          className="img_resolution"
+          src={error_outline}
+          alt="error_outline"
+        />
+      );
     } else if (status === NOT_VERIFIED) {
-      return <img src={not_interested} alt="not_interested" />;
+      return (
+        <img
+          className="img_resolution"
+          src={not_interested}
+          alt="not_interested"
+        />
+      );
     }
   };
 
@@ -87,7 +103,10 @@ const VerificationDetails = props => {
 
   const renderEvents = transaction => {
     return transaction.events.map((event, index) => (
-      <TableRow key={index} className="VerificationDetails__body--row">
+      <TableRow
+        key={index}
+        className="VerificationDetails__body--row md-table-row--hover"
+      >
         <TableColumn>
           <span className="VerificationDetails__status--Thumbnail">
             {renderStatusThumbnail(event.eventStatus)}

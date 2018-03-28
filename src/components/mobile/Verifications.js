@@ -45,13 +45,29 @@ const Verifications = ({
 
   const renderStatusIcon = status => {
     if (status === VERIFIED) {
-      return <img src={check_circle} alt="check_circle" />;
+      return (
+        <img className="Verifications__status--img-resolution" src={check_circle} alt="check_circle" />
+      );
     } else if (status === PENDING) {
-      return <img src={access_time} alt="access_time" />;
+      return (
+        <img className="Verifications__status--img-resolution" src={access_time} alt="access_time" />
+      );
     } else if (status === ERROR) {
-      return <img src={error_outline} alt="error_outline" />;
+      return (
+        <img
+          className="Verifications__status--img-resolution"
+          src={error_outline}
+          alt="error_outline"
+        />
+      );
     } else if (status === NOT_VERIFIED) {
-      return <img src={not_interested} alt="not_interested" />;
+      return (
+        <img
+          className="Verifications__status--img-resolution"
+          src={not_interested}
+          alt="not_interested"
+        />
+      );
     }
   };
 

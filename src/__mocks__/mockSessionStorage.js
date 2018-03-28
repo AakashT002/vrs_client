@@ -1,5 +1,5 @@
 export default function SessionStorage() {
-  let store = { username: 'testuser' };
+  let store = { username: 'testuser', deviceType: 'mobile' };
   this.getItem = key => {
     return store[key] || null;
   };
