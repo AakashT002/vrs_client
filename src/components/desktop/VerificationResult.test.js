@@ -10,18 +10,32 @@ describe('Component: VerificationResults', () => {
       {
         srn: 1231,
         gtin: 13425,
-        status: 'Verified',
+        status: 'VERIFIED',
         expDate: '20190321',
         productName: 'jakafi 60 ct bottle',
         lot: 'ABC1234',
+        events: [
+          {
+            eventTime: '2018-02-15T07:31:43.996Z',
+            eventStatus: 'PENDING',
+            eventMessage: '',
+          },
+        ],
       },
       {
         srn: 1231,
         gtin: 13425,
-        status: 'Verified',
+        status: 'VERIFIED',
         expDate: '20190321',
         productName: 'jakafi 60 ct bottle',
         lot: 'ABC1234',
+        events: [
+          {
+            eventTime: '2018-02-15T07:31:43.996Z',
+            eventStatus: 'PENDING',
+            eventMessage: '',
+          },
+        ],
       },
     ],
   };

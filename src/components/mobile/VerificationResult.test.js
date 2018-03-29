@@ -11,7 +11,7 @@ describe('Component: VerificationResults', () => {
       {
         srn: 1425,
         gtin: 12586,
-        status: 'Pending',
+        status: 'VERIFIED',
         transactionID: '',
         requestorID: '',
         expDate: '',
@@ -21,7 +21,7 @@ describe('Component: VerificationResults', () => {
         events: [
           {
             eventTime: '2018-02-15T07:31:43.996Z',
-            eventStatus: '',
+            eventStatus: 'VERIFIED',
             eventMessage: '',
           },
         ],
@@ -29,7 +29,7 @@ describe('Component: VerificationResults', () => {
       {
         srn: 1425,
         gtin: 12586,
-        status: 'Pending',
+        status: 'VERIFIED',
         transactionID: '',
         requestorID: '',
         expDate: '',
@@ -39,7 +39,7 @@ describe('Component: VerificationResults', () => {
         events: [
           {
             eventTime: '2018-02-15T07:31:43.996Z',
-            eventStatus: '',
+            eventStatus: 'VERIFIED',
             eventMessage: '',
           },
         ],

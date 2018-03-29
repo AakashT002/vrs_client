@@ -52,27 +52,39 @@ const VerificationResult = props => {
   };
 
   const renderEvent = product => {
-    return product.events.map((event, index) => (
-      <div key={index}>
-        <div>
-          <CardText className="md-grid">
-            <div className="verification-results_status-icon-small md-cell">
-              {renderStatusThumbnail(event.eventStatus)}
+    return product.events.map((event, index) => {
+      if (
+        event.eventStatus === VERIFIED ||
+        event.eventStatus === NOT_VERIFIED ||
+        event.eventStatus === PENDING ||
+        event.eventStatus === REQUEST_RCVD ||
+        event.eventStatus === ERROR
+      ) {
+        return (
+          <div key={index}>
+            <div>
+              <CardText className="md-grid">
+                <div className="verification-results_status-icon-small md-cell">
+                  {renderStatusThumbnail(event.eventStatus)}
+                </div>
+                <div className="md-cell ">
+                  <div className="verification-results__transaction-details">
+                    <h3 className="md-cell verification-results__transaction-date">
+                      {props.transactionEventDateFormat(event.eventTime)}
+                    </h3>
+                    <p className="md-cell">{entityCheck(product, event)}</p>
+                    <p className="md-cell">{event.eventMessage}</p>
+                  </div>
+                </div>
+              </CardText>
+              <hr />
             </div>
-            <div className="md-cell ">
-              <div className="verification-results__transaction-details">
-                <h3 className="md-cell verification-results__transaction-date">
-                  {props.transactionEventDateFormat(event.eventTime)}
-                </h3>
-                <p className="md-cell">{entityCheck(product, event)}</p>
-                <p className="md-cell">{event.eventMessage}</p>
-              </div>
-            </div>
-          </CardText>
-          <hr />
-        </div>
-      </div>
-    ));
+          </div>
+        );
+      } else {
+        return null;
+      }
+    });
   };
 
   return (

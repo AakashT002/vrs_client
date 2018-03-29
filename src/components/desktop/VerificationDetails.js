@@ -102,30 +102,42 @@ const VerificationDetails = props => {
   };
 
   const renderEvents = transaction => {
-    return transaction.events.map((event, index) => (
-      <TableRow
-        key={index}
-        className="VerificationDetails__body--row md-table-row--hover"
-      >
-        <TableColumn>
-          <span className="VerificationDetails__status--Thumbnail">
-            {renderStatusThumbnail(event.eventStatus)}
-          </span>
-          <span className="VerificationDetails__entity">
-            {entityCheck(transaction, event)}
-          </span>
-          <br />
-          <span className="VerificationDetails__eventMessage">
-            {event.eventMessage}
-          </span>
-        </TableColumn>
-        <TableColumn>
-          <span className="VerificationDetails__eventTime">
-            {props.transactionEventDateFormat(event.eventTime)}
-          </span>
-        </TableColumn>
-      </TableRow>
-    ));
+    return transaction.events.map((event, index) => {
+      if (
+        event.eventStatus === VERIFIED ||
+        event.eventStatus === NOT_VERIFIED ||
+        event.eventStatus === PENDING ||
+        event.eventStatus === REQUEST_RCVD ||
+        event.eventStatus === ERROR
+      ) {
+        return (
+          <TableRow
+            key={index}
+            className="VerificationDetails__body--row md-table-row--hover"
+          >
+            <TableColumn>
+              <span className="VerificationDetails__status--Thumbnail">
+                {renderStatusThumbnail(event.eventStatus)}
+              </span>
+              <span className="VerificationDetails__entity">
+                {entityCheck(transaction, event)}
+              </span>
+              <br />
+              <span className="VerificationDetails__eventMessage">
+                {event.eventMessage}
+              </span>
+            </TableColumn>
+            <TableColumn>
+              <span className="VerificationDetails__eventTime">
+                {props.transactionEventDateFormat(event.eventTime)}
+              </span>
+            </TableColumn>
+          </TableRow>
+        );
+      } else {
+        return null;
+      }
+    });
   };
 
   const renderTransactions = transactions => {

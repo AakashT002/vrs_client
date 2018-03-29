@@ -4,15 +4,12 @@ import Status from './Status';
 
 describe('Component: Status', () => {
   const props = {
-    status: 'Verified',
+    status: 'VERIFIED',
     deviceType: process.env.REACT_APP_DEVICE_TYPE,
   };
-  
+
   const wrapper = shallow(
-    <Status
-     value={props.status}
-     deviceType={props.deviceType}
-    />
+    <Status value={props.status} deviceType={props.deviceType} />
   );
 
   it('renders without crashing', () => {
@@ -20,7 +17,9 @@ describe('Component: Status', () => {
   });
 
   it('renders background color', () => {
-    expect(wrapper.find(`.Status__bgColor-${props.deviceType}`).exists()).toBe(true);
+    expect(wrapper.find(`.Status__bgColor-${props.deviceType}`).exists()).toBe(
+      true
+    );
   });
 
   it('renders status icon', () => {
@@ -29,9 +28,6 @@ describe('Component: Status', () => {
 
   it('renders status label', () => {
     expect(wrapper.find('.Status__label').exists()).toBe(true);
-    expect(wrapper.find('.Status__label').text()).toEqual(
-      'Verified'
-    );
+    expect(wrapper.find('.Status__label').text()).toEqual('Verified');
   });
-
 });
