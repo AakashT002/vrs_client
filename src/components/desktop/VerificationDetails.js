@@ -21,8 +21,6 @@ import {
   PENDING,
   PENDING_LABEL,
   REQUEST_RCVD,
-  REQUESTOR_ID_LABEL,
-  RESPONDER_ID_LABEL,
   ERROR_ID_LABEL,
   VERIFIED,
   VERIFIED_LABEL,
@@ -87,17 +85,14 @@ const VerificationDetails = props => {
   };
 
   const entityCheck = (transaction, event) => {
-    if (event.eventStatus === VERIFIED) {
-      return RESPONDER_ID_LABEL + transaction.responderId;
-    } else if (
-      event.eventStatus === PENDING ||
+    if (
+      event.eventStatus === VERIFIED ||
+      event.eventStatus === NOT_VERIFIED ||
       event.eventStatus === REQUEST_RCVD
     ) {
-      return REQUESTOR_ID_LABEL + transaction.requestorId;
+      return `${event.entityType} ID: ${event.entityId}`;
     } else if (event.eventStatus === ERROR) {
       return ERROR_ID_LABEL + event.statusCode;
-    } else if (event.eventStatus === NOT_VERIFIED) {
-      return RESPONDER_ID_LABEL + transaction.responderId;
     }
   };
 
