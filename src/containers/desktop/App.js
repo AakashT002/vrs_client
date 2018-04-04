@@ -5,6 +5,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 
 import Header from './Header';
 import VerificationsPage from './VerificationsPage';
+import Dashboard from './Dashboard.js';
 
 import '../../assets/stylesheets/App.css';
 import 'material-design-icons/iconfont/material-icons.css';
@@ -19,6 +20,7 @@ export class App extends Component {
           <Switch>
             <Route exact path="/" component={VerificationsPage} />
             <Route exact path="/home" component={VerificationsPage} />
+            <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
         </div>
       </div>

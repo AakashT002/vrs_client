@@ -1,0 +1,148 @@
+@import './variables';
+
+.PercentageStats {
+
+  .PercentageStats__card {
+    width: 588px;
+    height: 376px;
+    border-radius: 5px;
+    background-color: $white;
+    box-shadow: 0 1px 3px 0 $dark-gray;
+  }
+
+  .PercentageStats__title {
+    width: 56px;
+    height: 32px;
+    font-family: "Open Sans";
+    font-size: 21px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.52;
+    letter-spacing: normal;
+    text-align: left;
+    color: $blue-grey;
+    position: relative;
+    top: 16px;
+    left: 24px;
+  }
+
+  .PercentageStats__table {
+    border: solid 1px $dark-gray;
+    width: 508px;
+    height: 262px; 
+    margin-left: 24px;
+    margin-top: 16px;
+  }
+
+  .PercentageStats__table-header {
+    width: 508px;
+    height: 40px;
+    background-color: $grey-50;
+    box-shadow: 0 1px 3px 0 $dark-gray;  
+  }
+
+  .PercentageStats__table-header0{
+    width: 39px;
+    height: 40px;
+    font-family: "Open Sans";
+    font-size: 12px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: 0.6px;
+    text-align: left;
+    color: $grey-600;
+  }
+
+  .PercentageStats__table-header1{
+    width: 65px;
+    height: 40px;
+    font-family: "Open Sans";
+    font-size: 12px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: 0.6px;
+    text-align: left;
+    color: $grey-600;
+    position: relative;
+    left: 38px;
+  }
+
+  .PercentageStats__table-header2{
+    width: 74px;
+    height: 40px;
+    font-family: "Open Sans";
+    font-size: 12px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: 0.6px;
+    text-align: left;
+    color: $grey-600;
+    position: relative;
+    left: 18px;
+  }
+
+  .PercentageStats__table-row{
+    width: 508px;
+    height: 55px;
+    background-color: $white;
+    box-shadow: 0 1px 3px 0 $dark-gray;
+  }
+
+  .PercentageStats__table-row-name{
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    text-align: left;
+    color: $blue-grey;
+    padding: 0px;
+  }
+
+  .PercentageStats__table-row-requests{
+    position: relative;
+    left: 38px;
+  }
+
+  .PercentageStats__table-row-response{
+    position: relative;
+    left: 17px;
+  }
+
+  .md-table-column:first-child {
+    padding-left: 15px;
+  }
+
+  .PercentageStats__response {
+    border: 1px solid $white;
+    height: 32px;
+    width: 227px;
+  }
+
+  .PercentageStats__response-field1 {
+    background-color: $teal;
+    height: 30px;
+    float: left; 
+  }
+
+  .PercentageStats__response-field2 {
+    background: $amber;
+    height: 30px;
+    float: left; 
+  }
+
+  .PercentageStats__response-field3 {
+    background: $deep-orange;
+    height: 30px;
+    float: left; 
+  }
+}
