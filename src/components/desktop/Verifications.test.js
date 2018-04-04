@@ -6,6 +6,7 @@ import Verifications from './Verifications';
 import { VERIFIED } from '../../utils/constants';
 
 describe('Component: Verifications', () => {
+
   let verificationsList = [
     {
       srn: '13268255316404',
@@ -108,41 +109,37 @@ describe('Component: Verifications', () => {
   });
 
   it('renders the verifications table columns on loading', () => {
-    expect(wrapper.find('.DesktopVerifications__table--column').length).toBe(7);
+    expect(wrapper.find('.DesktopVerifications__table--column').length).toBe(6);
   });
 
   it('renders a status for each verification in the list', () => {
     expect(wrapper.find('.DesktopVerifications__status').exists()).toBe(true);
   });
 
-  it('renders a serial number for each verification in the list', () => {
-    expect(wrapper.find('.DesktopVerifications__serial--number').exists()).toBe(
+  it('renders a sni for each verification in the list', () => {
+    expect(wrapper.find('.DesktopVerifications__sni').exists()).toBe(
       true
     );
   });
 
   it('renders the last updated for each verification in the list', () => {
-    expect(wrapper.find('.DesktopVerifications__last--updated').exists()).toBe(
+    expect(wrapper.find('.DesktopVerifications__requested').exists()).toBe(
       true
     );
   });
 
-  it('renders a product name for each verification in the list', () => {
-    expect(wrapper.find('.DesktopVerifications__product--name').exists()).toBe(
+  it('renders a user for each verification in the list', () => {
+    expect(wrapper.find('.DesktopVerifications__user').exists()).toBe(
       true
     );
   });
 
-  it('renders a gtin number for each verification in the list', () => {
-    expect(wrapper.find('.DesktopVerifications__gtin').exists()).toBe(true);
+  it('renders the returned by for each verification in the list', () => {
+    expect(wrapper.find('.DesktopVerifications__returned-by').exists()).toBe(true);
   });
 
-  it('renders the lot for each verification in the list', () => {
-    expect(wrapper.find('.DesktopVerifications__lot').exists()).toBe(true);
-  });
-
-  it('renders the expiration for each verification in the list', () => {
-    expect(wrapper.find('.DesktopVerifications__expiration').exists()).toBe(
+  it('renders the shipped by for each verification in the list', () => {
+    expect(wrapper.find('.DesktopVerifications__shipped-by').exists()).toBe(
       true
     );
   });

@@ -6,7 +6,7 @@ import {
   TableRow,
   TableColumn,
   Card,
-  DialogContainer,
+  DialogContainer
 } from 'react-md';
 import PropTypes from 'prop-types';
 import MDSpinner from 'react-md-spinner';
@@ -32,7 +32,9 @@ import {
   VERIFIED,
   VERIFIED_LABEL,
   VERIFICATIONS_HEADER,
-  SORT_FIELD_LAST_UPDATED,
+  SORT_FIELD_REQUESTED,
+  RETURNED_BY,
+  SHIPPED_BY
 } from '../../utils/constants';
 
 const Verifications = ({
@@ -52,7 +54,7 @@ const Verifications = ({
   disableOnSubmit,
   expirationDateFormat,
   transactionEventDateFormat,
-  deviceType,
+  deviceType
 }) => {
   const renderStatusText = status => {
     if (status === VERIFIED) {
@@ -127,9 +129,9 @@ const Verifications = ({
   };
 
   const renderHeaderAndSortable = (header, isDescending) => {
-    if (header === SORT_FIELD_LAST_UPDATED) {
+    if (header === SORT_FIELD_REQUESTED) {
       return (
-        <label className="DesktopVerifications__last-updated">
+        <label className="DesktopVerifications__requested--label">
           {header}
           <i
             className="material-icons DesktopVerifications__table--header-icon"
@@ -227,8 +229,8 @@ const Verifications = ({
                     }}
                   >
                     <TableColumn className="DesktopVerifications__table--column">
-                      <font className="DesktopVerifications__serial--number">
-                        {verification.srn}
+                      <font className="DesktopVerifications__sni">
+                        {verification.gtin + verification.srn}
                       </font>
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
@@ -240,41 +242,34 @@ const Verifications = ({
                       </span>
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
-                      <font className="DesktopVerifications__last--updated">
+                      <font className="DesktopVerifications__requested">
                         {transactionEventDateFormat(
                           verification.requestSentTime
                         )}
                       </font>
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
-                      <font className="DesktopVerifications__gtin">
-                        {verification.gtin}
+                      <font className="DesktopVerifications__user">
+                        {verification.firstName+' '+verification.lastName}
                       </font>
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
-                      <font className="DesktopVerifications__product--name">
-                        {verification.productName === null
-                          ? '--'
-                          : verification.productName}
+                      <font className="DesktopVerifications__returned-by">
+                        {RETURNED_BY[(Math.random() * RETURNED_BY.length) | 0]}
                       </font>
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
-                      <font className="DesktopVerifications__lot">
-                        {verification.lot}
-                      </font>
-                    </TableColumn>
-                    <TableColumn className="DesktopVerifications__table--column">
-                      <font className="DesktopVerifications__expiration">
-                        {expirationDateFormat(verification.expDate)}
+                      <font className="DesktopVerifications__shipped-by">
+                        {SHIPPED_BY[(Math.random() * SHIPPED_BY.length) | 0]}
                       </font>
                     </TableColumn>
                   </TableRow>
                 ))
               ) : (
-                <span className="DesktopVerifications__no-data-found">
-                  No Verifications Data Found
+                  <span className="DesktopVerifications__no-data-found">
+                    No Verifications Data Found
                 </span>
-              )}
+                )}
             </TableBody>
           </DataTable>
         </Card>

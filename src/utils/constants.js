@@ -24,16 +24,29 @@ export const REQUESTOR_ID_LABEL = 'Requestor ID : ';
 export const RESPONDER_ID_LABEL = 'Responder ID : ';
 export const SERIAL_NUMBER_LABEL = 'Serial Number';
 export const SORT_FIELD_LAST_UPDATED = 'LAST UPDATED';
+export const SORT_FIELD_REQUESTED = 'REQUESTED';
 export const SRN_INDEX = '(21)';
 export const ERROR_ID_LABEL = 'Error ID: ';
 export const VERIFICATIONS_HEADER = [
-  'SERIAL NUMBER',
+  'SNI',
   'STATUS',
-  'LAST UPDATED',
-  'GTIN',
-  'PRODUCT',
-  'LOT',
-  'EXPIRATION',
+  'REQUESTED',
+  'USER',
+  'RETURNED BY',
+  'SHIPPED BY',
+];
+export const RETURNED_BY = [
+  'Walgreens',
+  'Pharmaca',
+  'CVS Pharmacy',
+  'Target Pharmacy',
+];
+export const SHIPPED_BY = [
+  'ABC Shipping',
+  'FedEx',
+  'USPS',
+  'Hoover Shipping',
+  'Ship It'
 ];
 export const VERIFIED = 'VERIFIED';
 export const VERIFIED_LABEL = 'Verified';

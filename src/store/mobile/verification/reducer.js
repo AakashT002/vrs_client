@@ -81,7 +81,7 @@ export const verification = createReducer(initialState, {
   },
   [ActionTypes.UPDATE_DEVICE_TYPE](state = initialState) {
     return { ...state, deviceType: sessionStorage.getItem('deviceType') };
-  },
+  }
 });
 
 export default verification;
