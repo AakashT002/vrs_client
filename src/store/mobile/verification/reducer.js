@@ -1,5 +1,9 @@
 import createReducer from '../../createReducer';
 import * as ActionTypes from '../../actionTypes';
+import {
+  RETURNED_BY,
+  SHIPPED_BY
+} from '../../../utils/constants';
 
 const initialState = {
   verificationResult: [],
@@ -9,6 +13,7 @@ const initialState = {
   piRequesting: false,
   isScannerSelection: true,
   isDuplicate: false,
+  filterRequesting: false,
   deviceType: sessionStorage.getItem('deviceType'),
 };
 
@@ -17,10 +22,10 @@ export const verification = createReducer(initialState, {
     return { ...state, piRequesting: true };
   },
   [ActionTypes.VERIFY_PI_SUCCESS](state = initialState, action) {
-
     state.verificationList.forEach(verification => {
-      if (verification.srn === action.response.result[0].srn) {
-        verification.requestSentTime = action.response.result[0].requestSentTime;
+      if ((verification.gtin+verification.srn) === (action.response.result[0].gtin+action.response.result[0].srn)) {
+        verification.requestSentTime =
+          action.response.result[0].requestSentTime;
         state.isDuplicate = true;
         if (verification.status !== action.response.result[0].status) {
           verification.status = action.response.result[0].status;
@@ -30,12 +35,18 @@ export const verification = createReducer(initialState, {
     });
 
     if (!state.isDuplicate) {
+      let fullName = sessionStorage.getItem('fullname').split(' ');
+      action.response.result[0]['firstName'] = fullName[0];
+      action.response.result[0]['lastName'] = fullName[1];
+      action.response.result[0]['returnedBy'] = RETURNED_BY[(Math.random() * RETURNED_BY.length) | 0];
+      action.response.result[0]['shippedBy'] = SHIPPED_BY[(Math.random() * SHIPPED_BY.length) | 0];
       state.verificationList.unshift(action.response.result[0]);
     }
+
     return Object.assign({}, state, {
       verificationResult: action.response.result,
       piRequesting: false,
-      verificationList: state.verificationList
+      verificationList: state.verificationList,
     });
   },
   [ActionTypes.VERIFY_PI_FAILURE](state) {
@@ -45,19 +56,6 @@ export const verification = createReducer(initialState, {
     return Object.assign({}, state, {
       verificationResult: [],
     });
-  },
-  [ActionTypes.FETCH_VERIFICATIONS_REQUEST](state) {
-    return { ...state, requesting: true };
-  },
-  [ActionTypes.FETCH_VERIFICATIONS_SUCCESS](state = initialState, action) {
-    return {
-      ...state,
-      verificationList: action.response.result,
-      requesting: false,
-    };
-  },
-  [ActionTypes.FETCH_VERIFICATIONS_FAILURE](state) {
-    return { ...state, requesting: false };
   },
   [ActionTypes.SORT_DATE_SUCCESS](state, action) {
     return {
@@ -81,7 +79,27 @@ export const verification = createReducer(initialState, {
   },
   [ActionTypes.UPDATE_DEVICE_TYPE](state = initialState) {
     return { ...state, deviceType: sessionStorage.getItem('deviceType') };
-  }
+  },
+  [ActionTypes.SEARCH_FIELD_SUCCESS](state, action) {
+    return { ...state, verificationList: action.newList };
+  },
+  [ActionTypes.CLEAR_SEARCH_SUCCESS](state, action) {
+    return { ...state, verificationList: action.verificationList };
+  },
+  [ActionTypes.FETCH_VERIFICATIONS_REQUEST](state) {
+    return { ...state, requesting: true, filterRequesting: true };
+  },
+  [ActionTypes.FETCH_VERIFICATIONS_SUCCESS](state = initialState, action) {
+    return {
+      ...state,
+      verificationList: action.response.result,
+      requesting: false,
+      filterRequesting: false
+    };
+  },
+  [ActionTypes.FETCH_VERIFICATIONS_FAILURE](state) {
+    return { ...state, requesting: false, filterRequesting: false };
+  },
 });
 
 export default verification;

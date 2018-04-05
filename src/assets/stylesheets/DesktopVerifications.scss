@@ -4,7 +4,7 @@
   .DesktopVerifications__table {
     overflow-y: auto;
     width: 1233px;
-    margin-top: 72px;
+    margin-top: 55px;
   }
   
   .DesktopVerifications__table--header {
@@ -58,6 +58,7 @@
 
   .DesktopVerifications__table--column {
     font-size: 14px;
+    width: 400px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -65,6 +66,7 @@
     letter-spacing: normal;
     text-align: left;
     color: $header-black;
+    white-space: nowrap;
   }
 
   .DesktopVerifications__status--icon {
@@ -106,17 +108,17 @@
     margin-left: 8px;
   }
 
- .DesktopVerifications__table--header-icon {
-   cursor: pointer;
-   position: absolute;
-   color: $blue-grey;
-   top: 202px;
-   font-size: 16px;
-   margin-left: 2px;
- }
+  .DesktopVerifications__table--header-icon {
+    cursor: pointer;
+    position: absolute;
+    color: $blue-grey;
+    top: 313px;
+    font-size: 16px;
+    margin-left: 2px;
+  }
 
  .DesktopVerifications__no-data-found {
-   top: 285px;
+   top: 375px;
    left: 439px;
    position: absolute;
    font-size: 39px;
@@ -131,7 +133,7 @@
 
   .DesktopVerifications__title { 
     width: 1363px;
-    height: 108px;
+    height: 207px;
     background-color: $white;
     font-size: 45px;
     color: $blue-grey;
@@ -198,4 +200,196 @@
    background-color: $grey-100;
    box-shadow: 0 2px 25px 0 $black-24;
  }
+
+ .DesktopVerifications__search-query {
+   position: relative;
+   top: 42px;
+   left: -41px;
+  .md-text-field {
+    width: 644px;
+    height: 26px;
+    font-family: "Open Sans";
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.44;
+    letter-spacing: normal;
+    text-align: left;
+    color: $blue-grey;
+    position: relative;
+    left: 95px;
+  }
+  
+  .md-divider {
+    width: 672px;
+    height: 1px;
+    background-color: $grey-400;
+    position: relative;
+    left: 66px;
+  }
+}
+
+.DesktopVerifications__search-icon {
+  left: 104px;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #102027;
+  top: -7px;
+}
+
+.DesktopVerifications__search-cancel-icon {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: $warm-grey-two;
+  left: 27px;
+  top: -3px;
+  position: relative;
+  cursor: pointer;
+}
+
+.DesktopVerifications__status--select-field {
+  width: 240px;
+  height: 59px;
+  top: -22px;
+  left: 780px;
+
+  .md-floating-label {
+    width: 240px;
+    height: 22px;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.2;
+    letter-spacing: normal;
+    text-align: left;
+  }
+
+  .md-icon-text {
+    width: 184px;
+    height: 26px;
+    font-family: "Open Sans";
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.44;
+    letter-spacing: normal;
+    text-align: left;
+    color: $blue-grey;
+  }
+
+  .md-divider {
+    width: 240px;
+    height: 1px;
+    background-color: $grey-400;
+  }
+
+  .md-icon {
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: $blue-grey;
+  }
+
+  .md-list {
+    width: 240px;
+    top: 60px;
+  }
+
+  .md-tile-text--primary {
+    font-size: 16px;
+    color: $blue-grey;
+  }
+}
+
+.DesktopVerifications__requested--select-field {
+  width: 240px;
+  height: 59px;
+  top: -22px;
+  left: 820px;
+
+  .md-icon-text {
+    font-family: "Open Sans";
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.44;
+    letter-spacing: normal;
+    text-align: left;
+    color: $blue-grey;
+  }
+
+  .md-floating-label {
+    width: 240px;
+    height: 22px;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.2;
+    letter-spacing: normal;
+    text-align: left;
+  }
+
+  .md-divider {
+    width: 240px;
+    height: 1px;
+    background-color: $grey-400;
+  }
+
+  .md-icon {
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: $blue-grey;
+  }
+
+  .md-list {
+    width: 240px;
+    top: 60px;
+    overflow: hidden;
+  }
+
+  .md-tile-text--primary {
+    font-size: 16px;
+    color: $blue-grey;
+  }
+
+  .md-list--menu-restricted {
+    max-height: 285px;
+  }
+}
+
+.DesktopVerifications__search-loader {
+  position: absolute;
+  top: 350px;
+  left: 654px;
+}
 }

@@ -1,5 +1,9 @@
 import * as ActionTypes from '../../actionTypes';
 import Verification from '../../../services/mobile/Verification';
+import {
+  RETURNED_BY,
+  SHIPPED_BY
+} from '../../../utils/constants';
 
 export const verifyProductIdentifier = (pi, deviceType, deviceId) => ({
   types: [
@@ -18,21 +22,6 @@ export const verifyProductIdentifier = (pi, deviceType, deviceId) => ({
 
 export const clearVerificationResult = () => ({
   type: ActionTypes.CLEAR_VERIFICATION_RESULT,
-});
-
-export const getVerificationList = () => ({
-  types: [
-    ActionTypes.FETCH_VERIFICATIONS_REQUEST,
-    ActionTypes.FETCH_VERIFICATIONS_SUCCESS,
-    ActionTypes.FETCH_VERIFICATIONS_FAILURE,
-  ],
-  callAPI: async () => {
-    try {
-      return await Verification.getVerificationList();
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  },
 });
 
 export function sort(verificationList, isDescending) {
@@ -69,4 +58,48 @@ export const getVerificationDetails = (gtin, srn) => ({
 
 export const updateDeviceType = () => ({
   type: ActionTypes.UPDATE_DEVICE_TYPE,
+});
+
+export function search(verificationList, searchField) {
+  let newList = verificationList.filter(verification => {
+    var found = verification.gtin.includes(searchField) ||
+      verification.srn.includes(searchField) ||
+      (verification.gtin + verification.srn).includes(searchField) ||
+      verification.firstName.includes(searchField) ||
+      verification.lastName.includes(searchField) ||
+      (verification.firstName + verification.lastName).includes(searchField) ||
+      verification.shippedBy.includes(searchField) ||
+      verification.returnedBy.includes(searchField);
+    return found;
+  });
+  return {
+    type: ActionTypes.SEARCH_FIELD_SUCCESS,
+    newList,
+  };
+}
+
+export const clearSearchField = verificationList => ({
+  type: ActionTypes.CLEAR_SEARCH_SUCCESS,
+  verificationList,
+});
+
+export const getVerifications = (status, requestedTime) => ({
+  types: [
+    ActionTypes.FETCH_VERIFICATIONS_REQUEST,
+    ActionTypes.FETCH_VERIFICATIONS_SUCCESS,
+    ActionTypes.FETCH_VERIFICATIONS_FAILURE,
+  ],
+  callAPI: async () => {
+    try {
+      const verificationResult = await Verification.getVerifications(status,requestedTime);
+      verificationResult.result.forEach(element => {
+        element['returnedBy'] = RETURNED_BY[(Math.random() * RETURNED_BY.length) | 0];
+        element['shippedBy'] = SHIPPED_BY[(Math.random() * SHIPPED_BY.length) | 0];
+        return element;
+      });
+      return verificationResult;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  },
 });

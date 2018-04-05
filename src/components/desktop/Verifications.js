@@ -6,7 +6,9 @@ import {
   TableRow,
   TableColumn,
   Card,
-  DialogContainer
+  DialogContainer,
+  TextField,
+  SelectField
 } from 'react-md';
 import PropTypes from 'prop-types';
 import MDSpinner from 'react-md-spinner';
@@ -33,8 +35,10 @@ import {
   VERIFIED_LABEL,
   VERIFICATIONS_HEADER,
   SORT_FIELD_REQUESTED,
-  RETURNED_BY,
-  SHIPPED_BY
+  STATUS,
+  REQUESTED_TIME,
+  ALL_STATUS,
+  ALL_TIME
 } from '../../utils/constants';
 
 const Verifications = ({
@@ -54,7 +58,16 @@ const Verifications = ({
   disableOnSubmit,
   expirationDateFormat,
   transactionEventDateFormat,
-  deviceType
+  deviceType,
+  handleSearch,
+  handleFilterChange,
+  searchText,
+  clearSearchText,
+  selectedStatus,
+  handleStatusChange,
+  handleRequestedChange,
+  selectedRequestTime,
+  filterRequesting
 }) => {
   const renderStatusText = status => {
     if (status === VERIFIED) {
@@ -179,6 +192,50 @@ const Verifications = ({
     <div className="DesktopVerifications">
       <div className="DesktopVerifications__title">
         <span className="DesktopVerifications__title--text">Verifications</span>
+
+        <form onSubmit={handleSearch}>
+          <TextField
+            id="search-query-with-icon-right"
+            className="DesktopVerifications__search-query md-text-field-container"
+            placeholder="Search Query"
+            value={searchText}
+            leftIcon={
+              <i className="material-icons DesktopVerifications__search-icon">
+                search
+              </i>
+            }
+            rightIcon={
+              searchText !== '' ? (
+                <i
+                  className="material-icons DesktopVerifications__search-cancel-icon"
+                  onClick={clearSearchText}
+                >
+                  cancel
+                </i>
+              ) : null
+            }
+            fullWidth={false}
+            onChange={value => handleFilterChange(value)}
+          />
+        </form>
+        <SelectField
+          id="select-field-default-value-menu"
+          className="DesktopVerifications__status--select-field"
+          label="Status"
+          defaultValue={ALL_STATUS}
+          menuItems={STATUS}
+          value={selectedStatus}
+          onChange={(value) => handleStatusChange(value)}
+        />
+        <SelectField
+          id="select-field-default-value-menu"
+          className="DesktopVerifications__requested--select-field"
+          label="Requested"
+          menuItems={REQUESTED_TIME}
+          defaultValue={ALL_TIME}
+          value={selectedRequestTime}
+          onChange={(value) => handleRequestedChange(value)}
+        />
         <DialogContainer
           id={`DesktopVerifications__${renderId}--dialogContainer`}
           visible={isPIVerificationModalVisible}
@@ -192,6 +249,11 @@ const Verifications = ({
             </div>
           ) : null}
         </DialogContainer>
+        {filterRequesting ? (
+          <div className="DesktopVerifications__search-loader">
+            <MDSpinner size={50} singleColor="#00b8d4" />
+          </div>
+        ) :
         <Card className="DesktopVerifications__card">
           <DataTable className="DesktopVerifications__table" plain>
             <a
@@ -230,7 +292,7 @@ const Verifications = ({
                   >
                     <TableColumn className="DesktopVerifications__table--column">
                       <font className="DesktopVerifications__sni">
-                        {verification.gtin + verification.srn}
+                        {verification.gtin}{verification.srn}
                       </font>
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
@@ -241,7 +303,7 @@ const Verifications = ({
                         </font>
                       </span>
                     </TableColumn>
-                    <TableColumn className="DesktopVerifications__table--column">
+                    <TableColumn className="md-table-column--plain DesktopVerifications__table--column">
                       <font className="DesktopVerifications__requested">
                         {transactionEventDateFormat(
                           verification.requestSentTime
@@ -250,17 +312,17 @@ const Verifications = ({
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
                       <font className="DesktopVerifications__user">
-                        {verification.firstName+' '+verification.lastName}
+                        {verification.firstName} {verification.lastName}
                       </font>
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
                       <font className="DesktopVerifications__returned-by">
-                        {RETURNED_BY[(Math.random() * RETURNED_BY.length) | 0]}
+                        {verification.returnedBy}
                       </font>
                     </TableColumn>
                     <TableColumn className="DesktopVerifications__table--column">
                       <font className="DesktopVerifications__shipped-by">
-                        {SHIPPED_BY[(Math.random() * SHIPPED_BY.length) | 0]}
+                        {verification.shippedBy}
                       </font>
                     </TableColumn>
                   </TableRow>
@@ -273,6 +335,7 @@ const Verifications = ({
             </TableBody>
           </DataTable>
         </Card>
+        }
       </div>
     </div>
   );
@@ -298,6 +361,15 @@ Verifications.propTypes = {
   expirationDateFormat: PropTypes.func,
   transactionEventDateFormat: PropTypes.func,
   deviceType: PropTypes.string,
+  handleSearch: PropTypes.func,
+  handleFilterChange: PropTypes.func,
+  searchText: PropTypes.string,
+  clearSearchText: PropTypes.func,
+  selectedStatus: PropTypes.string,
+  handleStatusChange: PropTypes.func,
+  handleRequestedChange: PropTypes.func,
+  selectedRequestTime: PropTypes.string,
+  filterRequesting: PropTypes.bool
 };
 
 export default Verifications;

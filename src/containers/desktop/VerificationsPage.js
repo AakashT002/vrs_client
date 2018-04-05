@@ -9,11 +9,13 @@ import VerificationDetails from '../../components/desktop/VerificationDetails';
 import '../../assets/stylesheets/DesktopVerificationsPage.css';
 
 import {
-  getVerificationList,
   sort,
   verifyProductIdentifier,
   clearVerificationResult,
   getVerificationDetails,
+  search,
+  clearSearchField,
+  getVerifications
 } from '../../store/mobile/verification/action';
 
 import DateFormat from '../../utils/dateFormat';
@@ -22,6 +24,8 @@ import {
   GTIN_INDEX,
   LOT_INDEX,
   SRN_INDEX,
+  ALL_STATUS,
+  ALL_TIME
 } from '../../utils/constants';
 
 export class VerificationsPage extends Component {
@@ -31,14 +35,24 @@ export class VerificationsPage extends Component {
       productIdentifier: null,
       isPIVerificationModalVisible: false,
       disableOnSubmit: false,
+      searchText: '',
+      verificationList: [],
+      selectedStatus: ALL_STATUS,
+      selectedRequestTime : ALL_TIME
     };
     this.handleVerificationDetails = this.handleVerificationDetails.bind(this);
     this.handleBackToVerifications = this.handleBackToVerifications.bind(this);
     this.handleVerifyProduct = this.handleVerifyProduct.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.clearSearchText = this.clearSearchText.bind(this);
+    this.handleStatusChange = this.handleStatusChange.bind(this);
+    this.handleRequestedChange = this.handleRequestedChange.bind(this);
   }
 
-  componentWillMount() {
-    this.props.dispatch(getVerificationList());
+  async componentWillMount() {
+    await this.props.dispatch(getVerifications(this.state.selectedStatus,this.state.selectedRequestTime));
+    this.setState({ verificationList: this.props.data});
   }
 
   componentDidMount() {
@@ -103,7 +117,7 @@ export class VerificationsPage extends Component {
   async handleBackToVerifications() {
     await this.props.dispatch(clearVerificationResult());
     this.setState({ productIdentifier: null });
-    this.setState({ isPIVerificationModalVisible: false });
+    this.setState({ isPIVerificationModalVisible: false});
     this.props.history.push('/home');
   }
 
@@ -114,9 +128,41 @@ export class VerificationsPage extends Component {
     });
   }
 
+  async handleFilterChange(value) {
+    this.setState({ searchText: value});
+    await this.props.dispatch(clearSearchField(this.state.verificationList));
+  }
+
+  handleSearch(e) {
+    this.props.dispatch(search(this.props.data, this.state.searchText));
+    e.preventDefault();
+  }
+
+  clearSearchText() {
+    this.setState({ searchText: '' });
+    this.props.dispatch(clearSearchField(this.state.verificationList));
+  }
+
+  async handleStatusChange(value) {
+    await this.setState({ selectedStatus: value});
+    this.applySearch(value, this.state.selectedRequestTime);
+  }
+
+  async handleRequestedChange(value) {
+    await this.setState({ selectedRequestTime: value});
+    this.applySearch(this.state.selectedStatus, value);
+  }
+
+  async applySearch(selectedStatus,selectedRequestTime) {
+    await this.props.dispatch(getVerifications(selectedStatus,selectedRequestTime));
+    this.setState({ verificationList: this.props.data});
+    this.props.dispatch(search(this.props.data, this.state.searchText));
+  }
+
   render() {
+    
     let componentToRender = null;
-    if (this.props.requesting === true) {
+    if (this.props.requesting === true && this.props.filterRequesting === false) {
       return (
         <div className="VerificationsPage__loader">
           <MDSpinner size={50} singleColor="#00b8d4" />
@@ -149,6 +195,15 @@ export class VerificationsPage extends Component {
             expirationDateFormat={DateFormat.expirationDateFormat}
             transactionEventDateFormat={DateFormat.transactionEventDateFormat}
             deviceType={process.env.REACT_APP_DEVICE_TYPE}
+            handleFilterChange={this.handleFilterChange}
+            handleSearch={this.handleSearch}
+            searchText={this.state.searchText}
+            clearSearchText={this.clearSearchText}
+            selectedStatus={this.state.selectedStatus}
+            handleStatusChange={this.handleStatusChange}
+            selectedRequestTime={this.state.selectedRequestTime}
+            handleRequestedChange={this.handleRequestedChange}
+            filterRequesting={this.props.filterRequesting}
           />
         );
       } else {
@@ -189,14 +244,16 @@ VerificationsPage.propTypes = {
   history: PropTypes.object,
   piRequesting: PropTypes.bool,
   deviceType: PropTypes.string,
+  filterRequesting: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
   verificationResult: state.verification.verificationResult,
   data: state.verification.verificationList,
-  requesting: state.verification.requesting,
+  requesting: state.verification.requesting,  
   isDescending: state.verification.isDescending,
   piRequesting: state.verification.piRequesting,
+  filterRequesting: state.verification.filterRequesting,
 });
 
 export default connect(mapStateToProps)(VerificationsPage);

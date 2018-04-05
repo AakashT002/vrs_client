@@ -13,7 +13,7 @@ import '../../assets/stylesheets/VerificationsPage.css';
 import '../../assets/stylesheets/ProductVerification.css';
 
 import { clearVerificationResult } from '../../store/mobile/verification/action';
-import { getVerificationList } from '../../store/mobile/verification/action';
+import { getVerifications } from '../../store/mobile/verification/action';
 import { getVerificationDetails } from '../../store/mobile/verification/action';
 
 import {
@@ -21,6 +21,8 @@ import {
   GTIN_INDEX,
   LOT_INDEX,
   SRN_INDEX,
+  PAST_24_HOURS,
+  ALL_STATUS
 } from '../../utils/constants';
 
 import DateFormat from '../../utils/dateFormat';
@@ -34,7 +36,7 @@ class VerificationsPage extends Component {
   componentWillMount() {
     const { dispatch } = this.props;
     this.props.dispatch(clearVerificationResult()).then(() => {
-      dispatch(getVerificationList());
+      dispatch(getVerifications(ALL_STATUS, PAST_24_HOURS));
     });
   }
 
