@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import createBrowserHistory from 'history/createBrowserHistory';
 
 import VerificationsPage from './VerificationsPage';
 
@@ -10,6 +11,7 @@ describe('Component: VerificationsPage', () => {
   let wrapper;
   let verifications = [];
   let verificationResult = [];
+  const history = createBrowserHistory();
 
   beforeEach(() => {
     wrapper = shallow(
@@ -17,6 +19,7 @@ describe('Component: VerificationsPage', () => {
         dispatch={dispatchStub}
         verificationList={verifications}
         verificationResult={verificationResult}
+        history={history}
       />
     );
   });

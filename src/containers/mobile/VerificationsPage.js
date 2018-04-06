@@ -22,7 +22,7 @@ import {
   LOT_INDEX,
   SRN_INDEX,
   PAST_24_HOURS,
-  ALL_STATUS
+  ALL_STATUS,
 } from '../../utils/constants';
 
 import DateFormat from '../../utils/dateFormat';
@@ -34,6 +34,9 @@ class VerificationsPage extends Component {
   }
 
   componentWillMount() {
+    if (!this.props.deviceType) {
+      this.props.history.push('/home');
+    }
     const { dispatch } = this.props;
     this.props.dispatch(clearVerificationResult()).then(() => {
       dispatch(getVerifications(ALL_STATUS, PAST_24_HOURS));
@@ -99,6 +102,8 @@ VerificationsPage.propTypes = {
   dispatch: PropTypes.func,
   requesting: PropTypes.bool,
   verificationResult: PropTypes.array,
+  deviceType: PropTypes.string,
+  history: PropTypes.object,
 };
 
 function mapStateToProps(state) {
@@ -106,6 +111,7 @@ function mapStateToProps(state) {
     verificationList: state.verification.verificationList,
     requesting: state.verification.requesting,
     verificationResult: state.verification.verificationResult,
+    deviceType: state.verification.deviceType,
   };
 }
 
