@@ -42,8 +42,8 @@ export const ONE_D = '1d';
 export const SEVEN_D = '7d';
 export const THIRTY_D = '30d';
 export const NINTEE_DAY = '90d';
-export const SIX_M = '6M';
-export const TWELVE_M = '12M';
+export const SIX_M = '6 months';
+export const TWELVE_M = '12 months';
 
 export const VERIFICATIONS_HEADER = [
   'SNI',

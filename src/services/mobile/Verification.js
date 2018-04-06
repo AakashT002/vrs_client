@@ -80,10 +80,10 @@ class Verification {
         tempRequest = NINTEE_DAY;
         break;
       case PAST_12_MONTHS:
-        tempRequest = SIX_M;
+        tempRequest = TWELVE_M;
         break;
       case PAST_6_MONTHS:
-        tempRequest = TWELVE_M;
+        tempRequest = SIX_M;
         break;
       case ALL_TIME:
         tempRequest = ALL_STATUS.toLowerCase();

@@ -65,7 +65,7 @@ export class ProductVerification extends Component {
       sessionStorage.setItem('deviceId', this.state.scannerId);
     } else {
       sessionStorage.setItem('deviceType', process.env.REACT_APP_DEVICE_TYPE);
-      sessionStorage.setItem('deviceId', null);
+      sessionStorage.setItem('deviceId', '');
     }
     this.props.dispatch(updateDeviceType());
   }
