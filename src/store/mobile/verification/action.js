@@ -1,9 +1,6 @@
 import * as ActionTypes from '../../actionTypes';
 import Verification from '../../../services/mobile/Verification';
-import {
-  RETURNED_BY,
-  SHIPPED_BY
-} from '../../../utils/constants';
+import { RETURNED_BY, SHIPPED_BY } from '../../../utils/constants';
 
 export const verifyProductIdentifier = (pi, deviceType, deviceId) => ({
   types: [
@@ -26,11 +23,11 @@ export const clearVerificationResult = () => ({
 
 export function sort(verificationList, isDescending) {
   if (isDescending) {
-    verificationList.sort(function (a, b) {
+    verificationList.sort(function(a, b) {
       return new Date(b.requestSentTime) - new Date(a.requestSentTime);
     });
   } else {
-    verificationList.sort(function (a, b) {
+    verificationList.sort(function(a, b) {
       return new Date(a.requestSentTime) - new Date(b.requestSentTime);
     });
   }
@@ -41,7 +38,7 @@ export function sort(verificationList, isDescending) {
   };
 }
 
-export const getVerificationDetails = (gtin, srn) => ({
+export const getVerificationDetails = (gtin, srn, requestedTime) => ({
   types: [
     ActionTypes.PRODUCT_DETAILS_REQUEST,
     ActionTypes.PRODUCT_DETAILS_SUCCESS,
@@ -49,7 +46,7 @@ export const getVerificationDetails = (gtin, srn) => ({
   ],
   callAPI: async () => {
     try {
-      return await Verification.getVerificationDetails(gtin, srn);
+      return await Verification.getVerificationDetails(gtin, srn, requestedTime);
     } catch (error) {
       throw new Error(error.message);
     }
@@ -62,7 +59,8 @@ export const updateDeviceType = () => ({
 
 export function search(verificationList, searchField) {
   let newList = verificationList.filter(verification => {
-    var found = verification.gtin.includes(searchField) ||
+    var found =
+      verification.gtin.includes(searchField) ||
       verification.srn.includes(searchField) ||
       (verification.gtin + verification.srn).includes(searchField) ||
       verification.firstName.includes(searchField) ||
@@ -91,10 +89,15 @@ export const getVerifications = (status, requestedTime) => ({
   ],
   callAPI: async () => {
     try {
-      const verificationResult = await Verification.getVerifications(status,requestedTime);
+      const verificationResult = await Verification.getVerifications(
+        status,
+        requestedTime
+      );
       verificationResult.result.forEach(element => {
-        element['returnedBy'] = RETURNED_BY[(Math.random() * RETURNED_BY.length) | 0];
-        element['shippedBy'] = SHIPPED_BY[(Math.random() * SHIPPED_BY.length) | 0];
+        element['returnedBy'] =
+          RETURNED_BY[(Math.random() * RETURNED_BY.length) | 0];
+        element['shippedBy'] =
+          SHIPPED_BY[(Math.random() * SHIPPED_BY.length) | 0];
         return element;
       });
       return verificationResult;

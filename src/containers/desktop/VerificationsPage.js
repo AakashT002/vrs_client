@@ -15,8 +15,10 @@ import {
   getVerificationDetails,
   search,
   clearSearchField,
-  getVerifications
+  getVerifications,
 } from '../../store/mobile/verification/action';
+
+import { setVerificationPerformed } from '../../store/desktop/dashboard/action';
 
 import DateFormat from '../../utils/dateFormat';
 import {
@@ -24,8 +26,6 @@ import {
   GTIN_INDEX,
   LOT_INDEX,
   SRN_INDEX,
-  ALL_STATUS,
-  ALL_TIME
 } from '../../utils/constants';
 
 export class VerificationsPage extends Component {
@@ -37,8 +37,9 @@ export class VerificationsPage extends Component {
       disableOnSubmit: false,
       searchText: '',
       verificationList: [],
-      selectedStatus: ALL_STATUS,
-      selectedRequestTime : ALL_TIME
+      selectedStatus: this.props.selectedStatus,
+      selectedRequestTime: this.props.selectedRequestTime,
+      isVerifyUsed: false,
     };
     this.handleVerificationDetails = this.handleVerificationDetails.bind(this);
     this.handleBackToVerifications = this.handleBackToVerifications.bind(this);
@@ -48,11 +49,17 @@ export class VerificationsPage extends Component {
     this.clearSearchText = this.clearSearchText.bind(this);
     this.handleStatusChange = this.handleStatusChange.bind(this);
     this.handleRequestedChange = this.handleRequestedChange.bind(this);
+    this.handleBackToDashboard = this.handleBackToDashboard.bind(this);
   }
 
   async componentWillMount() {
-    await this.props.dispatch(getVerifications(this.state.selectedStatus,this.state.selectedRequestTime));
-    this.setState({ verificationList: this.props.data});
+    await this.props.dispatch(
+      getVerifications(
+        this.state.selectedStatus,
+        this.state.selectedRequestTime
+      )
+    );
+    this.setState({ verificationList: this.props.data });
   }
 
   componentDidMount() {
@@ -100,7 +107,7 @@ export class VerificationsPage extends Component {
       .then(() => {
         this.props.dispatch(sort(this.props.data, this.props.isDescending));
       });
-    this.setState({ disableOnSubmit: true });
+    this.setState({ disableOnSubmit: true, isVerifyUsed: true });
   }
 
   handleNextProduct() {
@@ -108,17 +115,17 @@ export class VerificationsPage extends Component {
     this.setState({ productIdentifier: null });
   }
 
-  async handleVerificationDetails(gtin, srn) {
+  async handleVerificationDetails(gtin, srn, requestedTime) {
     await this.props.dispatch(clearVerificationResult());
-    await this.props.dispatch(getVerificationDetails(gtin, srn));
+    await this.props.dispatch(getVerificationDetails(gtin, srn, requestedTime));
     this.setState({ isPIVerificationModalVisible: false });
   }
 
   async handleBackToVerifications() {
     await this.props.dispatch(clearVerificationResult());
     this.setState({ productIdentifier: null });
-    this.setState({ isPIVerificationModalVisible: false});
-    this.props.history.push('/home');
+    this.setState({ isPIVerificationModalVisible: false });
+    this.props.history.push('/verifications');
   }
 
   handleVerifyProduct() {
@@ -129,7 +136,7 @@ export class VerificationsPage extends Component {
   }
 
   async handleFilterChange(value) {
-    this.setState({ searchText: value});
+    this.setState({ searchText: value });
     await this.props.dispatch(clearSearchField(this.state.verificationList));
   }
 
@@ -143,26 +150,38 @@ export class VerificationsPage extends Component {
     this.props.dispatch(clearSearchField(this.state.verificationList));
   }
 
+  handleBackToDashboard() {
+    this.props.history.push('/');
+    this.props.dispatch(setVerificationPerformed(this.state.isVerifyUsed));
+  }
+
   async handleStatusChange(value) {
-    await this.setState({ selectedStatus: value});
-    this.applySearch(value, this.state.selectedRequestTime);
+    await this.setState({ selectedStatus: value });
+    this.applySearch(this.state.selectedStatus, this.state.selectedRequestTime);
   }
 
   async handleRequestedChange(value) {
-    await this.setState({ selectedRequestTime: value});
-    this.applySearch(this.state.selectedStatus, value);
+    await this.setState({ selectedRequestTime: value });
+
+    this.applySearch(this.state.selectedStatus, this.state.selectedRequestTime);
+
   }
 
-  async applySearch(selectedStatus,selectedRequestTime) {
-    await this.props.dispatch(getVerifications(selectedStatus,selectedRequestTime));
-    this.setState({ verificationList: this.props.data});
+  async applySearch(selectedStatus, selectedRequestTime) {
+    await this.props.dispatch(
+      getVerifications(selectedStatus, selectedRequestTime)
+    );
+    this.setState({ verificationList: this.props.data });
     this.props.dispatch(search(this.props.data, this.state.searchText));
   }
 
   render() {
-    
     let componentToRender = null;
-    if (this.props.requesting === true && this.props.filterRequesting === false) {
+
+    if (
+      this.props.requesting === true &&
+      this.props.filterRequesting === false
+    ) {
       return (
         <div className="VerificationsPage__loader">
           <MDSpinner size={50} singleColor="#00b8d4" />
@@ -204,14 +223,16 @@ export class VerificationsPage extends Component {
             selectedRequestTime={this.state.selectedRequestTime}
             handleRequestedChange={this.handleRequestedChange}
             filterRequesting={this.props.filterRequesting}
+            handleBackToDashboard={this.handleBackToDashboard}
+            pathName={this.props.history.location.pathname}
           />
         );
       } else {
         const productIdentifier = `${GTIN_INDEX}${
           this.props.verificationResult[0].gtin
-        }${SRN_INDEX}${this.props.verificationResult[0].srn}${LOT_INDEX}${
+          }${SRN_INDEX}${this.props.verificationResult[0].srn}${LOT_INDEX}${
           this.props.verificationResult[0].lot
-        }${EXPDATE_INDEX}${this.props.verificationResult[0].expDate}`;
+          }${EXPDATE_INDEX}${this.props.verificationResult[0].expDate}`;
         componentToRender = (
           <VerificationDetails
             data={this.props.verificationResult}
@@ -244,16 +265,20 @@ VerificationsPage.propTypes = {
   history: PropTypes.object,
   piRequesting: PropTypes.bool,
   deviceType: PropTypes.string,
-  filterRequesting: PropTypes.bool
+  filterRequesting: PropTypes.bool,
+  selectedStatus: PropTypes.string,
+  selectedRequestTime: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
   verificationResult: state.verification.verificationResult,
   data: state.verification.verificationList,
-  requesting: state.verification.requesting,  
+  requesting: state.verification.requesting,
   isDescending: state.verification.isDescending,
   piRequesting: state.verification.piRequesting,
   filterRequesting: state.verification.filterRequesting,
+  selectedStatus: state.dashboard.selectedStatus,
+  selectedRequestTime: state.dashboard.selectedRequestTime,
 });
 
 export default connect(mapStateToProps)(VerificationsPage);

@@ -44,8 +44,8 @@
 
   .DesktopVerifications__table--row-error {
     &:hover { 
-      background-color: $deepOrange-600-12;
-      box-shadow: 0 1px 3px 0 $deepOrange-600-12;
+      background-color: $deeporange-600-12;
+      box-shadow: 0 1px 3px 0 $deeporange-600-12;
     }  	
   }
 
@@ -142,11 +142,21 @@
 
    .DesktopVerifications__title--text {
      position: relative;
-     left: 78px;
+     left: 65px;
      top: 18px;
    }
   }
 
+  .DesktopVerifications__arrow-back {
+    position: relative; 
+    left: 60px;
+    top: 22px; 
+    font-size: 35px; 
+    letter-spacing: 1.5px; 
+    color: $header-black;
+    cursor: pointer;
+  }
+  
   .DesktopVerifications__card {
     width: 90.5%;
   }
@@ -173,33 +183,6 @@
     }
   }
   
-  #DesktopVerifications__verifyProduct--dialogContainer {
-    height: 276px;
-    width: 520px;
-    border-radius: 2px;
-    background-color: $white;
-    box-shadow: 0 2px 25px 0 $black-24;
-
-    .md-title--dialog {
-      margin-bottom: 0;
-      padding: 24px;
-      padding-bottom: 20px;
-      white-space: normal;
-      height: 3.66%;
-      color: $blue-grey;
-      font-family: "Open Sans";
-      font-size: 24px;
-      line-height: 32px;
-    }
- }
-
- #DesktopVerifications__verificationResult--dialogContainer {
-   width: 520px;
-   height: 524px;
-   border-radius: 2px;
-   background-color: $grey-100;
-   box-shadow: 0 2px 25px 0 $black-24;
- }
 
  .DesktopVerifications__search-query {
    position: relative;

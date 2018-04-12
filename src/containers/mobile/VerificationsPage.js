@@ -43,9 +43,9 @@ class VerificationsPage extends Component {
     });
   }
 
-  handleVerificationDetails(verification) {
+  handleVerificationDetails(verification, requestedTime) {
     this.props.dispatch(
-      getVerificationDetails(verification.gtin, verification.srn)
+      getVerificationDetails(verification.gtin, verification.srn, requestedTime)
     );
   }
 
@@ -58,6 +58,7 @@ class VerificationsPage extends Component {
           data={this.props.verificationList}
           handleVerificationDetails={this.handleVerificationDetails}
           transactionEventDateFormat={DateFormat.transactionEventDateFormat}
+          requestedTime = {PAST_24_HOURS}
         />
       );
     } else {

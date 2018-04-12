@@ -3,6 +3,7 @@ export const DESKTOP = 'desktop';
 export const ENTER_PRODUCT_ID = 'ENTER PRODUCT ID';
 export const ERROR = 'ERROR';
 export const ERROR_LABEL = 'Error';
+export const ERRORS_LABEL = 'Errors';
 export const EXPDATE_INDEX = '(10)';
 export const EXPIRATION_LABEL = 'Expiration';
 export const GTIN_INDEX = '(01)';
@@ -21,6 +22,8 @@ export const PROJECT_TITLE = 'vrs.mesaverde.com';
 export const REQUESTED_LABEL = 'Requested';
 export const REQUEST_RCVD = 'REQUEST_RECEIVED';
 export const REQUESTOR_ID_LABEL = 'Requestor ID : ';
+export const REQUESTS = 'REQUESTS';
+export const REQUESTS_LABEL = 'Requests';
 export const RESPONDER_ID_LABEL = 'Responder ID : ';
 export const SERIAL_NUMBER_LABEL = 'Serial Number';
 export const SORT_FIELD_LAST_UPDATED = 'LAST UPDATED';
@@ -28,20 +31,31 @@ export const SORT_FIELD_REQUESTED = 'REQUESTED';
 export const SRN_INDEX = '(21)';
 export const ERROR_ID_LABEL = 'Error ID: ';
 export const PAST_24_HOURS = 'Past 24 Hours';
+export const PAST_24_HOURS_DASHBOARD =
+  'Verification Requests in the Past 24 Hours';
 export const PAST_7_DAYS = 'Past 7 Days';
+export const PAST_7_DAYS_DASHBOARD = 'Verification Requests in the Past 7 Days';
 export const PAST_30_DAYS = 'Past 30 Days';
+export const PAST_30_DAYS_DASHBOARD =
+  'Verification Requests in the Past 30 Days';
 export const PAST_90_DAYS = 'Past 90 Days';
+export const PAST_90_DAYS_DASHBOARD =
+  'Verification Requests in the Past 90 Days';
 export const PAST_12_MONTHS = 'Past 12 Months';
+export const PAST_12_MONTHS_DASHBOARD =
+  'Verification Requests in the Past 12 Months';
 export const PAST_6_MONTHS = 'Past 6 Months';
+export const PAST_6_MONTHS_DASHBOARD =
+  'Verification Requests in the Past 6 Months';
 export const ALL_TIME = 'All Time';
 export const VERIFIED = 'VERIFIED';
 export const VERIFIED_LABEL = 'Verified';
 export const VERIFY_PRODUCT = 'VERIFY PRODUCT';
 export const ALL_STATUS = 'All';
-export const ONE_D = '1d';
-export const SEVEN_D = '7d';
-export const THIRTY_D = '30d';
-export const NINTEE_DAY = '90d';
+export const ONE_DAY = '1d';
+export const SEVEN_DAY = '7d';
+export const THIRTY_DAY = '30d';
+export const NINETY_DAY = '90d';
 export const SIX_M = '6 months';
 export const TWELVE_M = '12 months';
 
@@ -64,21 +78,30 @@ export const SHIPPED_BY = [
   'FedEx',
   'USPS',
   'Hoover Shipping',
-  'Ship It'
+  'Ship It',
 ];
 export const STATUS = [
-  ALL_STATUS,
-  VERIFIED_LABEL,
-  NOT_VERIFIED_LABEL,
-  PENDING_LABEL,
-  ERROR_LABEL
+  {title: ALL_STATUS, value: ALL_STATUS},
+  {title: VERIFIED_LABEL, value: VERIFIED},
+  {title: NOT_VERIFIED_LABEL, value: NOT_VERIFIED},
+  {title: PENDING_LABEL, value: PENDING},
+  {title: ERROR_LABEL, value: ERROR},
 ];
 export const REQUESTED_TIME = [
-  PAST_24_HOURS,
-  PAST_7_DAYS,
-  PAST_30_DAYS,
-  PAST_90_DAYS,
-  PAST_12_MONTHS,
-  PAST_6_MONTHS,
-  ALL_TIME
+  {title: PAST_24_HOURS, value: ONE_DAY},
+  {title: PAST_7_DAYS, value: SEVEN_DAY},
+  {title: PAST_30_DAYS, value: THIRTY_DAY},
+  {title: PAST_90_DAYS, value: NINETY_DAY},
+  {title: PAST_6_MONTHS, value: SIX_M},
+  {title: PAST_12_MONTHS, value: TWELVE_M},
+  {title: ALL_TIME, value: ALL_STATUS}
+];
+export const REQUESTED_TIME_DASHBOARD = [
+  {title: PAST_24_HOURS_DASHBOARD, value: ONE_DAY},
+  {title: PAST_7_DAYS_DASHBOARD, value: SEVEN_DAY},
+  {title: PAST_30_DAYS_DASHBOARD, value: THIRTY_DAY},
+  {title: PAST_90_DAYS_DASHBOARD, value: NINETY_DAY},
+  {title: PAST_6_MONTHS_DASHBOARD, value: SIX_M},
+  {title: PAST_12_MONTHS_DASHBOARD, value: TWELVE_M},
+  {title: ALL_TIME, value: ALL_STATUS}
 ];

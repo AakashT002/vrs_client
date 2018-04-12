@@ -40,15 +40,15 @@ describe('Component: PercentageStats For Users', () => {
     expect(wrapper.find('.PercentageStats__title').exists()).toBe(true);
   });
 
-  it('renders the name as header', () => {
+  it('renders the first column header', () => {
     expect(wrapper.find('.PercentageStats__table-header0').exists()).toBe(true);
   });
 
-  it('renders the requests as header', () => {
+  it('renders the second column header', () => {
     expect(wrapper.find('.PercentageStats__table-header1').exists()).toBe(true);
   });
 
-  it('renders the responses as header', () => {
+  it('renders the third column header', () => {
     expect(wrapper.find('.PercentageStats__table-header2').exists()).toBe(true);
   });
 

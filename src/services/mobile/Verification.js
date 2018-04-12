@@ -1,27 +1,3 @@
-import {
-  VERIFIED,
-  NOT_VERIFIED,
-  PENDING,
-  ERROR,
-  PAST_7_DAYS,
-  PAST_30_DAYS,
-  PAST_90_DAYS,
-  PAST_12_MONTHS,
-  PAST_6_MONTHS,
-  ALL_TIME,
-  NOT_VERIFIED_LABEL,
-  VERIFIED_LABEL,
-  PENDING_LABEL,
-  ERROR_LABEL,
-  ALL_STATUS,
-  ONE_D,
-  SEVEN_D,
-  THIRTY_D,
-  NINTEE_DAY,
-  SIX_M,
-  TWELVE_M,
-} from '../../utils/constants';
-
 const API_URL = process.env.REACT_APP_API_URL;
 
 class Verification {
@@ -49,9 +25,9 @@ class Verification {
     }
   }
 
-  static async getVerificationDetails(gtin, srn) {
+  static async getVerificationDetails(gtin, srn, requestedTime) {
     const token = sessionStorage.kctoken;
-    const verificationUrl = `${API_URL}/api/verification/${gtin}/${srn}`;
+    const verificationUrl = `${API_URL}/api/verification/${gtin}/${srn}?pastRequestedTime=${requestedTime}`;
     const response = await fetch(verificationUrl, {
       method: 'GET',
       headers: {
@@ -66,54 +42,8 @@ class Verification {
   }
 
   static async getVerifications(status, requestedTime) {
-    let tempRequest;
-    let tempStatus;
-
-    switch (requestedTime) {
-      case PAST_7_DAYS:
-        tempRequest = SEVEN_D;
-        break;
-      case PAST_30_DAYS:
-        tempRequest = THIRTY_D;
-        break;
-      case PAST_90_DAYS:
-        tempRequest = NINTEE_DAY;
-        break;
-      case PAST_12_MONTHS:
-        tempRequest = TWELVE_M;
-        break;
-      case PAST_6_MONTHS:
-        tempRequest = SIX_M;
-        break;
-      case ALL_TIME:
-        tempRequest = ALL_STATUS.toLowerCase();
-        break;
-      default:
-        tempRequest = ONE_D;
-        break;
-    }
-
     const token = sessionStorage.kctoken;
-
-    switch (status) {
-      case VERIFIED_LABEL:
-        tempStatus = VERIFIED;
-        break;
-      case NOT_VERIFIED_LABEL:
-        tempStatus = NOT_VERIFIED;
-        break;
-      case ERROR_LABEL:
-        tempStatus = ERROR;
-        break;
-      case PENDING_LABEL:
-        tempStatus = PENDING;
-        break;
-      default:
-        tempStatus = ALL_STATUS;
-        break;
-    }
-
-    const verificationUrl = `${API_URL}/api/verifications?status=${tempStatus}&pastRequestedTime=${tempRequest}`;
+    const verificationUrl = `${API_URL}/api/verifications?status=${status}&pastRequestedTime=${requestedTime}`;
     const response = await fetch(verificationUrl, {
       method: 'GET',
       headers: {
@@ -127,4 +57,5 @@ class Verification {
     }
   }
 }
+
 export default Verification;

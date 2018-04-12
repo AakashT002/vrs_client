@@ -30,6 +30,7 @@ const Verifications = ({
   data,
   handleVerificationDetails,
   transactionEventDateFormat,
+  requestedTime
 }) => {
   const renderStatusText = status => {
     if (status === VERIFIED) {
@@ -90,7 +91,7 @@ const Verifications = ({
                 key={index}
                 className="Verifications__table--row"
                 onClick={() => {
-                  handleVerificationDetails(verification);
+                  handleVerificationDetails(verification, requestedTime);
                 }}
               >
                 <TableColumn className="Verifications__table--column">
@@ -125,6 +126,7 @@ Verifications.propTypes = {
   data: PropTypes.array,
   handleVerificationDetails: PropTypes.func,
   transactionEventDateFormat: PropTypes.func,
+  requestedTime: PropTypes.bool
 };
 
 export default Verifications;

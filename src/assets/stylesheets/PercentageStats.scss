@@ -88,6 +88,20 @@
     left: 18px;
   }
 
+  .PercentageStats__table-header-text {
+    width: 63px;
+    height: 16px;
+    font-family: "Open Sans";
+    font-size: 12px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: 0.6px;
+    text-align: left;
+    color: $grey-600;
+  }
+
   .PercentageStats__table-row{
     width: 508px;
     height: 55px;
@@ -144,5 +158,21 @@
     background: $deep-orange;
     height: 30px;
     float: left; 
+  }
+
+  .PercentageStats__no-data-found {
+    width: 63px;
+    height: 16px;
+    font-family: "Open Sans";
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: 0.6px;
+    color: #757575;
+    position: relative;
+    left: 166px;
+    top: 38px;
   }
 }

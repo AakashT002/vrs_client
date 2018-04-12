@@ -1,0 +1,149 @@
+@import './variables';
+
+.Dashboard {
+  width: 1360px;
+  height: 1118px;
+  background-color: $grey-100;
+
+  .Dashboard__header {
+    width: 1360px;
+    height: 81px;
+    background-color: $white;
+    box-shadow: 0 1px 3px 0 $dark-gray;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .Dashboard__numberstats-REQUESTS{
+    display: inline-block;
+    margin-top: 67px;
+  }
+
+  .Dashboard__numberstats-VERIFIED {
+    display: inline-block;
+    margin-left: 24px;
+    margin-top: 4px;
+  }
+
+  .Dashboard__numberstats-NOT_VERIFIED {
+    display: inline-block;
+    margin-left: 24px;
+    margin-top: 4px; 
+  }
+
+  .Dashboard__numberstats-ERROR {
+    display: inline-block;
+    margin-left: 24px;
+    margin-top: 4px; 
+  }
+
+  .Dashboard__responsetimes {
+    width: 792px;
+    height: 407px;
+    border-radius: 5px;
+    background-color: $white;
+    box-shadow: 0 1px 3px 0 $dark-gray;
+    margin-top: 5px;
+    display: inline-block;
+  }
+
+  .Dashboard__alerts {
+    width: 384px;
+    height: 407px;
+    border-radius: 5px;
+    background-color: $white;
+    box-shadow: 0 1px 3px 0 $dark-gray;
+    display: inline-block;
+    margin-left: 24px;
+  }
+
+  .Dashboard__users {
+    display: inline-block;
+  }
+
+  .Dashboard__devices {
+    display: inline-block;
+    margin-left: 24px;
+  }
+
+  .Dashboard__requested--select-field {
+    position: absolute;
+    width: 400px;
+    left: 80px;
+     .md-icon-text {
+       width: 351px;
+       height: 26px;
+       font-family: "Open Sans";
+       font-size: 18px;
+       font-weight: normal;
+       font-style: normal;
+       font-stretch: normal;
+       line-height: 1.32;
+       letter-spacing: normal;
+       text-align: left;
+       color: $grey-600;
+       white-space: nowrap;
+     }
+     .md-divider {
+       background-color: $grey-600;
+     }
+     .md-icon {
+       width: 24px;
+       height: 24px;
+       font-size: 24px;
+       font-weight: normal;
+       font-style: normal;
+       font-stretch: normal;
+       line-height: normal;
+       letter-spacing: normal;
+       text-align: left;
+       color: $grey-600;
+     }
+    .md-list {
+      width: 400px;
+      position: relative;
+      height: 302px;
+    }
+    .md-list--menu-restricted {
+      max-height: 289px;
+    }
+    .md-tile-text--primary{
+      width: 351px;
+      height: 26px;
+      font-family: "Open Sans";
+      font-size: 17px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.32;
+      letter-spacing: normal;
+      text-align: left;
+      color: $grey-600;
+      white-space: nowrap;
+    }
+  }
+
+  .Dashboard__verify-product--button {
+    height: 14px;
+    color: $cyan;
+    font-family: "Open Sans";
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 600;
+    text-align: center;
+    position: absolute;
+    left: 1152px;
+    top: 85px;
+    letter-spacing: 0.7px;
+
+    &:hover {
+      cursor: pointer;
+    }
+	
+  }
+}
+
+.Dashboard__loader {
+  margin-left: 652px;
+  margin-top: 232px;
+}

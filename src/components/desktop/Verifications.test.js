@@ -1,12 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import SessionStorage from '../../__mocks__/mockSessionStorage';
+
 import Verifications from './Verifications';
 
 import { VERIFIED } from '../../utils/constants';
 
 describe('Component: Verifications', () => {
-
+  window.sessionStorage = new SessionStorage();
   let verificationsList = [
     {
       srn: '13268255316404',
@@ -18,7 +20,7 @@ describe('Component: Verifications', () => {
       expDate: '20190321',
     },
   ];
-  let deviceType= process.env.REACT_APP_DEVICE_TYPE;
+  let deviceType = process.env.REACT_APP_DEVICE_TYPE;
   let verificationResult = [];
 
   const spy = jest.fn();
@@ -66,20 +68,6 @@ describe('Component: Verifications', () => {
     );
   });
 
-  it('renders the verifications page verify product button', () => {
-    expect(
-      wrapper.find('.DesktopVerifications__verify-product--button').exists()
-    ).toBe(true);
-  });
-
-  it('should call onSubmit when the verify product button is clicked', () => {
-    const submitButton = wrapper.find(
-      '.DesktopVerifications__verify-product--button'
-    );
-    submitButton.simulate('click');
-    expect(spy).toHaveBeenCalled();
-  });
-
   it('renders a verification tabel header data', () => {
     expect(
       wrapper.find('.DesktopVerifications__table--header-data').exists()
@@ -117,9 +105,7 @@ describe('Component: Verifications', () => {
   });
 
   it('renders a sni for each verification in the list', () => {
-    expect(wrapper.find('.DesktopVerifications__sni').exists()).toBe(
-      true
-    );
+    expect(wrapper.find('.DesktopVerifications__sni').exists()).toBe(true);
   });
 
   it('renders the last updated for each verification in the list', () => {
@@ -129,13 +115,13 @@ describe('Component: Verifications', () => {
   });
 
   it('renders a user for each verification in the list', () => {
-    expect(wrapper.find('.DesktopVerifications__user').exists()).toBe(
-      true
-    );
+    expect(wrapper.find('.DesktopVerifications__user').exists()).toBe(true);
   });
 
   it('renders the returned by for each verification in the list', () => {
-    expect(wrapper.find('.DesktopVerifications__returned-by').exists()).toBe(true);
+    expect(wrapper.find('.DesktopVerifications__returned-by').exists()).toBe(
+      true
+    );
   });
 
   it('renders the shipped by for each verification in the list', () => {

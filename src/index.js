@@ -45,7 +45,16 @@ keycloak
       if (keycloak.tokenParsed.name) {
         sessionStorage.setItem('fullname', keycloak.tokenParsed.name);
       }
-
+      var userRoles = keycloak.tokenParsed.realm_access.roles;
+      for (var role in userRoles) {
+        if (
+          userRoles[role] === 'manager' ||
+          userRoles[role] === 'returnSpecialist'
+        ) {
+          sessionStorage.setItem('userRole', userRoles[role]);
+          break;
+        }
+      }
       store.dispatch(
         authenticate({
           id: sessionStorage.username,

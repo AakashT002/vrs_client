@@ -1,72 +1,75 @@
 import createReducer from '../../createReducer';
 import * as ActionTypes from '../../actionTypes';
 
-const initialState = {
-  statsForUser: {
-    type: 'Users',
-    headers: ['name', 'requests', 'responses'],
-    data: [
-      {
-        value1: 'Jim Thomson',
-        value2: '100',
-        value3: {
-          field1: '50',
-          field2: '30',
-          field3: '20',
-        },
-      },
-      {
-        value1: 'Anna Kate',
-        value2: '90',
-        value3: {
-          field1: '40',
-          field2: '30',
-          field3: '20',
-        },
-      },
-    ],
-  },
+import { ALL_STATUS,  ONE_DAY} from '../../../utils/constants';
 
-  statsForDevices: {
-    type: 'Devices',
-    headers: ['device id', 'requests', 'responses'],
-    data: [
-      {
-        value1: 'ABCD-123',
-        value2: '100',
-        value3: {
-          field1: '50',
-          field2: '30',
-          field3: '20',
-        },
-      },
-      {
-        value1: 'MOTOG-455',
-        value2: '90',
-        value3: {
-          field1: '40',
-          field2: '30',
-          field3: '20',
-        },
-      },
-    ],
-  },
+const initialState = {
+  statsForUser: {},
+  statsForDevices: {},
+  statsForNumbers: {},
+  userRequesting: true,
+  deviceRequesting: true,
+  numberRequesting: true,
+  selectedStatus: ALL_STATUS,
+  selectedRequestTime: ONE_DAY,
+  fetchStats: true,
 };
 
 export const dashboard = createReducer(initialState, {
-  [ActionTypes.FETCH_STATS_USERS_SUCCESS](state = initialState, action) {
+  [ActionTypes.FETCH_STATS_USERS_REQUEST](state) {
+    return { ...state, userRequesting: true };
+  },
+  [ActionTypes.FETCH_STATS_USERS_SUCCESS](state, action) {
     return {
       ...state,
-      statsForUser: action.users,
+      statsForUser: action.response.result,
+      userRequesting: false,
     };
   },
+  [ActionTypes.FETCH_STATS_USERS_FAILURE](state) {
+    return { ...state, userRequesting: false };
+  },
 
-  [ActionTypes.FETCH_STATS_DEVICES_SUCCESS](state = initialState, action) {
+  [ActionTypes.FETCH_STATS_DEVICES_REQUEST](state) {
+    return { ...state, deviceRequesting: true };
+  },
+  [ActionTypes.FETCH_STATS_DEVICES_SUCCESS](state, action) {
     return {
       ...state,
-      statsForDevices: action.devices,
+      statsForDevices: action.response.result,
+      deviceRequesting: false,
+    };
+  },
+  [ActionTypes.FETCH_STATS_DEVICES_FAILURE](state) {
+    return { ...state, deviceRequesting: false };
+  },
+
+  [ActionTypes.FETCH_STATS_NUMBERS_REQUEST](state) {
+    return { ...state, numberRequesting: true };
+  },
+  [ActionTypes.FETCH_STATS_NUMBERS_SUCCESS](state, action) {
+    return {
+      ...state,
+      statsForNumbers: action.response.result,
+      numberRequesting: false,
+    };
+  },
+  [ActionTypes.FETCH_STATS_NUMBERS_FAILURE](state) {
+    return { ...state, numberRequesting: false };
+  },
+
+  [ActionTypes.UPDATE_SELECTED_DETAILS](state = initialState, action) {
+    return {
+      ...state,
+      selectedStatus: action.selectedStatus,
+      selectedRequestTime: action.selectedRequestTime,
+    };
+  },
+  [ActionTypes.RELOAD_STATS](state = initialState, action) {
+    return {
+      ...state,
+      fetchStats: action.isVerifyUsed,
     };
   },
 });
-
 export default dashboard;

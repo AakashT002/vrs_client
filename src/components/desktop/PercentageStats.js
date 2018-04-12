@@ -13,7 +13,7 @@ import '../../assets/stylesheets/PercentageStats.css';
 
 const PercentageStats = ({ stats }) => {
   const renderPercentageStats = (total, fields) => {
-    return Object.keys(fields).map(function(key) {
+    return Object.keys(fields).map(function (key) {
       var percentage = fields[key] / total * 100;
       var value = percentage.toFixed(2);
       var style = { width: value + '%' };
@@ -41,27 +41,36 @@ const PercentageStats = ({ stats }) => {
                     key={index}
                     className={`PercentageStats__table-header${index}`}
                   >
-                    <p>{header.toUpperCase()}</p>
+                    <p className="PercentageStats__table-header-text">
+                      {header.toUpperCase()}
+                    </p>
                   </TableColumn>
                 ))}
               </TableRow>
             </TableHeader>
             <TableBody>
-              {stats.data.map((data, index) => (
-                <TableRow key={index} className="PercentageStats__table-row">
-                  <TableColumn className="PercentageStats__table-row-name">
-                    {data.value1}
-                  </TableColumn>
-                  <TableColumn className="PercentageStats__table-row-requests">
-                    {data.value2}
-                  </TableColumn>
-                  <TableColumn className="PercentageStats__table-row-response">
-                    <div className="PercentageStats__response">
-                      {renderPercentageStats(data.value2, data.value3)}
-                    </div>
-                  </TableColumn>
-                </TableRow>
-              ))}
+              {stats.data.length !== 0 ? (
+                stats.data.map((data, index) => (
+                  <TableRow key={index} className="PercentageStats__table-row">
+                    <TableColumn className="PercentageStats__table-row-name">
+                      {data.value1}
+                    </TableColumn>
+                    <TableColumn className="PercentageStats__table-row-requests">
+                      {data.value2}
+                    </TableColumn>
+                    <TableColumn className="PercentageStats__table-row-response">
+                      <div className="PercentageStats__response">
+                        {renderPercentageStats(data.value2, data.value3)}
+                      </div>
+                    </TableColumn>
+                  </TableRow>
+                ))
+              ) :
+                (
+                  <span className="PercentageStats__no-data-found">
+                    No Data Found
+              </span>
+                )}
             </TableBody>
           </DataTable>
         </CardText>

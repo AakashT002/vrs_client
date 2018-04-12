@@ -1,9 +1,6 @@
 import createReducer from '../../createReducer';
 import * as ActionTypes from '../../actionTypes';
-import {
-  RETURNED_BY,
-  SHIPPED_BY
-} from '../../../utils/constants';
+import { RETURNED_BY, SHIPPED_BY } from '../../../utils/constants';
 
 const initialState = {
   verificationResult: [],
@@ -14,7 +11,7 @@ const initialState = {
   isScannerSelection: true,
   isDuplicate: false,
   filterRequesting: false,
-  deviceType: sessionStorage.getItem('deviceType'),
+  deviceType: sessionStorage.getItem('deviceType')
 };
 
 export const verification = createReducer(initialState, {
@@ -23,7 +20,10 @@ export const verification = createReducer(initialState, {
   },
   [ActionTypes.VERIFY_PI_SUCCESS](state = initialState, action) {
     state.verificationList.forEach(verification => {
-      if ((verification.gtin+verification.srn) === (action.response.result[0].gtin+action.response.result[0].srn)) {
+      if (
+        (verification.gtin + verification.srn) ===
+        (action.response.result[0].gtin + action.response.result[0].srn)
+      ) {
         verification.requestSentTime =
           action.response.result[0].requestSentTime;
         state.isDuplicate = true;
@@ -38,8 +38,10 @@ export const verification = createReducer(initialState, {
       let fullName = sessionStorage.getItem('fullname').split(' ');
       action.response.result[0]['firstName'] = fullName[0];
       action.response.result[0]['lastName'] = fullName[1];
-      action.response.result[0]['returnedBy'] = RETURNED_BY[(Math.random() * RETURNED_BY.length) | 0];
-      action.response.result[0]['shippedBy'] = SHIPPED_BY[(Math.random() * SHIPPED_BY.length) | 0];
+      action.response.result[0]['returnedBy'] =
+        RETURNED_BY[(Math.random() * RETURNED_BY.length) | 0];
+      action.response.result[0]['shippedBy'] =
+        SHIPPED_BY[(Math.random() * SHIPPED_BY.length) | 0];
       state.verificationList.unshift(action.response.result[0]);
     }
 
@@ -94,12 +96,12 @@ export const verification = createReducer(initialState, {
       ...state,
       verificationList: action.response.result,
       requesting: false,
-      filterRequesting: false
+      filterRequesting: false,
     };
   },
   [ActionTypes.FETCH_VERIFICATIONS_FAILURE](state) {
     return { ...state, requesting: false, filterRequesting: false };
-  },
+  }
 });
 
 export default verification;

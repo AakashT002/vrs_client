@@ -1,64 +1,61 @@
 import * as ActionTypes from '../../actionTypes';
+import Dashboard from '../../../services/desktop/Dashboard';
 
-export const getStatsForUser = () => {
-  const statsForUser = {
-    type: 'Users',
-    headers: ['name', 'requests', 'responses'],
-    data: [
-      {
-        value1: 'Jim Thomson',
-        value2: '100',
-        value3: {
-          field1: '50',
-          field2: '30',
-          field3: '20',
-        },
-      },
-      {
-        value1: 'Anna Kate',
-        value2: '90',
-        value3: {
-          field1: '30',
-          field2: '30',
-          field3: '30',
-        },
-      },
-    ],
-  };
+export const getStatsForUser = requestedTime => ({
+  types: [
+    ActionTypes.FETCH_STATS_USERS_REQUEST,
+    ActionTypes.FETCH_STATS_USERS_SUCCESS,
+    ActionTypes.FETCH_STATS_USERS_FAILURE,
+  ],
+  callAPI: async () => {
+    try {
+      return await Dashboard.getStatsForUser(requestedTime);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  },
+});
 
+export const getStatsForDevices = requestedTime => ({
+  types: [
+    ActionTypes.FETCH_STATS_DEVICES_REQUEST,
+    ActionTypes.FETCH_STATS_DEVICES_SUCCESS,
+    ActionTypes.FETCH_STATS_DEVICES_FAILURE,
+  ],
+  callAPI: async () => {
+    try {
+      return await Dashboard.getStatsForDevices(requestedTime);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  },
+});
+
+export const getStatsForNumbers = requestedTime => ({
+  types: [
+    ActionTypes.FETCH_STATS_NUMBERS_REQUEST,
+    ActionTypes.FETCH_STATS_NUMBERS_SUCCESS,
+    ActionTypes.FETCH_STATS_NUMBERS_FAILURE,
+  ],
+  callAPI: async () => {
+    try {
+      return await Dashboard.getStatsForNumbers(requestedTime);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  },
+});
+
+export const updateSelectedDetails = (selectedStatus, selectedRequestTime) => {
   return {
-    type: ActionTypes.FETCH_STATS_USERS_SUCCESS,
-    users: statsForUser,
+    type: ActionTypes.UPDATE_SELECTED_DETAILS,
+    selectedStatus: selectedStatus,
+    selectedRequestTime: selectedRequestTime,
   };
 };
-
-export const getStatsForDevices = () => {
-  const statsForDevices = {
-    type: 'Devices',
-    headers: ['device id', 'requests', 'responses'],
-    data: [
-      {
-        value1: 'ABCD-123',
-        value2: '100',
-        value3: {
-          field1: '50',
-          field2: '30',
-          field3: '20',
-        },
-      },
-      {
-        value1: 'MOTOG-455',
-        value2: '90',
-        value3: {
-          field1: '40',
-          field2: '30',
-          field3: '20',
-        },
-      },
-    ],
-  };
+export const setVerificationPerformed= isVerifyUsed => {
   return {
-    type: ActionTypes.FETCH_STATS_DEVICES_SUCCESS,
-    devices: statsForDevices,
+    type: ActionTypes.RELOAD_STATS,
+    isVerifyUsed: isVerifyUsed,
   };
 };
