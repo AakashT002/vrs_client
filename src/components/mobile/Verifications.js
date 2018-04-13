@@ -126,7 +126,7 @@ Verifications.propTypes = {
   data: PropTypes.array,
   handleVerificationDetails: PropTypes.func,
   transactionEventDateFormat: PropTypes.func,
-  requestedTime: PropTypes.bool
+  requestedTime: PropTypes.string
 };
 
 export default Verifications;

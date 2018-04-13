@@ -21,8 +21,8 @@ import {
   GTIN_INDEX,
   LOT_INDEX,
   SRN_INDEX,
-  PAST_24_HOURS,
   ALL_STATUS,
+  ONE_DAY,
 } from '../../utils/constants';
 
 import DateFormat from '../../utils/dateFormat';
@@ -39,7 +39,7 @@ class VerificationsPage extends Component {
     }
     const { dispatch } = this.props;
     this.props.dispatch(clearVerificationResult()).then(() => {
-      dispatch(getVerifications(ALL_STATUS, PAST_24_HOURS));
+      dispatch(getVerifications(ALL_STATUS, ONE_DAY));
     });
   }
 
@@ -58,7 +58,7 @@ class VerificationsPage extends Component {
           data={this.props.verificationList}
           handleVerificationDetails={this.handleVerificationDetails}
           transactionEventDateFormat={DateFormat.transactionEventDateFormat}
-          requestedTime = {PAST_24_HOURS}
+          requestedTime = {ONE_DAY}
         />
       );
     } else {
