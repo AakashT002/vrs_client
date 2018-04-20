@@ -13,10 +13,11 @@ import '../../assets/stylesheets/PercentageStats.css';
 
 const PercentageStats = ({ stats }) => {
   const renderPercentageStats = (total, fields) => {
-    return Object.keys(fields).map(function (key) {
+    return Object.keys(fields).map(function(key) {
       var percentage = fields[key] / total * 100;
       var value = percentage.toFixed(2);
-      var style = { width: value + '%' };
+      var valuewithoutdecimal = value.split('.')[0];
+      var style = { width: valuewithoutdecimal + '%' };
       return (
         <div
           key={key}
@@ -65,12 +66,11 @@ const PercentageStats = ({ stats }) => {
                     </TableColumn>
                   </TableRow>
                 ))
-              ) :
-                (
-                  <span className="PercentageStats__no-data-found">
-                    No Data Found
-              </span>
-                )}
+              ) : (
+                <span className="PercentageStats__no-data-found">
+                  No Data Found
+                </span>
+              )}
             </TableBody>
           </DataTable>
         </CardText>

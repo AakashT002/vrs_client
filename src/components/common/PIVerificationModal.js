@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  DialogContainer
-} from 'react-md';
+import { DialogContainer } from 'react-md';
 import PropTypes from 'prop-types';
 import MDSpinner from 'react-md-spinner';
 
@@ -25,7 +23,7 @@ const PIVerificationModal = ({
   expirationDateFormat,
   deviceType,
   pathName,
-  selectedRequestTime
+  selectedRequestTime,
 }) => {
   let renderModalContent = null;
   if (verificationResult.length === 0) {
@@ -57,7 +55,10 @@ const PIVerificationModal = ({
   const renderId =
     verificationResult.length === 0 ? 'verifyProduct' : 'verificationResult';
 
-  const renderPathName = (pathName === '/dashboard' || pathName === '/') ? 'dashboard' : 'verifications';
+  const renderPathName =
+    pathName === '/dashboard' || pathName === '/'
+      ? 'dashboard'
+      : 'verifications';
 
   return (
     <div className="PIVerificationModal">
@@ -65,7 +66,6 @@ const PIVerificationModal = ({
         id={`PIVerificationModal__${renderId}--dialogContainer`}
         visible={isPIVerificationModalVisible}
         onHide={handleCancel}
-        modal
       >
         {renderModalContent}
         {piRequesting ? (
@@ -106,7 +106,7 @@ PIVerificationModal.propTypes = {
   handleRequestedChange: PropTypes.func,
   selectedRequestTime: PropTypes.string,
   filterRequesting: PropTypes.bool,
-  pathName: PropTypes.string
+  pathName: PropTypes.string,
 };
 
 export default PIVerificationModal;

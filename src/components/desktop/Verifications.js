@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Button,
   DataTable,
   TableHeader,
   TableBody,
@@ -11,6 +12,9 @@ import {
 } from 'react-md';
 import PropTypes from 'prop-types';
 import MDSpinner from 'react-md-spinner';
+import moment from 'moment';
+
+import ExportData from './ExportData.js';
 
 import PIVerificationModal from '../../components/common/PIVerificationModal';
 
@@ -25,16 +29,32 @@ import '../../assets/stylesheets/DesktopVerifications.css';
 import {
   ERROR,
   ERROR_LABEL,
+  EXPORT_DATA_LIST_INSTRUCTION,
+  NINETY_DAY,
   NOT_VERIFIED,
   NOT_VERIFIED_LABEL,
+  ONE_DAY,
+  PAST_24_HOURS,
+  PAST_7_DAYS,
+  PAST_30_DAYS,
+  PAST_90_DAYS,
+  PAST_6_MONTHS,
+  PAST_12_MONTHS,
   PENDING,
   PENDING_LABEL,
   VERIFIED,
   VERIFIED_LABEL,
   VERIFICATIONS_HEADER,
+  SEARCH_QUERY_LABEL,
+  SEVEN_DAY,
+  SIX_M,
   SORT_FIELD_REQUESTED,
   STATUS,
+  STATUS_LABEL,
+  THIRTY_DAY,
+  TWELVE_M,
   REQUESTED_TIME,
+  REQUESTED_TIME_LABEL,
   ALL_STATUS,
   ALL_TIME,
 } from '../../utils/constants';
@@ -67,7 +87,10 @@ const Verifications = ({
   selectedRequestTime,
   filterRequesting,
   handleBackToDashboard,
-  pathName
+  pathName,
+  handleExportData,
+  handlePostExportData,
+  isModalVisible,
 }) => {
   const renderStatusText = status => {
     if (status === VERIFIED) {
@@ -102,6 +125,22 @@ const Verifications = ({
       return 'DesktopVerifications__table--row-error';
     } else if (status === NOT_VERIFIED) {
       return 'DesktopVerifications__table--row-notVerified';
+    }
+  };
+
+  const getRequestedTimeLabel = requestedTime => {
+    if (requestedTime === ONE_DAY) {
+      return PAST_24_HOURS;
+    } else if (requestedTime === SEVEN_DAY) {
+      return PAST_7_DAYS;
+    } else if (requestedTime === THIRTY_DAY) {
+      return PAST_30_DAYS;
+    } else if (requestedTime === NINETY_DAY) {
+      return PAST_90_DAYS;
+    } else if (requestedTime === SIX_M) {
+      return PAST_6_MONTHS;
+    } else if (requestedTime === TWELVE_M) {
+      return PAST_12_MONTHS;
     }
   };
 
@@ -158,6 +197,29 @@ const Verifications = ({
       return header;
     }
   };
+
+  var exportData = [];
+
+  exportData.push(
+    [SEARCH_QUERY_LABEL, searchText],
+    [STATUS_LABEL, selectedStatus],
+    [REQUESTED_TIME_LABEL, getRequestedTimeLabel(selectedRequestTime)],
+    [],
+    VERIFICATIONS_HEADER
+  );
+
+  data.forEach(verification => {
+    exportData.push([
+      `'${verification.gtin}${verification.srn}'`,
+      renderStatusText(verification.status),
+      transactionEventDateFormat(verification.requestSentTime),
+      `${verification.firstName} ${verification.lastName}`,
+      verification.returnedBy,
+      verification.shippedBy,
+    ]);
+  });
+
+  var currentDateFormat = moment().format('YYYY-MM-DD HH:mm:ss');
 
   return (
     <div className="DesktopVerifications">
@@ -219,10 +281,24 @@ const Verifications = ({
         <a
           onClick={handleVerifyProduct}
           label="VERIFY PRODUCT"
-          className="DesktopVerifications__verify-product--button"
+          className="DesktopVerifications__verify-product-button"
         >
           VERIFY PRODUCT
-      </a>
+        </a>
+        <Button
+          label="EXPORT DATA"
+          className="DesktopVerifications__export-data-button"
+          onClick={handleExportData}
+          disabled={filterRequesting}
+        />
+        <ExportData
+          handlePostExportData={handlePostExportData}
+          isModalVisible={isModalVisible}
+          data={exportData}
+          fileName={`exportList_${currentDateFormat}.csv`}
+          infoText={EXPORT_DATA_LIST_INSTRUCTION}
+          modal="vrsList"
+        />
         <PIVerificationModal
           isPIVerificationModalVisible={isPIVerificationModalVisible}
           verificationResult={verificationResult}
@@ -246,83 +322,83 @@ const Verifications = ({
             <MDSpinner size={50} singleColor="#00b8d4" />
           </div>
         ) : (
-            <Card className="DesktopVerifications__card">
-              <DataTable className="DesktopVerifications__table" plain>
-                <TableHeader>
-                  <TableRow className="DesktopVerifications__table--header">
-                    {VERIFICATIONS_HEADER.map(header => (
-                      <TableColumn
-                        key={header}
-                        className="DesktopVerifications__table--header-data"
-                      >
-                        {renderHeaderAndSortable(header, isDescending)}
+          <Card className="DesktopVerifications__card">
+            <DataTable className="DesktopVerifications__table" plain>
+              <TableHeader>
+                <TableRow className="DesktopVerifications__table--header">
+                  {VERIFICATIONS_HEADER.map(header => (
+                    <TableColumn
+                      key={header}
+                      className="DesktopVerifications__table--header-data"
+                    >
+                      {renderHeaderAndSortable(header, isDescending)}
+                    </TableColumn>
+                  ))}
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {data.length !== 0 ? (
+                  data.map((verification, index) => (
+                    <TableRow
+                      key={index}
+                      className={`DesktopVerifications__table--row ${renderOnHoverClassName(
+                        verification.status
+                      )}`}
+                      onClick={() => {
+                        handleVerificationDetails(
+                          verification.gtin,
+                          verification.srn,
+                          selectedRequestTime
+                        );
+                      }}
+                    >
+                      <TableColumn className="DesktopVerifications__table--column">
+                        <font className="DesktopVerifications__sni">
+                          {verification.gtin}
+                          {verification.srn}
+                        </font>
                       </TableColumn>
-                    ))}
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {data.length !== 0 ? (
-                    data.map((verification, index) => (
-                      <TableRow
-                        key={index}
-                        className={`DesktopVerifications__table--row ${renderOnHoverClassName(
-                          verification.status
-                        )}`}
-                        onClick={() => {
-                          handleVerificationDetails(
-                            verification.gtin,
-                            verification.srn,
-                            selectedRequestTime
-                          );
-                        }}
-                      >
-                        <TableColumn className="DesktopVerifications__table--column">
-                          <font className="DesktopVerifications__sni">
-                            {verification.gtin}
-                            {verification.srn}
+                      <TableColumn className="DesktopVerifications__table--column">
+                        {renderStatusIcon(verification.status)}
+                        <span className={renderClassName(verification.status)}>
+                          <font className="DesktopVerifications__status">
+                            {renderStatusText(verification.status)}
                           </font>
-                        </TableColumn>
-                        <TableColumn className="DesktopVerifications__table--column">
-                          {renderStatusIcon(verification.status)}
-                          <span className={renderClassName(verification.status)}>
-                            <font className="DesktopVerifications__status">
-                              {renderStatusText(verification.status)}
-                            </font>
-                          </span>
-                        </TableColumn>
-                        <TableColumn className="md-table-column--plain DesktopVerifications__table--column">
-                          <font className="DesktopVerifications__requested">
-                            {transactionEventDateFormat(
-                              verification.requestSentTime
-                            )}
-                          </font>
-                        </TableColumn>
-                        <TableColumn className="DesktopVerifications__table--column">
-                          <font className="DesktopVerifications__user">
-                            {verification.firstName} {verification.lastName}
-                          </font>
-                        </TableColumn>
-                        <TableColumn className="DesktopVerifications__table--column">
-                          <font className="DesktopVerifications__returned-by">
-                            {verification.returnedBy}
-                          </font>
-                        </TableColumn>
-                        <TableColumn className="DesktopVerifications__table--column">
-                          <font className="DesktopVerifications__shipped-by">
-                            {verification.shippedBy}
-                          </font>
-                        </TableColumn>
-                      </TableRow>
-                    ))
-                  ) : (
-                      <span className="DesktopVerifications__no-data-found">
-                        No Verifications Data Found
+                        </span>
+                      </TableColumn>
+                      <TableColumn className="md-table-column--plain DesktopVerifications__table--column">
+                        <font className="DesktopVerifications__requested">
+                          {transactionEventDateFormat(
+                            verification.requestSentTime
+                          )}
+                        </font>
+                      </TableColumn>
+                      <TableColumn className="DesktopVerifications__table--column">
+                        <font className="DesktopVerifications__user">
+                          {verification.firstName} {verification.lastName}
+                        </font>
+                      </TableColumn>
+                      <TableColumn className="DesktopVerifications__table--column">
+                        <font className="DesktopVerifications__returned-by">
+                          {verification.returnedBy}
+                        </font>
+                      </TableColumn>
+                      <TableColumn className="DesktopVerifications__table--column">
+                        <font className="DesktopVerifications__shipped-by">
+                          {verification.shippedBy}
+                        </font>
+                      </TableColumn>
+                    </TableRow>
+                  ))
+                ) : (
+                  <span className="DesktopVerifications__no-data-found">
+                    No Verifications Data Found
                   </span>
-                    )}
-                </TableBody>
-              </DataTable>
-            </Card>
-          )}
+                )}
+              </TableBody>
+            </DataTable>
+          </Card>
+        )}
       </div>
     </div>
   );
@@ -358,7 +434,9 @@ Verifications.propTypes = {
   selectedRequestTime: PropTypes.string,
   filterRequesting: PropTypes.bool,
   handleBackToDashboard: PropTypes.func,
-  pathName: PropTypes.string
+  pathName: PropTypes.string,
+  handleExportData: PropTypes.func,
+  handlePostExportData: PropTypes.func,
+  isModalVisible: PropTypes.bool,
 };
-
 export default Verifications;

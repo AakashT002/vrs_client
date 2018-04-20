@@ -47,6 +47,7 @@ export const PAST_12_MONTHS_DASHBOARD =
 export const PAST_6_MONTHS = 'Past 6 Months';
 export const PAST_6_MONTHS_DASHBOARD =
   'Verification Requests in the Past 6 Months';
+export const REQUESTED_TIME_LABEL = 'Requested Time';
 export const ALL_TIME = 'All Time';
 export const VERIFIED = 'VERIFIED';
 export const VERIFIED_LABEL = 'Verified';
@@ -94,7 +95,7 @@ export const REQUESTED_TIME = [
   { title: PAST_90_DAYS, value: NINETY_DAY },
   { title: PAST_6_MONTHS, value: SIX_M },
   { title: PAST_12_MONTHS, value: TWELVE_M },
-  { title: ALL_TIME, value: ALL_STATUS }
+  { title: ALL_TIME, value: ALL_STATUS },
 ];
 export const REQUESTED_TIME_DASHBOARD = [
   { title: PAST_24_HOURS_DASHBOARD, value: ONE_DAY },
@@ -103,18 +104,23 @@ export const REQUESTED_TIME_DASHBOARD = [
   { title: PAST_90_DAYS_DASHBOARD, value: NINETY_DAY },
   { title: PAST_6_MONTHS_DASHBOARD, value: SIX_M },
   { title: PAST_12_MONTHS_DASHBOARD, value: TWELVE_M },
-  { title: ALL_TIME, value: ALL_STATUS }
+  { title: ALL_TIME, value: ALL_STATUS },
 ];
+export const SEARCH_QUERY_LABEL = 'Search Query';
 export const SRN = 'SRN';
+export const STATUS_LABEL = 'Status';
 export const STATUS_HEADER = 'STATUS';
 export const GTIN = 'GTIN';
 export const PI = 'PI';
 export const LOT = 'LOT';
 export const EXPIRATION = 'EXPIRATION';
-export const PRODUCT =  'PRODUCT';
+export const PRODUCT = 'PRODUCT';
 export const EXPORT_TRANSACTION_DETAILS_HEADER = [
   'TRANSACTION ID',
   'TIME',
-  'DETAILS'
+  'DETAILS',
 ];
-export const EXPORT_DATA_INSTRUCTION = 'Exporting will compile all data about this product into a downloadable csv.';
+export const EXPORT_DATA_INSTRUCTION =
+  'Exporting will compile all data about this product into a downloadable csv.';
+export const EXPORT_DATA_LIST_INSTRUCTION =
+  'Exporting will compile all data currently visible on the verifications table into a downloadable csv';
