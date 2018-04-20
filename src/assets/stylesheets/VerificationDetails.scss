@@ -187,6 +187,27 @@
     width: 32px;
     height: 32px;
   }
+
+  .VerificationDetails__export-data--button {
+    position: absolute;
+    top: 55px;
+    right: 35px;
+    width: 185px;
+    height: 40px;
+    border-radius: 100px;
+    background-color: $cyan;
+    -webkit-box-shadow: 0 3px 1px -2px $greyish-black, 0 2px 2px 0 $black-14, 0 1px 5px 0 $black-2;
+    box-shadow: 0 3px 1px -2px $greyish-black, 0 2px 2px 0 $black-14, 0 1px 5px 0 $black-2;
+    font-family: "Open Sans";
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: 0.7px;
+    text-align: center;
+    color: $white;
+  }
 }
 
 ::-webkit-scrollbar {

@@ -81,27 +81,40 @@ export const SHIPPED_BY = [
   'Ship It',
 ];
 export const STATUS = [
-  {title: ALL_STATUS, value: ALL_STATUS},
-  {title: VERIFIED_LABEL, value: VERIFIED},
-  {title: NOT_VERIFIED_LABEL, value: NOT_VERIFIED},
-  {title: PENDING_LABEL, value: PENDING},
-  {title: ERROR_LABEL, value: ERROR},
+  { title: ALL_STATUS, value: ALL_STATUS },
+  { title: VERIFIED_LABEL, value: VERIFIED },
+  { title: NOT_VERIFIED_LABEL, value: NOT_VERIFIED },
+  { title: PENDING_LABEL, value: PENDING },
+  { title: ERROR_LABEL, value: ERROR },
 ];
 export const REQUESTED_TIME = [
-  {title: PAST_24_HOURS, value: ONE_DAY},
-  {title: PAST_7_DAYS, value: SEVEN_DAY},
-  {title: PAST_30_DAYS, value: THIRTY_DAY},
-  {title: PAST_90_DAYS, value: NINETY_DAY},
-  {title: PAST_6_MONTHS, value: SIX_M},
-  {title: PAST_12_MONTHS, value: TWELVE_M},
-  {title: ALL_TIME, value: ALL_STATUS}
+  { title: PAST_24_HOURS, value: ONE_DAY },
+  { title: PAST_7_DAYS, value: SEVEN_DAY },
+  { title: PAST_30_DAYS, value: THIRTY_DAY },
+  { title: PAST_90_DAYS, value: NINETY_DAY },
+  { title: PAST_6_MONTHS, value: SIX_M },
+  { title: PAST_12_MONTHS, value: TWELVE_M },
+  { title: ALL_TIME, value: ALL_STATUS }
 ];
 export const REQUESTED_TIME_DASHBOARD = [
-  {title: PAST_24_HOURS_DASHBOARD, value: ONE_DAY},
-  {title: PAST_7_DAYS_DASHBOARD, value: SEVEN_DAY},
-  {title: PAST_30_DAYS_DASHBOARD, value: THIRTY_DAY},
-  {title: PAST_90_DAYS_DASHBOARD, value: NINETY_DAY},
-  {title: PAST_6_MONTHS_DASHBOARD, value: SIX_M},
-  {title: PAST_12_MONTHS_DASHBOARD, value: TWELVE_M},
-  {title: ALL_TIME, value: ALL_STATUS}
+  { title: PAST_24_HOURS_DASHBOARD, value: ONE_DAY },
+  { title: PAST_7_DAYS_DASHBOARD, value: SEVEN_DAY },
+  { title: PAST_30_DAYS_DASHBOARD, value: THIRTY_DAY },
+  { title: PAST_90_DAYS_DASHBOARD, value: NINETY_DAY },
+  { title: PAST_6_MONTHS_DASHBOARD, value: SIX_M },
+  { title: PAST_12_MONTHS_DASHBOARD, value: TWELVE_M },
+  { title: ALL_TIME, value: ALL_STATUS }
 ];
+export const SRN = 'SRN';
+export const STATUS_HEADER = 'STATUS';
+export const GTIN = 'GTIN';
+export const PI = 'PI';
+export const LOT = 'LOT';
+export const EXPIRATION = 'EXPIRATION';
+export const PRODUCT =  'PRODUCT';
+export const EXPORT_TRANSACTION_DETAILS_HEADER = [
+  'TRANSACTION ID',
+  'TIME',
+  'DETAILS'
+];
+export const EXPORT_DATA_INSTRUCTION = 'Exporting will compile all data about this product into a downloadable csv.';

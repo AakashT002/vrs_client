@@ -40,6 +40,7 @@ export class VerificationsPage extends Component {
       selectedStatus: this.props.selectedStatus,
       selectedRequestTime: this.props.selectedRequestTime,
       isVerifyUsed: false,
+      isModalVisible: false
     };
     this.handleVerificationDetails = this.handleVerificationDetails.bind(this);
     this.handleBackToVerifications = this.handleBackToVerifications.bind(this);
@@ -50,6 +51,8 @@ export class VerificationsPage extends Component {
     this.handleStatusChange = this.handleStatusChange.bind(this);
     this.handleRequestedChange = this.handleRequestedChange.bind(this);
     this.handleBackToDashboard = this.handleBackToDashboard.bind(this);
+    this.handleExportData = this.handleExportData.bind(this);
+    this.handlePostExportData = this.handlePostExportData.bind(this);
   }
 
   async componentWillMount() {
@@ -175,6 +178,14 @@ export class VerificationsPage extends Component {
     this.props.dispatch(search(this.props.data, this.state.searchText));
   }
 
+  handleExportData() {
+    this.setState({ isModalVisible: true });
+  }
+
+  handlePostExportData() {
+    this.setState({ isModalVisible: false });
+  }
+
   render() {
     let componentToRender = null;
 
@@ -244,6 +255,9 @@ export class VerificationsPage extends Component {
               this.state.isPIVerificationModalVisible
             }
             deviceType={process.env.REACT_APP_DEVICE_TYPE}
+            handleExportData={this.handleExportData}
+            handlePostExportData={this.handlePostExportData}
+            isModalVisible={this.state.isModalVisible}
           />
         );
       }

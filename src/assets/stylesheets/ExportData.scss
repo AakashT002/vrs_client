@@ -1,0 +1,55 @@
+@import './variables';
+
+.ExportData {
+
+  #ExportData__dialogContainer {
+    width: 520px;
+    height: 224px;
+    border-radius: 2px;
+    background-color: $white;
+    box-shadow: 0 2px 25px 0 $black-24;
+  }
+
+  .ExportData__dialogContainer--instruction {
+    width: 440px;
+    height: 64px;
+    font-family: "Open Sans";
+    font-size: 21px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.52;
+    letter-spacing: normal;
+    text-align: center;
+    color: $grey-600;
+    position: relative;
+    top: 20px;
+  }
+
+  .ExportData__dialogContainer--export-button {
+    width: 211px;
+    height: 40px;
+    border-radius: 100px;
+    background-color: $cyan;
+    -webkit-box-shadow: 0 3px 1px -2px $greyish-black, 0 2px 2px 0 $black-14, 0 1px 5px 0 $black-2;
+    box-shadow: 0 3px 1px -2px $greyish-black, 0 2px 2px 0 $black-14, 0 1px 5px 0 $black-2;
+    position: absolute;
+    top: 144px;
+    left: 162px;
+    text-decoration: none;
+    font-family: "Open Sans";
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: 0.7px;
+    text-align: center;
+    color: $white;
+  }
+
+  .ExportData__dialogContainer--export-button-text {
+    position: relative;
+    top: 10px;
+  }
+}
