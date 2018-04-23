@@ -1,5 +1,6 @@
 import * as ActionTypes from '../../actionTypes';
 import Dashboard from '../../../services/desktop/Dashboard';
+import { REQUESTS, ALL_STATUS } from '../../../utils/constants';
 
 export const getStatsForUser = requestedTime => ({
   types: [
@@ -47,13 +48,17 @@ export const getStatsForNumbers = requestedTime => ({
 });
 
 export const updateSelectedDetails = (selectedStatus, selectedRequestTime) => {
+  if (selectedStatus === REQUESTS) {
+    selectedStatus = ALL_STATUS;
+  }
+
   return {
     type: ActionTypes.UPDATE_SELECTED_DETAILS,
     selectedStatus: selectedStatus,
     selectedRequestTime: selectedRequestTime,
   };
 };
-export const setVerificationPerformed= isVerifyUsed => {
+export const setVerificationPerformed = isVerifyUsed => {
   return {
     type: ActionTypes.RELOAD_STATS,
     isVerifyUsed: isVerifyUsed,
