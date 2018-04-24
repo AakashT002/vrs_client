@@ -57,6 +57,7 @@ const VerificationResult = props => {
         showInModal={props.isPIVerificationModalVisible}
         deviceType={props.deviceType}
         errorMessage={errorMessage}
+        status={props.data[0].status}
       />
       {verificationResultActions}
     </div>

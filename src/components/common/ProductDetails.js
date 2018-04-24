@@ -8,7 +8,10 @@ import {
   GTIN_LABEL,
   LOT_LABEL,
   PRODUCT_LABEL,
+  NEXT_STEPS_LABEL,
   SERIAL_NUMBER_LABEL,
+  NOT_VERIFIED,
+  NEXT_STEPS
 } from '../../utils/constants';
 
 import DateFormat from '../../utils/dateFormat';
@@ -23,6 +26,7 @@ const ProductDetails = ({
   showInModal,
   deviceType,
   errorMessage,
+  status,
 }) => {
   const renderClassName = showInModal ? 'desktop-modal' : deviceType;
   return (
@@ -45,7 +49,9 @@ const ProductDetails = ({
           {EXPIRATION_LABEL}: {DateFormat.expirationDateFormat(expDate)}
         </p>
         <p className="ProductDetails__product-name">
-          {PRODUCT_LABEL}: {productName === null ? '--' : productName}
+          {status === NOT_VERIFIED ? NEXT_STEPS_LABEL : PRODUCT_LABEL}:
+        {status === NOT_VERIFIED ? NEXT_STEPS : (productName === null) ?
+         ' --': ` ${productName}`}
         </p>
       </div>
     </div>
@@ -63,6 +69,7 @@ ProductDetails.propTypes = {
   showInModal: PropTypes.bool,
   deviceType: PropTypes.string,
   errorMessage: PropTypes.string,
+  status: PropTypes.string
 };
 
 export default ProductDetails;

@@ -94,6 +94,7 @@ const VerificationResult = props => {
         productName={props.data[0].productName}
         showInModal={false}
         deviceType={props.deviceType}
+        status={props.data[0].status}
       />
       {props.data.map((product, index) => (
         <Card

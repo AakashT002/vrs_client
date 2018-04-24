@@ -251,6 +251,7 @@ const VerificationDetails = props => {
           productName={props.data[0].productName}
           showInModal={props.isPIVerificationModalVisible}
           deviceType={props.deviceType}
+          status={props.data[0].status}
         />
       </div>
       <Card className="VerificationDetails__details-card">
