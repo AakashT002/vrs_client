@@ -18,6 +18,7 @@ import {
   getStatsForDevices,
   getStatsForNumbers,
   updateSelectedDetails,
+  setVerificationPerformed,
 } from '../../store/desktop/dashboard/action';
 
 import {
@@ -62,16 +63,12 @@ class Dashboard extends Component {
     }
     if (this.props.fetchStats) {
       await Promise.all([
-        this.props.dispatch(
-          getStatsForUser(this.state.selectedRequestTime)
-        ),
-       this.props.dispatch(
-          getStatsForDevices(this.state.selectedRequestTime)
-        ),
-       this.props.dispatch(
-          getStatsForNumbers(this.state.selectedRequestTime)
-        )]);
+        this.props.dispatch(getStatsForUser(this.state.selectedRequestTime)),
+        this.props.dispatch(getStatsForDevices(this.state.selectedRequestTime)),
+        this.props.dispatch(getStatsForNumbers(this.state.selectedRequestTime)),
+      ]);
     }
+    this.props.dispatch(setVerificationPerformed(false));
   }
 
   async handleRequestedChange(value) {
@@ -121,15 +118,10 @@ class Dashboard extends Component {
     await this.props.dispatch(clearVerificationResult());
     if (this.state.isVerifyUsed) {
       await Promise.all([
-        this.props.dispatch(
-          getStatsForUser(this.state.selectedRequestTime)
-        ),
-       this.props.dispatch(
-          getStatsForDevices(this.state.selectedRequestTime)
-        ),
-       this.props.dispatch(
-          getStatsForNumbers(this.state.selectedRequestTime)
-        )]);
+        this.props.dispatch(getStatsForUser(this.state.selectedRequestTime)),
+        this.props.dispatch(getStatsForDevices(this.state.selectedRequestTime)),
+        this.props.dispatch(getStatsForNumbers(this.state.selectedRequestTime)),
+      ]);
     }
   }
 
@@ -156,15 +148,10 @@ class Dashboard extends Component {
     this.setState({ isPIVerificationModalVisible: false });
     this.props.history.push('/dashboard');
     await Promise.all([
-      this.props.dispatch(
-        getStatsForUser(this.state.selectedRequestTime)
-      ),
-     this.props.dispatch(
-        getStatsForDevices(this.state.selectedRequestTime)
-      ),
-     this.props.dispatch(
-        getStatsForNumbers(this.state.selectedRequestTime)
-      )]);
+      this.props.dispatch(getStatsForUser(this.state.selectedRequestTime)),
+      this.props.dispatch(getStatsForDevices(this.state.selectedRequestTime)),
+      this.props.dispatch(getStatsForNumbers(this.state.selectedRequestTime)),
+    ]);
   }
 
   renderStatsForNumbers(statsForNumbers) {
@@ -189,7 +176,8 @@ class Dashboard extends Component {
       this.props.userRequesting ||
       this.props.deviceRequesting ||
       this.props.numberRequesting ||
-      this.props.requesting) {
+      this.props.requesting
+    ) {
       return (
         <div className="Dashboard__loader">
           <MDSpinner size={50} singleColor="#00b8d4" />
@@ -257,9 +245,9 @@ class Dashboard extends Component {
       } else {
         const productIdentifier = `${GTIN_INDEX}${
           this.props.verificationResult[0].gtin
-          }${SRN_INDEX}${this.props.verificationResult[0].srn}${LOT_INDEX}${
+        }${SRN_INDEX}${this.props.verificationResult[0].srn}${LOT_INDEX}${
           this.props.verificationResult[0].lot
-          }${EXPDATE_INDEX}${this.props.verificationResult[0].expDate}`;
+        }${EXPDATE_INDEX}${this.props.verificationResult[0].expDate}`;
         componentToRender = (
           <VerificationDetails
             data={this.props.verificationResult}

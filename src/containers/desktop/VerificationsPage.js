@@ -39,7 +39,6 @@ export class VerificationsPage extends Component {
       verificationList: [],
       selectedStatus: this.props.selectedStatus,
       selectedRequestTime: this.props.selectedRequestTime,
-      isVerifyUsed: false,
       isModalVisible: false,
     };
     this.handleVerificationDetails = this.handleVerificationDetails.bind(this);
@@ -95,7 +94,8 @@ export class VerificationsPage extends Component {
       .then(() => {
         this.props.dispatch(sort(this.props.data, this.props.isDescending));
       });
-    this.setState({ disableOnSubmit: true, isVerifyUsed: true });
+    this.setState({ disableOnSubmit: true });
+    this.props.dispatch(setVerificationPerformed(true));
   }
 
   handleNextProduct() {
@@ -140,7 +140,6 @@ export class VerificationsPage extends Component {
 
   handleBackToDashboard() {
     this.props.history.push('/');
-    this.props.dispatch(setVerificationPerformed(this.state.isVerifyUsed));
   }
 
   async handleStatusChange(value) {

@@ -26,7 +26,11 @@ const VerificationResult = props => {
       flat
       secondary
       onClick={() =>
-        props.handleVerificationDetails(props.data[0].gtin, props.data[0].srn, props.selectedRequestTime)
+        props.handleVerificationDetails(
+          props.data[0].gtin,
+          props.data[0].srn,
+          props.selectedRequestTime
+        )
       }
       className="desktopVerification-results__view-details--button"
     >
@@ -71,7 +75,7 @@ VerificationResult.propTypes = {
   handleNextProduct: PropTypes.func,
   handleVerificationDetails: PropTypes.func,
   deviceType: PropTypes.string,
-  selectedRequestTime: PropTypes.bool
+  selectedRequestTime: PropTypes.bool,
 };
 
 export default VerificationResult;

@@ -11,7 +11,7 @@ import {
   NEXT_STEPS_LABEL,
   SERIAL_NUMBER_LABEL,
   NOT_VERIFIED,
-  NEXT_STEPS
+  NEXT_STEPS,
 } from '../../utils/constants';
 
 import DateFormat from '../../utils/dateFormat';
@@ -50,8 +50,9 @@ const ProductDetails = ({
         </p>
         <p className="ProductDetails__product-name">
           {status === NOT_VERIFIED ? NEXT_STEPS_LABEL : PRODUCT_LABEL}:
-        {status === NOT_VERIFIED ? NEXT_STEPS : (productName === null) ?
-         ' --': ` ${productName}`}
+          {status === NOT_VERIFIED
+            ? NEXT_STEPS
+            : productName === null ? ' --' : ` ${productName}`}
         </p>
       </div>
     </div>
@@ -69,7 +70,7 @@ ProductDetails.propTypes = {
   showInModal: PropTypes.bool,
   deviceType: PropTypes.string,
   errorMessage: PropTypes.string,
-  status: PropTypes.string
+  status: PropTypes.string,
 };
 
 export default ProductDetails;

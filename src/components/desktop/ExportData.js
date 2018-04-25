@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { DialogContainer } from 'react-md';
+import { Button, DialogContainer } from 'react-md';
 import { CSVLink } from 'react-csv';
 
 import '../../assets/stylesheets/ExportData.css';
@@ -24,18 +24,13 @@ const ExportData = ({
         <span className={`ExportData__dialogContainer--instruction-${modal}`}>
           {infoText}
         </span>
-        <CSVLink
-          data={data}
-          filename={fileName}
-          className={`ExportData__dialogContainer--export-button-${modal}`}
-          target="_blank"
-        >
-          <span
-            className="ExportData__dialogContainer--export-button-text"
+        <CSVLink data={data} filename={fileName} target="_blank">
+          <Button
+            className={`ExportData__dialogContainer--export-button-${modal}`}
             onClick={handlePostExportData}
           >
             EXPORT TO CSV
-          </span>
+          </Button>
         </CSVLink>
       </DialogContainer>
     </div>
