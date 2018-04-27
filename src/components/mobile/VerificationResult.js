@@ -86,7 +86,7 @@ const VerificationResult = props => {
     <div className="verification-results">
       <Status value={props.data[0].status} deviceType={props.deviceType} />
       <ProductDetails
-        productIdentifier={props.productIdentifier}
+        productIdentifier={props.data[0].pi}
         gtin={props.data[0].gtin}
         srn={props.data[0].srn}
         lot={props.data[0].lot}

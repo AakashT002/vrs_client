@@ -19,10 +19,12 @@ import '../../assets/stylesheets/VerificationDetails.css';
 import {
   ERROR,
   ERROR_LABEL,
+  NEXT_STEPS_LABEL,
   NOT_VERIFIED,
   NOT_VERIFIED_LABEL,
   PENDING,
   PENDING_LABEL,
+  PRODUCT_LABEL,
   REQUEST_RCVD,
   ERROR_ID_LABEL,
   VERIFIED,
@@ -34,7 +36,6 @@ import {
   PI,
   LOT,
   EXPIRATION,
-  PRODUCT,
   EXPORT_DATA_INSTRUCTION,
 } from '../../utils/constants';
 import DateFormat from '../../utils/dateFormat';
@@ -173,6 +174,13 @@ const VerificationDetails = props => {
   let exportData = [];
 
   const FormatExportData = data => {
+    const productLabel =
+      data[0].status === NOT_VERIFIED ? NEXT_STEPS_LABEL : PRODUCT_LABEL;
+    const productLabelText =
+      data[0].status === NOT_VERIFIED
+        ? process.env.REACT_APP_NEXT_STEPS
+        : data[0].productName === null ? ` --` : ` ${data[0].productName}`;
+
     exportData.push(
       [SRN, `'${data[0].srn}'`],
       [STATUS_HEADER, data[0].status],
@@ -180,7 +188,7 @@ const VerificationDetails = props => {
       [PI, data[0].pi],
       [LOT, data[0].lot],
       [EXPIRATION, DateFormat.expirationDateFormat(data[0].expDate)],
-      [PRODUCT, data[0].productName],
+      [productLabel, productLabelText],
       [],
       EXPORT_TRANSACTION_DETAILS_HEADER
     );
@@ -209,16 +217,11 @@ const VerificationDetails = props => {
   return (
     <div className="VerificationDetails">
       <div className="VerificationDetails__header">
-        <Button
-          label="EXPORT DATA"
-          className="VerificationDetails__export-data--button"
-          onClick={props.handleExportData}
-        />
         <div className="VerificationDetails__header-details">
           <div onClick={props.handleBackToVerifications}>
-            <i className="material-icons VerificationDetails__arrow-back">
+            <Button className="material-icons VerificationDetails__arrow-back">
               arrow_back
-            </i>
+            </Button>
           </div>
           <span className="VerificationDetails__srn">{props.data[0].srn}</span>
           <span className="VerificationDetails__quick-icon">
@@ -232,6 +235,12 @@ const VerificationDetails = props => {
             {renderStatusLabel(props.data[0].status)}
           </span>
         </div>
+        <Button
+          label="EXPORT DATA"
+          className="VerificationDetails__export-data--button"
+          onClick={props.handleExportData}
+        />
+
         <ExportData
           handlePostExportData={props.handlePostExportData}
           isModalVisible={props.isModalVisible}
@@ -243,7 +252,7 @@ const VerificationDetails = props => {
           modal="vrsDetails"
         />
         <ProductDetails
-          productIdentifier={props.productIdentifier}
+          productIdentifier={props.data[0].pi}
           gtin={props.data[0].gtin}
           srn={props.data[0].srn}
           lot={props.data[0].lot}

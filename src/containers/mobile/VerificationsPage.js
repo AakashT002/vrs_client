@@ -16,14 +16,7 @@ import { clearVerificationResult } from '../../store/mobile/verification/action'
 import { getVerifications } from '../../store/mobile/verification/action';
 import { getVerificationDetails } from '../../store/mobile/verification/action';
 
-import {
-  EXPDATE_INDEX,
-  GTIN_INDEX,
-  LOT_INDEX,
-  SRN_INDEX,
-  ALL_STATUS,
-  ONE_DAY,
-} from '../../utils/constants';
+import { ALL_STATUS, ONE_DAY } from '../../utils/constants';
 
 import DateFormat from '../../utils/dateFormat';
 
@@ -58,19 +51,13 @@ class VerificationsPage extends Component {
           data={this.props.verificationList}
           handleVerificationDetails={this.handleVerificationDetails}
           transactionEventDateFormat={DateFormat.transactionEventDateFormat}
-          requestedTime = {ONE_DAY}
+          requestedTime={ONE_DAY}
         />
       );
     } else {
-      const productIdentifier = `${GTIN_INDEX}${
-        this.props.verificationResult[0].gtin
-      }${SRN_INDEX}${this.props.verificationResult[0].srn}${LOT_INDEX}${
-        this.props.verificationResult[0].lot
-      }${EXPDATE_INDEX}${this.props.verificationResult[0].expDate}`;
       componentToRender = (
         <VerificationResult
           data={this.props.verificationResult}
-          productIdentifier={productIdentifier}
           expirationDateFormat={DateFormat.expirationDateFormat}
           transactionEventDateFormat={DateFormat.transactionEventDateFormat}
           deviceType={process.env.REACT_APP_DEVICE_TYPE}

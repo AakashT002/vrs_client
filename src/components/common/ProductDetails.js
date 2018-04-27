@@ -11,7 +11,6 @@ import {
   NEXT_STEPS_LABEL,
   SERIAL_NUMBER_LABEL,
   NOT_VERIFIED,
-  NEXT_STEPS,
 } from '../../utils/constants';
 
 import DateFormat from '../../utils/dateFormat';
@@ -49,10 +48,26 @@ const ProductDetails = ({
           {EXPIRATION_LABEL}: {DateFormat.expirationDateFormat(expDate)}
         </p>
         <p className="ProductDetails__product-name">
-          {status === NOT_VERIFIED ? NEXT_STEPS_LABEL : PRODUCT_LABEL}:
-          {status === NOT_VERIFIED
-            ? NEXT_STEPS
-            : productName === null ? ' --' : ` ${productName}`}
+          {status === NOT_VERIFIED ? (
+            <span className="ProductDetails__nextsteps-label">
+              {NEXT_STEPS_LABEL}
+            </span>
+          ) : (
+            PRODUCT_LABEL
+          )}:
+          {status === NOT_VERIFIED ? (
+            <span
+              className={`ProductDetails__nextsteps-${
+                process.env.REACT_APP_DEVICE_TYPE
+              }`}
+            >
+              {` ${process.env.REACT_APP_NEXT_STEPS}`}
+            </span>
+          ) : productName === null ? (
+            ` --`
+          ) : (
+            ` ${productName}`
+          )}
         </p>
       </div>
     </div>

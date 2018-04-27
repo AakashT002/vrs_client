@@ -30,13 +30,7 @@ import {
 
 import '../../assets/stylesheets/Dashboard.css';
 
-import {
-  EXPDATE_INDEX,
-  GTIN_INDEX,
-  LOT_INDEX,
-  SRN_INDEX,
-  REQUESTED_TIME_DASHBOARD,
-} from '../../utils/constants';
+import { REQUESTED_TIME_DASHBOARD } from '../../utils/constants';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -243,15 +237,9 @@ class Dashboard extends Component {
           </div>
         );
       } else {
-        const productIdentifier = `${GTIN_INDEX}${
-          this.props.verificationResult[0].gtin
-        }${SRN_INDEX}${this.props.verificationResult[0].srn}${LOT_INDEX}${
-          this.props.verificationResult[0].lot
-        }${EXPDATE_INDEX}${this.props.verificationResult[0].expDate}`;
         componentToRender = (
           <VerificationDetails
             data={this.props.verificationResult}
-            productIdentifier={productIdentifier}
             handleBackToVerifications={this.handleBackToVerifications}
             expirationDateFormat={DateFormat.expirationDateFormat}
             transactionEventDateFormat={DateFormat.transactionEventDateFormat}

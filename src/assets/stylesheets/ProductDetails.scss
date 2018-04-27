@@ -71,7 +71,7 @@
 
 .ProductDetails__details-mobile {
   width: 312px;
-  height: 118px;
+  height: 136px;
   margin: 8px 24px 20px 24px;
 
   p {
@@ -124,4 +124,16 @@
     width: 402px;
   }
 }
+
+.ProductDetails__nextsteps-label {
+  font-weight: bold;
+}
+
+.ProductDetails__nextsteps-desktop {
+  white-space: nowrap;
+  position: relative;
+  bottom: 19px;
+  left: 116px;
+}
+
 }

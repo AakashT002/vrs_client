@@ -21,12 +21,6 @@ import {
 import { setVerificationPerformed } from '../../store/desktop/dashboard/action';
 
 import DateFormat from '../../utils/dateFormat';
-import {
-  EXPDATE_INDEX,
-  GTIN_INDEX,
-  LOT_INDEX,
-  SRN_INDEX,
-} from '../../utils/constants';
 
 export class VerificationsPage extends Component {
   constructor(props) {
@@ -225,15 +219,9 @@ export class VerificationsPage extends Component {
           />
         );
       } else {
-        const productIdentifier = `${GTIN_INDEX}${
-          this.props.verificationResult[0].gtin
-        }${SRN_INDEX}${this.props.verificationResult[0].srn}${LOT_INDEX}${
-          this.props.verificationResult[0].lot
-        }${EXPDATE_INDEX}${this.props.verificationResult[0].expDate}`;
         componentToRender = (
           <VerificationDetails
             data={this.props.verificationResult}
-            productIdentifier={productIdentifier}
             handleBackToVerifications={this.handleBackToVerifications}
             expirationDateFormat={DateFormat.expirationDateFormat}
             transactionEventDateFormat={DateFormat.transactionEventDateFormat}
