@@ -24,11 +24,7 @@ const ExportData = ({
         <span className={`ExportData__dialogContainer--instruction-${modal}`}>
           {infoText}
         </span>
-        <CSVLink
-          data={data}
-          filename={fileName}
-          target="_blank"
-        >
+        <CSVLink data={data} filename={fileName} target="_blank">
           <Button
             className={`ExportData__dialogContainer--export-button-${modal}`}
             onClick={handlePostExportData}

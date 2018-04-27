@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Paper from 'react-md/lib/Papers';
 import { connect } from 'react-redux';
 import MDSpinner from 'react-md-spinner';
 
@@ -113,7 +112,7 @@ export class ProductVerification extends Component {
       }
     }
     return (
-      <Paper className="productVerification">
+      <div className="productVerification">
         <div className="productVerification-container">
           <br />
           <br />
@@ -131,7 +130,7 @@ export class ProductVerification extends Component {
             )}
           </div>
         </div>
-      </Paper>
+      </div>
     );
   }
 }

@@ -5,6 +5,7 @@
 	width: 357px;
 	background-color: $bluish-gray;
 	margin-top: -32px;
+  position: relative;
 
   .mobileButton-logo {
     margin-left: 10px;
@@ -51,8 +52,8 @@
     background-color: $blue-grey;
     z-index: 1;
     position: absolute;
-    top:140px;
-    right:504px;
+    top:31px;
+    right: -2px;
     transition: 0.3s;
     overflow: hidden;    
     

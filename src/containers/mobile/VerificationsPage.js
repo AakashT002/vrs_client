@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Paper from 'react-md/lib/Papers';
 import MDSpinner from 'react-md-spinner';
 
 import MobileHeader from './MobileHeader';
@@ -65,7 +64,7 @@ class VerificationsPage extends Component {
       );
     }
     return (
-      <Paper className="VerificationsPage">
+      <div className="VerificationsPage">
         <div className="VerificationsPage__container">
           <br />
           <br />
@@ -80,7 +79,7 @@ class VerificationsPage extends Component {
             )}
           </div>
         </div>
-      </Paper>
+      </div>
     );
   }
 }

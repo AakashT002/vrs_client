@@ -11,7 +11,7 @@ const initialState = {
   isScannerSelection: true,
   isDuplicate: false,
   filterRequesting: false,
-  deviceType: sessionStorage.getItem('deviceType')
+  deviceType: sessionStorage.getItem('deviceType'),
 };
 
 export const verification = createReducer(initialState, {
@@ -21,8 +21,8 @@ export const verification = createReducer(initialState, {
   [ActionTypes.VERIFY_PI_SUCCESS](state = initialState, action) {
     state.verificationList.forEach(verification => {
       if (
-        (verification.gtin + verification.srn) ===
-        (action.response.result[0].gtin + action.response.result[0].srn)
+        verification.gtin + verification.srn ===
+        action.response.result[0].gtin + action.response.result[0].srn
       ) {
         verification.requestSentTime =
           action.response.result[0].requestSentTime;
@@ -39,8 +39,7 @@ export const verification = createReducer(initialState, {
       if (sessionStorage.getItem('fullname') === null) {
         UserName = sessionStorage.getItem('username');
         action.response.result[0]['firstName'] = UserName;
-      }
-      else {
+      } else {
         UserName = sessionStorage.getItem('fullname').split(' ');
         action.response.result[0]['firstName'] = UserName[0];
         action.response.result[0]['lastName'] = UserName[1];
@@ -108,7 +107,7 @@ export const verification = createReducer(initialState, {
   },
   [ActionTypes.FETCH_VERIFICATIONS_FAILURE](state) {
     return { ...state, requesting: false, filterRequesting: false };
-  }
+  },
 });
 
 export default verification;

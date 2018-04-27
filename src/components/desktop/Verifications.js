@@ -101,8 +101,7 @@ const Verifications = ({
       return ERROR_LABEL;
     } else if (status === NOT_VERIFIED) {
       return NOT_VERIFIED_LABEL;
-    }
-    else if(status === ALL_STATUS){
+    } else if (status === ALL_STATUS) {
       return ALL_STATUS;
     }
   };
@@ -240,8 +239,7 @@ const Verifications = ({
           onClick={handleVerifyProduct}
           label="VERIFY PRODUCT"
           className="DesktopVerifications__verify-product-button"
-        >
-        </Button>
+        />
         <Button
           label="EXPORT DATA"
           className="DesktopVerifications__export-data-button"
