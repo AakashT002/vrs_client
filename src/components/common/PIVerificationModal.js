@@ -66,6 +66,7 @@ const PIVerificationModal = ({
         id={`PIVerificationModal__${renderId}--dialogContainer`}
         visible={isPIVerificationModalVisible}
         onHide={handleCancel}
+        focusOnMount={false}
       >
         {renderModalContent}
         {piRequesting ? (

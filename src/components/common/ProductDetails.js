@@ -47,7 +47,9 @@ const ProductDetails = ({
         <p className="ProductDetails__expiration">
           {EXPIRATION_LABEL}: {DateFormat.expirationDateFormat(expDate)}
         </p>
-        <p className="ProductDetails__product-name">
+        <p className={`ProductDetails__product-name-${
+                deviceType
+              }`}>
           {status === NOT_VERIFIED ? (
             <span className="ProductDetails__nextsteps-label">
               {NEXT_STEPS_LABEL}
@@ -56,13 +58,7 @@ const ProductDetails = ({
             PRODUCT_LABEL
           )}:
           {status === NOT_VERIFIED ? (
-            <span
-              className={`ProductDetails__nextsteps-${
-                process.env.REACT_APP_DEVICE_TYPE
-              }`}
-            >
-              {` ${process.env.REACT_APP_NEXT_STEPS}`}
-            </span>
+              ` ${process.env.REACT_APP_NEXT_STEPS}`
           ) : productName === null ? (
             ` --`
           ) : (

@@ -35,9 +35,16 @@ export const verification = createReducer(initialState, {
     });
 
     if (!state.isDuplicate) {
-      let fullName = sessionStorage.getItem('fullname').split(' ');
-      action.response.result[0]['firstName'] = fullName[0];
-      action.response.result[0]['lastName'] = fullName[1];
+      let UserName;
+      if (sessionStorage.getItem('fullname') === null) {
+        UserName = sessionStorage.getItem('username');
+        action.response.result[0]['firstName'] = UserName;
+      }
+      else {
+        UserName = sessionStorage.getItem('fullname').split(' ');
+        action.response.result[0]['firstName'] = UserName[0];
+        action.response.result[0]['lastName'] = UserName[1];
+      }
       action.response.result[0]['returnedBy'] =
         RETURNED_BY[(Math.random() * RETURNED_BY.length) | 0];
       action.response.result[0]['shippedBy'] =

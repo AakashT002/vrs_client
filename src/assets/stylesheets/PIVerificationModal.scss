@@ -7,6 +7,7 @@
     border-radius: 2px;
     background-color: $white;
     box-shadow: 0 2px 25px 0 $black-24;
+    cursor: auto;
 
     .md-title--dialog {
       margin-bottom: 0;
@@ -40,4 +41,8 @@
     top: 184px;
     left: 482px;
   } 
+
+  .md-dialog-container.md-overlay {
+    cursor: auto;
+  }
 }

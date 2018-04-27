@@ -102,6 +102,9 @@ const Verifications = ({
     } else if (status === NOT_VERIFIED) {
       return NOT_VERIFIED_LABEL;
     }
+    else if(status === ALL_STATUS){
+      return ALL_STATUS;
+    }
   };
 
   const renderClassName = status => {
@@ -202,7 +205,7 @@ const Verifications = ({
 
   exportData.push(
     [SEARCH_QUERY_LABEL, searchText],
-    [STATUS_LABEL, selectedStatus],
+    [STATUS_LABEL, renderStatusText(selectedStatus)],
     [REQUESTED_TIME_LABEL, getRequestedTimeLabel(selectedRequestTime)],
     [],
     VERIFICATIONS_HEADER

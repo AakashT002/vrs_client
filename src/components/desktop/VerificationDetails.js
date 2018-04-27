@@ -183,7 +183,7 @@ const VerificationDetails = props => {
 
     exportData.push(
       [SRN, `'${data[0].srn}'`],
-      [STATUS_HEADER, data[0].status],
+      [STATUS_HEADER, renderStatusLabel(props.data[0].status)],
       [GTIN, `'${data[0].gtin}'`],
       [PI, data[0].pi],
       [LOT, data[0].lot],

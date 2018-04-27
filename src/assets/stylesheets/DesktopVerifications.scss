@@ -166,6 +166,7 @@
   }
 
   .DesktopVerifications__verify-product-button {
+    width: 145px;
     height: 14px;
     color: $cyan;
     font-family: "Open Sans";
@@ -174,19 +175,20 @@
     font-weight: 600;
     text-align: center;
     position: absolute;
-    left: 960px;
+    left: 965px;
     top: 99px;
     letter-spacing: 0.7px;
 
     &:hover {
       cursor: pointer;
+      background-color: #ffffff;
     }
   }
 
   .DesktopVerifications__export-data-button {
     position: relative;
-    top: 14px;
-    left: 865px;
+    top: 15px;
+    left: 820px;
     width: 185px;
     height: 40px;
     border-radius: 100px;
@@ -208,8 +210,8 @@
 
     &:disabled {
       position: relative;
-      top: 14px;
-      left: 865px;
+      top: 15px;
+      left: 820px;
       width: 185px;
       height: 40px;
       border-radius: 100px;

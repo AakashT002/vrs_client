@@ -1,6 +1,7 @@
 @import './variables';
 
 header.Header-toolbar {
+  width: 1360px;
   height: 44px;
   background-color: $blue-grey;
 
@@ -10,10 +11,21 @@ header.Header-toolbar {
     font-family: Roboto;
   }
 
+  .Header__title-key {
+    position: absolute;
+    top: -7px;
+    left: 58px;
+  }
+  
+  .Header__title-logo {
+    position: absolute;
+    top: 11px;
+  }
+
   .Header__username-dropDown {
     position: absolute;
-    right: 0px;
-    top: 0px; 
+    right: -1140px;
+    top: 6px;
     min-height: 44px;
     z-index: 10;
 
@@ -84,22 +96,4 @@ header.Header-toolbar {
   .md-text--secondary {
     color: $white;
   }
-}
-.Header__title-logo{
-  position: relative;
-  top: -3px;
-  left: -6px;
-  height: 26px; 
-}
-
-.Header__title-key {
-  margin-top: -49px;
-  margin-left: 26px;
-  font-size: 17px;
-  font-weight: 600;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 0.89;
-  letter-spacing: 1.1px;
-  color: $light-grey;
 }

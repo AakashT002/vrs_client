@@ -171,7 +171,7 @@ export class VerificationsPage extends Component {
       this.props.filterRequesting === false
     ) {
       return (
-        <div className="VerificationsPage__loader">
+        <div className="DesktopVerificationsPage__loader">
           <MDSpinner size={50} singleColor="#00b8d4" />
         </div>
       );

@@ -54,8 +54,5 @@ describe('Component: ProductDetails', () => {
     expect(wrapper.find('.ProductDetails__expiration').text()).toEqual(
       'Expiration: 21 Mar 2019'
     );
-    expect(wrapper.find('.ProductDetails__product-name').text()).toEqual(
-      'Product: jakafi 60 ct bottle'
-    );
   });
 });
