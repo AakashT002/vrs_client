@@ -20,7 +20,11 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Requestor App</title>
+    <% if(process.env.REACT_APP_DEVICE_TYPE === 'desktop') { %>
+      <title>Team M - Portal</title>
+    <% } else if(process.env.REACT_APP_DEVICE_TYPE === 'mobile') { %>
+      <title>Team M - Mobile App</title>
+    <% } %>
   </head>
   <body>
     <noscript>

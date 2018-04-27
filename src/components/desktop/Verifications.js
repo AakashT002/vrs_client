@@ -233,6 +233,18 @@ const Verifications = ({
           </i>
         ) : null}
         <span className="DesktopVerifications__title--text">Verifications</span>
+        <Button
+          onClick={handleVerifyProduct}
+          label="VERIFY PRODUCT"
+          className="DesktopVerifications__verify-product-button"
+        >
+        </Button>
+        <Button
+          label="EXPORT DATA"
+          className="DesktopVerifications__export-data-button"
+          onClick={handleExportData}
+          disabled={filterRequesting}
+        />
         <form onSubmit={handleSearch}>
           <TextField
             id="search-query-with-icon-right"
@@ -277,19 +289,6 @@ const Verifications = ({
           defaultValue={ALL_TIME}
           value={selectedRequestTime}
           onChange={value => handleRequestedChange(value)}
-        />
-        <a
-          onClick={handleVerifyProduct}
-          label="VERIFY PRODUCT"
-          className="DesktopVerifications__verify-product-button"
-        >
-          VERIFY PRODUCT
-        </a>
-        <Button
-          label="EXPORT DATA"
-          className="DesktopVerifications__export-data-button"
-          onClick={handleExportData}
-          disabled={filterRequesting}
         />
         <ExportData
           handlePostExportData={handlePostExportData}
