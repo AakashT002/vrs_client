@@ -114,8 +114,6 @@ export class ProductVerification extends Component {
     return (
       <div className="productVerification">
         <div className="productVerification-container">
-          <br />
-          <br />
           <div className="productVerification-layout">
             <MobileHeader
               dispatch={this.props.dispatch}
