@@ -30,6 +30,11 @@ header.Header-toolbar {
     top: 11px;
     left:24px;
   }
+  .Header__home-button {
+    position: absolute;
+    bottom: -2px;
+    left: 1px;
+  }
 
   .Header__username-dropDown {
     position: absolute;

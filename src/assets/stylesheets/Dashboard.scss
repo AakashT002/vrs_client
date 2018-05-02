@@ -16,6 +16,18 @@
     justify-content: center;
   }
 
+  .Dashboard__verification-details {
+     background-color: $grey-100;
+      min-height: 615px;
+      padding: 0px;
+      color: $light-grey;
+      text-align: center;
+      width: 100%;
+      & > h2 {
+        color: $white;
+      }
+  }
+
   .Dashboard__header > div{
     position: relative;
     width: 1233px;

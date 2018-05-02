@@ -408,6 +408,7 @@ const Verifications = ({
           </DataTable>
         </Card>
       )}
+      <br />
     </div>
   );
 };

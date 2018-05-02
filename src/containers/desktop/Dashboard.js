@@ -165,7 +165,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    let componentToRender = null;
     if (
       this.props.userRequesting ||
       this.props.deviceRequesting ||
@@ -183,80 +182,82 @@ class Dashboard extends Component {
         (this.props.verificationResult.length > 0 &&
           this.state.isPIVerificationModalVisible === true)
       ) {
-        componentToRender = (
-          <div>
-            <SelectField
-              id="select-field-default-value-menu"
-              className="Dashboard__requested--select-field"
-              label=""
-              itemLabel="title"
-              menuItems={REQUESTED_TIME_DASHBOARD}
-              value={this.state.selectedRequestTime}
-              onChange={value => this.handleRequestedChange(value)}
-            />
-            <Button
-              flat
-              onClick={this.handleVerifyProduct}
-              className="Dashboard__verify-product--button"
-            >
-              VERIFY PRODUCT
-            </Button>
-            <PIVerificationModal
-              isPIVerificationModalVisible={
-                this.state.isPIVerificationModalVisible
-              }
-              verificationResult={this.props.verificationResult}
-              handleVerify={this.handleVerify}
-              deviceType={process.env.REACT_APP_DEVICE_TYPE}
-              expirationDateFormat={DateFormat.expirationDateFormat}
-              transactionEventDateFormat={DateFormat.transactionEventDateFormat}
-              handleChange={this.handleChange}
-              isDescending={this.props.isDescending}
-              handleVerificationDetails={this.handleVerificationDetails}
-              handleNextProduct={this.handleNextProduct.bind(this)}
-              handleCancel={this.handleCancel.bind(this)}
-              productIdentifier={this.state.productIdentifier}
-              piRequesting={this.props.piRequesting}
-              disableOnSubmit={this.state.disableOnSubmit}
-              pathName={this.props.history.location.pathname}
-              selectedRequestTime={this.state.selectedRequestTime}
-            />
-            {this.renderStatsForNumbers(this.props.statsForNumbers)}
-            <div className="Dashboard__responsetimes">
-              <img src={responseTime} alt="responseTime" />
-            </div>
-            <div className="Dashboard__alerts">
-              <img src={alerts} alt="alerts" />
-            </div>
-            <div className="Dashboard__users">
-              <PercentageStats stats={this.props.statsForUser} />
-            </div>
-            <div className="Dashboard__devices">
-              <PercentageStats stats={this.props.statsForDevices} />
+        return (
+          <div className="Dashboard">
+            <div className="Dashboard__header">
+              <div>
+                <SelectField
+                  id="select-field-default-value-menu"
+                  className="Dashboard__requested--select-field"
+                  label=""
+                  itemLabel="title"
+                  menuItems={REQUESTED_TIME_DASHBOARD}
+                  value={this.state.selectedRequestTime}
+                  onChange={value => this.handleRequestedChange(value)}
+                />
+                <Button
+                  flat
+                  onClick={this.handleVerifyProduct}
+                  className="Dashboard__verify-product--button"
+                >
+                  VERIFY PRODUCT
+                </Button>
+                <PIVerificationModal
+                  isPIVerificationModalVisible={
+                    this.state.isPIVerificationModalVisible
+                  }
+                  verificationResult={this.props.verificationResult}
+                  handleVerify={this.handleVerify}
+                  deviceType={process.env.REACT_APP_DEVICE_TYPE}
+                  expirationDateFormat={DateFormat.expirationDateFormat}
+                  transactionEventDateFormat={
+                    DateFormat.transactionEventDateFormat
+                  }
+                  handleChange={this.handleChange}
+                  isDescending={this.props.isDescending}
+                  handleVerificationDetails={this.handleVerificationDetails}
+                  handleNextProduct={this.handleNextProduct.bind(this)}
+                  handleCancel={this.handleCancel.bind(this)}
+                  productIdentifier={this.state.productIdentifier}
+                  piRequesting={this.props.piRequesting}
+                  disableOnSubmit={this.state.disableOnSubmit}
+                  pathName={this.props.history.location.pathname}
+                  selectedRequestTime={this.state.selectedRequestTime}
+                />
+                {this.renderStatsForNumbers(this.props.statsForNumbers)}
+                <div className="Dashboard__responsetimes">
+                  <img src={responseTime} alt="responseTime" />
+                </div>
+                <div className="Dashboard__alerts">
+                  <img src={alerts} alt="alerts" />
+                </div>
+                <div className="Dashboard__users">
+                  <PercentageStats stats={this.props.statsForUser} />
+                </div>
+                <div className="Dashboard__devices">
+                  <PercentageStats stats={this.props.statsForDevices} />
+                </div>
+              </div>
             </div>
           </div>
         );
       } else {
-        componentToRender = (
-          <VerificationDetails
-            data={this.props.verificationResult}
-            handleBackToVerifications={this.handleBackToVerifications}
-            expirationDateFormat={DateFormat.expirationDateFormat}
-            transactionEventDateFormat={DateFormat.transactionEventDateFormat}
-            isPIVerificationModalVisible={
-              this.state.isPIVerificationModalVisible
-            }
-            deviceType={process.env.REACT_APP_DEVICE_TYPE}
-          />
+        return (
+          <div className="Dashboard__verification-details">
+            <VerificationDetails
+              data={this.props.verificationResult}
+              handleBackToVerifications={this.handleBackToVerifications}
+              expirationDateFormat={DateFormat.expirationDateFormat}
+              transactionEventDateFormat={DateFormat.transactionEventDateFormat}
+              isPIVerificationModalVisible={
+                this.state.isPIVerificationModalVisible
+              }
+              deviceType={process.env.REACT_APP_DEVICE_TYPE}
+            />
+          </div>
         );
       }
     }
-
-    return (
-      <div className="Dashboard">
-        <div className="Dashboard__header">{componentToRender}</div>
-      </div>
-    );
   }
 }
 

@@ -272,6 +272,7 @@ const VerificationDetails = props => {
         <br />
         <br />
       </Card>
+      <br />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Button } from 'react-md';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Toolbar from 'react-md/lib/Toolbars';
@@ -9,6 +10,8 @@ import '../../assets/stylesheets/Header.css';
 import product_logo from '../../assets/images/logo.png';
 import keycloak from '../../keycloak-config';
 
+import { clearVerificationResult } from '../../store/mobile/verification/action';
+
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -17,11 +20,17 @@ class Header extends Component {
     };
 
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleHome = this.handleHome.bind(this);
   }
 
   handleLogout() {
     sessionStorage.clear();
     keycloak.logout();
+  }
+
+  async handleHome() {
+    await this.props.dispatch(clearVerificationResult());
+    this.props.history.push('/');
   }
 
   renderTitle() {
@@ -66,7 +75,14 @@ class Header extends Component {
           </div>
           {this.state.displaydropDown ? renderDropDown() : null}
         </div>
-        <img src={product_logo} className="Header__title-logo" alt="logo" />
+        <Button
+          flat
+          primary
+          className="Header__home-button"
+          onClick={this.handleHome}
+        >
+          <img src={product_logo} className="Header__title-logo" alt="logo" />
+        </Button>
       </div>
     );
   }
