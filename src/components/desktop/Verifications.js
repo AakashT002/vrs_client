@@ -143,6 +143,8 @@ const Verifications = ({
       return PAST_6_MONTHS;
     } else if (requestedTime === TWELVE_M) {
       return PAST_12_MONTHS;
+    } else if (requestedTime === ALL_STATUS) {
+      return ALL_TIME;
     }
   };
 
