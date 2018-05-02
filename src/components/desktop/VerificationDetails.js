@@ -158,7 +158,7 @@ const VerificationDetails = props => {
               <TableColumn colSpan="2">
                 <font className="VerificationDetails__header-column">{`Transaction ID: ${
                   transaction.id
-                }`}</font>
+                  }`}</font>
               </TableColumn>
             </TableRow>
           </TableHeader>
@@ -219,11 +219,11 @@ const VerificationDetails = props => {
       <div className="VerificationDetails__header">
         <div className="VerificationDetails__inner">
           <div className="VerificationDetails__header-details">
-            <div onClick={props.handleBackToVerifications}>
-              <Button className="material-icons VerificationDetails__arrow-back">
+              <Button className="material-icons VerificationDetails__arrow-back"
+                onClick={props.handleBackToVerifications}
+              >
                 arrow_back
               </Button>
-            </div>
             <span className="VerificationDetails__srn">
               {props.data[0].srn}
             </span>
@@ -250,7 +250,7 @@ const VerificationDetails = props => {
             data={FormatExportData(props.data)}
             fileName={`exportList_${props.data[0].srn}${
               props.data[0].gtin
-            }_${currentDateFormat}.csv`}
+              }_${currentDateFormat}.csv`}
             infoText={EXPORT_DATA_INSTRUCTION}
             modal="vrsDetails"
           />

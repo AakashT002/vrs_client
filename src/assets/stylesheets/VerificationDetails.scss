@@ -33,9 +33,6 @@
     letter-spacing: 1.5px;
     text-align: left;
     color: $grayish-black;
-    position: relative;
-    right: 575px;
-    top: 45px;
   }
 
   .VerificationDetails__srn {
@@ -48,17 +45,16 @@
     font-stretch: normal;
     line-height: 1.07;
     letter-spacing: normal;
-    text-align: left;
     color: $bluish-gray;
     position: relative;
-    right: 360px;
-    bottom: -3px;
+    top: 9px;
+    left: 14px;
   }
 
   .VerificationDetails__quick-icon {
     position: relative;
-    right: 340px;
-    top: 3px;
+    top: 9px;
+    left: 38px;
   }
 
   .VerificationDetails__status {
@@ -176,18 +172,24 @@
   }
 
   .VerificationDetails__green {
+    position: relative;
     color: $teal;
-    right: 656px;
+    left: 45px;
+    top: 5px;
   }
 
   .VerificationDetails__orange {
-    color: $deep-orange; 
-    right: 656px;
+    position: relative;
+    color: $deep-orange;
+    left: 48px;
+    top: 6px;
   }
 
   .VerificationDetails__amber {
+    position: relative;
     color: $amber;
-    right: 566px;
+    top: 5px;
+    left: 45px;
   }
 
   .img_resolution {
@@ -214,6 +216,12 @@
     letter-spacing: 0.7px;
     text-align: center;
     color: $white;
+  }
+
+  .VerificationDetails__header-details {
+    position: absolute;
+    margin-top: 25px;
+    margin-left: -18px;
   }
 }
 
