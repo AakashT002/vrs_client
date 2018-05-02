@@ -1,5 +1,10 @@
 @import './variables';
 
+.MobileApp {   
+   height:100%;
+   background-color: $blue-grey;
+}
+
 .MobileApp-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
