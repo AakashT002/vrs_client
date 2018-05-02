@@ -89,7 +89,10 @@ const NumberStats = ({ status, count }) => {
   return (
     <div className="NumberStats">
       <Card className="NumberStats__card">
-        <CardTitle className={`NumberStats__title ${renderClassName(status)}`}>
+        <CardTitle
+          title=""
+          className={`NumberStats__title ${renderClassName(status)}`}
+        >
           {count}
         </CardTitle>
         <CardText>
@@ -102,7 +105,7 @@ const NumberStats = ({ status, count }) => {
 };
 
 NumberStats.propTypes = {
-  count: PropTypes.number,
+  count: PropTypes.string,
   status: PropTypes.string,
 };
 

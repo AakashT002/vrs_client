@@ -1,17 +1,24 @@
 @import './variables';
 
 .Dashboard {
-  width: 1360px;
+  width: 100%;
   height: 1118px;
   background-color: $grey-100;
 
   .Dashboard__header {
-    width: 1360px;
+    width: 100%;
     height: 81px;
     background-color: $white;
     box-shadow: 0 1px 3px 0 $dark-gray;
     text-align: center;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .Dashboard__header > div{
+    position: relative;
+    width: 1233px;
   }
 
   .Dashboard__numberstats-REQUESTS{
@@ -69,7 +76,7 @@
   .Dashboard__requested--select-field {
     position: absolute;
     width: 400px;
-    left: 80px;
+    left: 20px;
      .md-icon-text {
        width: 351px;
        height: 26px;
@@ -124,8 +131,6 @@
   }
 
   .Dashboard__verify-product--button {
-    width: 125px;
-    height: 14px;
     color: $cyan;
     font-family: "Open Sans";
     font-size: 14px;
@@ -133,8 +138,8 @@
     font-weight: 600;
     text-align: center;
     position: absolute;
-    left: 1152px;
-    top: 85px;
+    right:10px;
+    top: 7px;
     letter-spacing: 0.7px;
 
     &:hover {
@@ -145,6 +150,6 @@
 }
 
 .Dashboard__loader {
-  margin-left: 652px;
-  margin-top: 232px;
+  margin-left: 50%;
+  margin-top: 20%;
 }

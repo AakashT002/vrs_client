@@ -63,6 +63,7 @@ const PIVerificationModal = ({
   return (
     <div className="PIVerificationModal">
       <DialogContainer
+        aria-label="Verify Product"
         id={`PIVerificationModal__${renderId}--dialogContainer`}
         visible={isPIVerificationModalVisible}
         onHide={handleCancel}

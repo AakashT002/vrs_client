@@ -1,7 +1,10 @@
 @import './variables';
 
+.Header{
+  width: 100%;
+}
 header.Header-toolbar {
-  width: 1360px;
+  //width: 100vw;
   height: 44px;
   background-color: $blue-grey;
 
@@ -14,18 +17,24 @@ header.Header-toolbar {
   .Header__title-key {
     position: absolute;
     top: -7px;
-    left: 58px;
+    left: 62px;
   }
-  
+  .Header__inner-container{
+    width:100%;
+    position: relative;
+    margin:0 auto;
+    text-align: center;
+  }
   .Header__title-logo {
     position: absolute;
     top: 11px;
+    left:24px;
   }
 
   .Header__username-dropDown {
     position: absolute;
-    right: -1140px;
-    top: 6px;
+    right: 0;
+    top: 0px;
     min-height: 44px;
     z-index: 10;
 

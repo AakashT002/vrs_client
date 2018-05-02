@@ -2,20 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import '../../assets/stylesheets/MobileButton.css';
-import mesaVerde_logo from '../../assets/images/mesaverda_logo.jpg';
+import product_logo from '../../assets/images/logo.png';
 
 import {
   ALL_VERIFICATIONS,
   LOGOUT,
-  MESA_VERDE,
   VERIFY_PRODUCT,
 } from '../../utils/constants';
 
 const MobileButton = props => {
   return (
     <div className="mobileButton__toolbar">
-      <img src={mesaVerde_logo} className="mobileButton-logo" alt="logo" />
-      <label className="mobileButton__title">{MESA_VERDE}</label>
+      <img src={product_logo} className="mobileButton-logo" alt="logo" />
       {sessionStorage.getItem('deviceType') ? (
         <i
           className="material-icons mobileButton__option"

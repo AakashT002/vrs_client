@@ -39,9 +39,10 @@ const ScannerSelection = props => {
           className="scannerSelection__verify-button"
           type="submit"
           raised
-          label="SIGN IN"
           disabled={isSignInDisabled}
-        />
+        >
+          SIGN IN
+        </Button>
       </form>
     </div>
   );

@@ -217,51 +217,55 @@ const VerificationDetails = props => {
   return (
     <div className="VerificationDetails">
       <div className="VerificationDetails__header">
-        <div className="VerificationDetails__header-details">
-          <div onClick={props.handleBackToVerifications}>
-            <Button className="material-icons VerificationDetails__arrow-back">
-              arrow_back
-            </Button>
+        <div className="VerificationDetails__inner">
+          <div className="VerificationDetails__header-details">
+            <div onClick={props.handleBackToVerifications}>
+              <Button className="material-icons VerificationDetails__arrow-back">
+                arrow_back
+              </Button>
+            </div>
+            <span className="VerificationDetails__srn">
+              {props.data[0].srn}
+            </span>
+            <span className="VerificationDetails__quick-icon">
+              {renderStatusThumbnail(props.data[0].status)}
+            </span>
+            <span
+              className={`VerificationDetails__status ${renderStatusLabelColor(
+                props.data[0].status
+              )}`}
+            >
+              {renderStatusLabel(props.data[0].status)}
+            </span>
           </div>
-          <span className="VerificationDetails__srn">{props.data[0].srn}</span>
-          <span className="VerificationDetails__quick-icon">
-            {renderStatusThumbnail(props.data[0].status)}
-          </span>
-          <span
-            className={`VerificationDetails__status ${renderStatusLabelColor(
-              props.data[0].status
-            )}`}
+          <Button
+            className="VerificationDetails__export-data--button"
+            onClick={props.handleExportData}
           >
-            {renderStatusLabel(props.data[0].status)}
-          </span>
+            EXPORT DATA
+          </Button>
+          <ExportData
+            handlePostExportData={props.handlePostExportData}
+            isModalVisible={props.isModalVisible}
+            data={FormatExportData(props.data)}
+            fileName={`exportList_${props.data[0].srn}${
+              props.data[0].gtin
+            }_${currentDateFormat}.csv`}
+            infoText={EXPORT_DATA_INSTRUCTION}
+            modal="vrsDetails"
+          />
+          <ProductDetails
+            productIdentifier={props.data[0].pi}
+            gtin={props.data[0].gtin}
+            srn={props.data[0].srn}
+            lot={props.data[0].lot}
+            expDate={props.data[0].expDate}
+            productName={props.data[0].productName}
+            showInModal={props.isPIVerificationModalVisible}
+            deviceType={props.deviceType}
+            status={props.data[0].status}
+          />
         </div>
-        <Button
-          label="EXPORT DATA"
-          className="VerificationDetails__export-data--button"
-          onClick={props.handleExportData}
-        />
-
-        <ExportData
-          handlePostExportData={props.handlePostExportData}
-          isModalVisible={props.isModalVisible}
-          data={FormatExportData(props.data)}
-          fileName={`exportList_${props.data[0].srn}${
-            props.data[0].gtin
-          }_${currentDateFormat}.csv`}
-          infoText={EXPORT_DATA_INSTRUCTION}
-          modal="vrsDetails"
-        />
-        <ProductDetails
-          productIdentifier={props.data[0].pi}
-          gtin={props.data[0].gtin}
-          srn={props.data[0].srn}
-          lot={props.data[0].lot}
-          expDate={props.data[0].expDate}
-          productName={props.data[0].productName}
-          showInModal={props.isPIVerificationModalVisible}
-          deviceType={props.deviceType}
-          status={props.data[0].status}
-        />
       </div>
       <Card className="VerificationDetails__details-card">
         {renderTransactions(props.data)}

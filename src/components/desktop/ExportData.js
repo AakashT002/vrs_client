@@ -16,6 +16,7 @@ const ExportData = ({
   return (
     <div className="ExportData">
       <DialogContainer
+        aria-label="Export Data"
         id={`ExportData__dialogContainer-${modal}`}
         visible={isModalVisible}
         onHide={handlePostExportData}
@@ -26,6 +27,7 @@ const ExportData = ({
         </span>
         <CSVLink data={data} filename={fileName} target="_blank">
           <Button
+            flat
             className={`ExportData__dialogContainer--export-button-${modal}`}
             onClick={handlePostExportData}
           >

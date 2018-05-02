@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { SelectField } from 'react-md';
+import { Button, SelectField } from 'react-md';
 import { connect } from 'react-redux';
 import MDSpinner from 'react-md-spinner';
 
@@ -194,13 +194,13 @@ class Dashboard extends Component {
               value={this.state.selectedRequestTime}
               onChange={value => this.handleRequestedChange(value)}
             />
-            <a
+            <Button
+              flat
               onClick={this.handleVerifyProduct}
-              label="VERIFY PRODUCT"
               className="Dashboard__verify-product--button"
             >
               VERIFY PRODUCT
-            </a>
+            </Button>
             <PIVerificationModal
               isPIVerificationModalVisible={
                 this.state.isPIVerificationModalVisible

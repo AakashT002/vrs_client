@@ -13,7 +13,6 @@ const PIVerificationForm = props => {
       flat
       secondary
       onClick={props.handleReset}
-      label={props.deviceType === DESKTOP ? 'Cancel' : 'Clear'}
       className="PIVerificationForm__reset--button"
       disabled={
         props.deviceType === DESKTOP
@@ -22,19 +21,22 @@ const PIVerificationForm = props => {
             props.productIdentifier === '' ||
             props.disableOnSubmit
       }
-    />
+    >
+      {props.deviceType === DESKTOP ? 'Cancel' : 'Clear'}
+    </Button>
   );
   verifyActions.push(
     <Button
       flat
       primary
       onClick={props.handleSubmit}
-      label="VERIFY"
       className="PIVerificationForm__verify--button"
       disabled={
         props.productIdentifier === null || props.productIdentifier === ''
       }
-    />
+    >
+      VERIFY
+    </Button>
   );
   return (
     <div className={`PIVerificationForm-${props.deviceType}`}>

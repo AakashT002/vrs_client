@@ -225,98 +225,106 @@ const Verifications = ({
 
   return (
     <div className="DesktopVerifications">
-      <div className="DesktopVerifications__title">
-        {sessionStorage.getItem('userRole') === 'manager' ? (
-          <i
-            className="material-icons DesktopVerifications__arrow-back"
-            onClick={handleBackToDashboard}
+      <div className="DesktopVerifications__inner">
+        <div className="DesktopVerifications__title">
+          {sessionStorage.getItem('userRole') === 'manager' ? (
+            <i
+              className="material-icons DesktopVerifications__arrow-back"
+              onClick={handleBackToDashboard}
+            >
+              arrow_back
+            </i>
+          ) : null}
+          <span className="DesktopVerifications__title--text">
+            Verifications
+          </span>
+          <Button
+            flat
+            onClick={handleVerifyProduct}
+            className="DesktopVerifications__verify-product-button"
           >
-            arrow_back
-          </i>
-        ) : null}
-        <span className="DesktopVerifications__title--text">Verifications</span>
-        <Button
-          onClick={handleVerifyProduct}
-          label="VERIFY PRODUCT"
-          className="DesktopVerifications__verify-product-button"
-        />
-        <Button
-          label="EXPORT DATA"
-          className="DesktopVerifications__export-data-button"
-          onClick={handleExportData}
-          disabled={filterRequesting}
-        />
-        <form onSubmit={handleSearch}>
-          <TextField
-            id="search-query-with-icon-right"
-            className="DesktopVerifications__search-query md-text-field-container"
-            placeholder="Search Query"
-            value={searchText}
-            leftIcon={
-              <i className="material-icons DesktopVerifications__search-icon">
-                search
-              </i>
-            }
-            rightIcon={
-              searchText !== '' ? (
-                <i
-                  className="material-icons DesktopVerifications__search-cancel-icon"
-                  onClick={clearSearchText}
-                >
-                  cancel
+            VERIFY PRODUCT
+          </Button>
+          <Button
+            flat
+            className="DesktopVerifications__export-data-button"
+            onClick={handleExportData}
+            disabled={filterRequesting}
+          >
+            EXPORT DATA
+          </Button>
+          <form onSubmit={handleSearch}>
+            <TextField
+              id="search-query-with-icon-right"
+              className="DesktopVerifications__search-query md-text-field-container"
+              placeholder="Search Query"
+              value={searchText}
+              leftIcon={
+                <i className="material-icons DesktopVerifications__search-icon">
+                  search
                 </i>
-              ) : null
-            }
-            fullWidth={false}
-            onChange={value => handleFilterChange(value)}
+              }
+              rightIcon={
+                searchText !== '' ? (
+                  <i
+                    className="material-icons DesktopVerifications__search-cancel-icon"
+                    onClick={clearSearchText}
+                  >
+                    cancel
+                  </i>
+                ) : null
+              }
+              fullWidth={false}
+              onChange={value => handleFilterChange(value)}
+            />
+          </form>
+          <SelectField
+            id="select-field-default-value-menu"
+            className="DesktopVerifications__status--select-field"
+            label="Status"
+            itemLabel="title"
+            menuItems={STATUS}
+            defaultValue={ALL_STATUS}
+            value={selectedStatus}
+            onChange={value => handleStatusChange(value)}
           />
-        </form>
-        <SelectField
-          id="select-field-default-value-menu"
-          className="DesktopVerifications__status--select-field"
-          label="Status"
-          itemLabel="title"
-          menuItems={STATUS}
-          defaultValue={ALL_STATUS}
-          value={selectedStatus}
-          onChange={value => handleStatusChange(value)}
-        />
-        <SelectField
-          id="select-field-default-value-menu"
-          className="DesktopVerifications__requested--select-field"
-          label="Requested"
-          itemLabel="title"
-          menuItems={REQUESTED_TIME}
-          defaultValue={ALL_TIME}
-          value={selectedRequestTime}
-          onChange={value => handleRequestedChange(value)}
-        />
-        <ExportData
-          handlePostExportData={handlePostExportData}
-          isModalVisible={isModalVisible}
-          data={exportData}
-          fileName={`exportList_${currentDateFormat}.csv`}
-          infoText={EXPORT_DATA_LIST_INSTRUCTION}
-          modal="vrsList"
-        />
-        <PIVerificationModal
-          isPIVerificationModalVisible={isPIVerificationModalVisible}
-          verificationResult={verificationResult}
-          handleVerify={handleVerify}
-          deviceType={deviceType}
-          expirationDateFormat={expirationDateFormat}
-          transactionEventDateFormat={transactionEventDateFormat}
-          handleChange={handleChange}
-          isDescending={isDescending}
-          handleVerificationDetails={handleVerificationDetails}
-          handleNextProduct={handleNextProduct}
-          handleCancel={handleCancel}
-          productIdentifier={productIdentifier}
-          piRequesting={piRequesting}
-          disableOnSubmit={disableOnSubmit}
-          pathName={pathName}
-          selectedRequestTime={selectedRequestTime}
-        />
+          <SelectField
+            id="select-field-default-value-menu"
+            className="DesktopVerifications__requested--select-field"
+            label="Requested"
+            itemLabel="title"
+            menuItems={REQUESTED_TIME}
+            defaultValue={ALL_TIME}
+            value={selectedRequestTime}
+            onChange={value => handleRequestedChange(value)}
+          />
+          <ExportData
+            handlePostExportData={handlePostExportData}
+            isModalVisible={isModalVisible}
+            data={exportData}
+            fileName={`exportList_${currentDateFormat}.csv`}
+            infoText={EXPORT_DATA_LIST_INSTRUCTION}
+            modal="vrsList"
+          />
+          <PIVerificationModal
+            isPIVerificationModalVisible={isPIVerificationModalVisible}
+            verificationResult={verificationResult}
+            handleVerify={handleVerify}
+            deviceType={deviceType}
+            expirationDateFormat={expirationDateFormat}
+            transactionEventDateFormat={transactionEventDateFormat}
+            handleChange={handleChange}
+            isDescending={isDescending}
+            handleVerificationDetails={handleVerificationDetails}
+            handleNextProduct={handleNextProduct}
+            handleCancel={handleCancel}
+            productIdentifier={productIdentifier}
+            piRequesting={piRequesting}
+            disableOnSubmit={disableOnSubmit}
+            pathName={pathName}
+            selectedRequestTime={selectedRequestTime}
+          />
+        </div>
       </div>
       {filterRequesting ? (
         <div className="DesktopVerifications__search-loader">

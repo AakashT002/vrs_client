@@ -6,7 +6,7 @@ import Toolbar from 'react-md/lib/Toolbars';
 import { FontIcon } from 'react-md';
 
 import '../../assets/stylesheets/Header.css';
-import mesaVerde_logo from '../../assets/images/mesaverda_logo.jpg';
+import product_logo from '../../assets/images/logo.png';
 import keycloak from '../../keycloak-config';
 
 class Header extends Component {
@@ -48,28 +48,25 @@ class Header extends Component {
     };
 
     return (
-      <div>
-        <img src={mesaVerde_logo} className="Header__title-logo" alt="logo" />
-        <div className="Header__title-key">
-          <span>MESA VERDE</span>
-          <div
-            className="Header__username-dropDown"
-            onMouseEnter={() => this.setState({ displaydropDown: true })}
-            onMouseLeave={() => this.setState({ displaydropDown: false })}
-          >
-            <div className={`Header__title ${dropDownState()}`}>
-              <p className={`Header__title-username ${dropDownState()}`}>
-                {fullname}
-              </p>
-              <FontIcon
-                className={`material-icons Header__dropDown-icon ${dropDownState()}`}
-              >
-                arrow_drop_down
-              </FontIcon>
-            </div>
-            {this.state.displaydropDown ? renderDropDown() : null}
+      <div className="Header__inner-container">
+        <div
+          className="Header__username-dropDown"
+          onMouseEnter={() => this.setState({ displaydropDown: true })}
+          onMouseLeave={() => this.setState({ displaydropDown: false })}
+        >
+          <div className={`Header__title ${dropDownState()}`}>
+            <p className={`Header__title-username ${dropDownState()}`}>
+              {fullname}
+            </p>
+            <FontIcon
+              className={`material-icons Header__dropDown-icon ${dropDownState()}`}
+            >
+              arrow_drop_down
+            </FontIcon>
           </div>
+          {this.state.displaydropDown ? renderDropDown() : null}
         </div>
+        <img src={product_logo} className="Header__title-logo" alt="logo" />
       </div>
     );
   }

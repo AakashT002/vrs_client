@@ -1,15 +1,14 @@
 @import './variables';
 
 .DesktopVerificationsPage {
-
     .VerificationsPage__header {
       background-color: $grey-100;
       min-height: 615px;
-      padding: 20px;
+      padding: 0px;
       color: $light-grey;
       text-align: center;
-      width: 1361px;
-  
+      width: 100%;
+      //margin:0 auto;
       & > h2 {
         color: $white;
       }
@@ -38,6 +37,6 @@
   
   .DesktopVerificationsPage__loader {
     position: absolute;
-    top: 254px;
-    left: 635px;
+    margin-top: 20%;
+    margin-left: 47%;
   }
