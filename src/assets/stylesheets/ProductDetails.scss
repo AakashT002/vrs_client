@@ -18,7 +18,7 @@
 }
 
 .ProductDetails__details-desktop-modal {
-  width: 312px;
+  width: 417px;
   height: 120px;
   font-family: "Open Sans";
   font-size: 16px;
@@ -71,7 +71,6 @@
 
 .ProductDetails__details-mobile {
   width: 312px;
-  height: 136px;
   margin: 8px 24px 20px 24px;
 
   p {
@@ -84,6 +83,9 @@
     letter-spacing: normal;
     text-align: left;
     color: $blue-grey;
+  }
+  .ProductDetails__error-message {
+    font-weight: bold ;
   }
 }
 
@@ -121,16 +123,14 @@
     text-align: left;
     color: $blue-grey;
     font-size: 21px;
-    width: 402px;
+    width: 1000px;
+  }
+  .ProductDetails__error-message {
+    font-weight: bold ;
   }
 }
 
 .ProductDetails__nextsteps-label {
   font-weight: bold;
 }
-
-.ProductDetails__product-name-desktop {
-  white-space: nowrap;
-}
-
 }

@@ -46,6 +46,15 @@ import error_outline from '../../assets/images/error_outline.png';
 import not_interested from '../../assets/images/not_interested.png';
 
 const VerificationDetails = props => {
+  var errorMessage;
+  if (props.data[0].status === ERROR) {
+    props.data[0].events.map(event => {
+      if (event.eventStatus === ERROR) {
+        errorMessage = 'Error ' + event.statusCode + ': ' + event.eventMessage;
+      }
+      return errorMessage;
+    });
+  }
   const renderStatusThumbnail = status => {
     if (status === VERIFIED) {
       return (
@@ -158,7 +167,7 @@ const VerificationDetails = props => {
               <TableColumn colSpan="2">
                 <font className="VerificationDetails__header-column">{`Transaction ID: ${
                   transaction.id
-                  }`}</font>
+                }`}</font>
               </TableColumn>
             </TableRow>
           </TableHeader>
@@ -219,11 +228,12 @@ const VerificationDetails = props => {
       <div className="VerificationDetails__header">
         <div className="VerificationDetails__inner">
           <div className="VerificationDetails__header-details">
-              <Button className="material-icons VerificationDetails__arrow-back"
-                onClick={props.handleBackToVerifications}
-              >
-                arrow_back
-              </Button>
+            <Button
+              className="material-icons VerificationDetails__arrow-back"
+              onClick={props.handleBackToVerifications}
+            >
+              arrow_back
+            </Button>
             <span className="VerificationDetails__srn">
               {props.data[0].srn}
             </span>
@@ -250,7 +260,7 @@ const VerificationDetails = props => {
             data={FormatExportData(props.data)}
             fileName={`exportList_${props.data[0].srn}${
               props.data[0].gtin
-              }_${currentDateFormat}.csv`}
+            }_${currentDateFormat}.csv`}
             infoText={EXPORT_DATA_INSTRUCTION}
             modal="vrsDetails"
           />
@@ -264,6 +274,8 @@ const VerificationDetails = props => {
             showInModal={props.isPIVerificationModalVisible}
             deviceType={props.deviceType}
             status={props.data[0].status}
+            errorMessage={errorMessage}
+            nextStepCode={props.data[0].nextStepCode}
           />
         </div>
       </div>

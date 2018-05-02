@@ -22,6 +22,15 @@ import error_outline from '../../assets/images/error_outline.png';
 import not_interested from '../../assets/images/not_interested.png';
 
 const VerificationResult = props => {
+  var errorMessage;
+  if (props.data[0].status === ERROR) {
+    props.data[0].events.map(event => {
+      if (event.eventStatus === ERROR) {
+        errorMessage = 'Error ' + event.statusCode + ': ' + event.eventMessage;
+      }
+      return errorMessage;
+    });
+  }
   const renderStatusThumbnail = status => {
     if (status === VERIFIED) {
       return <img src={check_circle} alt="check_circle" />;
@@ -95,6 +104,8 @@ const VerificationResult = props => {
         showInModal={false}
         deviceType={props.deviceType}
         status={props.data[0].status}
+        errorMessage={errorMessage}
+        nextStepCode={props.data[0].nextStepCode}
       />
       {props.data.map((product, index) => (
         <Card

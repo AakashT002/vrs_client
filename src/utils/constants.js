@@ -121,3 +121,7 @@ export const EXPORT_DATA_INSTRUCTION =
   'Exporting will compile all data about this product into a downloadable csv.';
 export const EXPORT_DATA_LIST_INSTRUCTION =
   'Exporting will compile all data currently visible on the verifications table into a downloadable csv';
+export const LOOKUP_NOT_FOUND =
+  'Move to Review bin. Contact the Manufacturer / Product GTIN Owner';
+export const PRODUCT_NOT_VERIFIED =
+  'DO NOT resell ! Move to Quarantine bin Q25.';

@@ -62,6 +62,7 @@ const VerificationResult = props => {
         deviceType={props.deviceType}
         errorMessage={errorMessage}
         status={props.data[0].status}
+        nextStepCode={props.data[0].nextStepCode}
       />
       {verificationResultActions}
     </div>
