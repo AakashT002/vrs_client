@@ -31,6 +31,7 @@ class Header extends Component {
   async handleHome() {
     await this.props.dispatch(clearVerificationResult());
     this.props.history.push('/');
+    window.location.reload();
   }
 
   renderTitle() {
