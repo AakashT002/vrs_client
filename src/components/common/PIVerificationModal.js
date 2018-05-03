@@ -22,7 +22,7 @@ const PIVerificationModal = ({
   disableOnSubmit,
   expirationDateFormat,
   deviceType,
-  pathName,
+  modal,
   selectedRequestTime,
 }) => {
   let renderModalContent = null;
@@ -55,11 +55,6 @@ const PIVerificationModal = ({
   const renderId =
     verificationResult.length === 0 ? 'verifyProduct' : 'verificationResult';
 
-  const renderPathName =
-    pathName === '/dashboard' || pathName === '/'
-      ? 'dashboard'
-      : 'verifications';
-
   return (
     <div className="PIVerificationModal">
       <DialogContainer
@@ -71,7 +66,7 @@ const PIVerificationModal = ({
       >
         {renderModalContent}
         {piRequesting ? (
-          <div className={`PIVerificationModal__loader-${renderPathName}`}>
+          <div className={`PIVerificationModal__loader-${modal}`}>
             <MDSpinner size={20} singleColor="#00b8d4" />
           </div>
         ) : null}
@@ -108,7 +103,7 @@ PIVerificationModal.propTypes = {
   handleRequestedChange: PropTypes.func,
   selectedRequestTime: PropTypes.string,
   filterRequesting: PropTypes.bool,
-  pathName: PropTypes.string,
+  modal: PropTypes.string,
 };
 
 export default PIVerificationModal;

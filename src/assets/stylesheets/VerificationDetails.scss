@@ -168,7 +168,9 @@
 
   .VerificationDetails__blue {
     color: $cyan;
-    left: 656px;
+    position: relative;;
+    left: 45px;
+    top: 5px;
   }
 
   .VerificationDetails__green {

@@ -221,7 +221,7 @@ class Dashboard extends Component {
                   productIdentifier={this.state.productIdentifier}
                   piRequesting={this.props.piRequesting}
                   disableOnSubmit={this.state.disableOnSubmit}
-                  pathName={this.props.history.location.pathname}
+                  modal='dashboard'
                   selectedRequestTime={this.state.selectedRequestTime}
                 />
                 {this.renderStatsForNumbers(this.props.statsForNumbers)}

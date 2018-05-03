@@ -87,7 +87,6 @@ const Verifications = ({
   selectedRequestTime,
   filterRequesting,
   handleBackToDashboard,
-  pathName,
   handleExportData,
   handlePostExportData,
   isModalVisible,
@@ -323,7 +322,7 @@ const Verifications = ({
             productIdentifier={productIdentifier}
             piRequesting={piRequesting}
             disableOnSubmit={disableOnSubmit}
-            pathName={pathName}
+            modal='verifications'
             selectedRequestTime={selectedRequestTime}
           />
         </div>
@@ -445,7 +444,6 @@ Verifications.propTypes = {
   selectedRequestTime: PropTypes.string,
   filterRequesting: PropTypes.bool,
   handleBackToDashboard: PropTypes.func,
-  pathName: PropTypes.string,
   handleExportData: PropTypes.func,
   handlePostExportData: PropTypes.func,
   isModalVisible: PropTypes.bool,

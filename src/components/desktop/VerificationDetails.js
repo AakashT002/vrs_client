@@ -37,6 +37,10 @@ import {
   LOT,
   EXPIRATION,
   EXPORT_DATA_INSTRUCTION,
+  LOOKUP_NOT_FOUND,
+  PRODUCT_NOT_VERIFIED,
+  MANUFACTURER_ID,
+  VRS_PROVIDER_ID
 } from '../../utils/constants';
 import DateFormat from '../../utils/dateFormat';
 
@@ -46,15 +50,25 @@ import error_outline from '../../assets/images/error_outline.png';
 import not_interested from '../../assets/images/not_interested.png';
 
 const VerificationDetails = props => {
-  var errorMessage;
-  if (props.data[0].status === ERROR) {
-    props.data[0].events.map(event => {
-      if (event.eventStatus === ERROR) {
-        errorMessage = 'Error ' + event.statusCode + ': ' + event.eventMessage;
+
+  const renderErrorMessage = (data) => {
+    let errorMessage, errorLabel, errorText;
+    if (data.status === ERROR) {
+      var events = data.events;
+      for (var i = 0; i < data.events.length; i++) {
+        if (events[i].eventStatus === ERROR) {
+          errorMessage = `Error ${events[i].statusCode}: ${events[i].eventMessage}`;
+          errorLabel = `Error ${events[i].statusCode}`;
+          errorText = events[i].eventMessage;
+          break;
+        }
       }
-      return errorMessage;
-    });
-  }
+    }
+    return { errorMessage: errorMessage, errorLabel: errorLabel, errorText: errorText };
+  };
+
+  let errorValues = renderErrorMessage(props.data[0]);
+
   const renderStatusThumbnail = status => {
     if (status === VERIFIED) {
       return (
@@ -113,7 +127,15 @@ const VerificationDetails = props => {
       event.eventStatus === NOT_VERIFIED ||
       event.eventStatus === REQUEST_RCVD
     ) {
-      return `${event.entityType} ID: ${event.entityId}`;
+      if (event.entityType === 'MANUFACTURER') {
+        return `${MANUFACTURER_ID}: ${event.entityId}`;
+      }
+      else if (event.entityType === 'VRS_PROVIDER') {
+        return `${VRS_PROVIDER_ID}: ${event.entityId}`;
+      }
+      else {
+        return `${event.entityType} ID: ${event.entityId}`;
+      }
     } else if (event.eventStatus === ERROR) {
       return ERROR_ID_LABEL + event.statusCode;
     }
@@ -167,7 +189,7 @@ const VerificationDetails = props => {
               <TableColumn colSpan="2">
                 <font className="VerificationDetails__header-column">{`Transaction ID: ${
                   transaction.id
-                }`}</font>
+                  }`}</font>
               </TableColumn>
             </TableRow>
           </TableHeader>
@@ -182,13 +204,35 @@ const VerificationDetails = props => {
 
   let exportData = [];
 
+  const FormateEventLabel = status => {
+    if (status === VERIFIED) {
+      return PRODUCT_LABEL;
+    }
+    else if (status === NOT_VERIFIED) {
+      return NEXT_STEPS_LABEL;
+    }
+    else if (status === ERROR) {
+      return errorValues.errorLabel;
+    }
+  };
+
+  const FormateEventMessage = data => {
+    if (data[0].status === VERIFIED) {
+      return data[0].productName;
+    }
+    else if (data[0].status === NOT_VERIFIED) {
+      return data[0].nextStepCode === 'LOOKUP_NOT_FOUND'
+        ? LOOKUP_NOT_FOUND
+        : PRODUCT_NOT_VERIFIED;
+    }
+    else if (data[0].status === ERROR) {
+      return errorValues.errorText;
+    }
+  };
+
   const FormatExportData = data => {
-    const productLabel =
-      data[0].status === NOT_VERIFIED ? NEXT_STEPS_LABEL : PRODUCT_LABEL;
-    const productLabelText =
-      data[0].status === NOT_VERIFIED
-        ? process.env.REACT_APP_NEXT_STEPS
-        : data[0].productName === null ? ` --` : ` ${data[0].productName}`;
+    const productLabel = FormateEventLabel(data[0].status);
+    const productLabelText = FormateEventMessage(data);
 
     exportData.push(
       [SRN, `'${data[0].srn}'`],
@@ -260,7 +304,7 @@ const VerificationDetails = props => {
             data={FormatExportData(props.data)}
             fileName={`exportList_${props.data[0].srn}${
               props.data[0].gtin
-            }_${currentDateFormat}.csv`}
+              }_${currentDateFormat}.csv`}
             infoText={EXPORT_DATA_INSTRUCTION}
             modal="vrsDetails"
           />
@@ -274,7 +318,7 @@ const VerificationDetails = props => {
             showInModal={props.isPIVerificationModalVisible}
             deviceType={props.deviceType}
             status={props.data[0].status}
-            errorMessage={errorMessage}
+            errorMessage={errorValues.errorMessage}
             nextStepCode={props.data[0].nextStepCode}
           />
         </div>

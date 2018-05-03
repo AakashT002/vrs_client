@@ -212,7 +212,6 @@ export class VerificationsPage extends Component {
             handleRequestedChange={this.handleRequestedChange}
             filterRequesting={this.props.filterRequesting}
             handleBackToDashboard={this.handleBackToDashboard}
-            pathName={this.props.history.location.pathname}
             handleExportData={this.handleExportData}
             handlePostExportData={this.handlePostExportData}
             isModalVisible={this.state.isModalVisible}

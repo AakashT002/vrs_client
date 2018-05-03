@@ -125,3 +125,5 @@ export const LOOKUP_NOT_FOUND =
   'Move to Review bin. Contact the Manufacturer / Product GTIN Owner';
 export const PRODUCT_NOT_VERIFIED =
   'DO NOT resell ! Move to Quarantine bin Q25.';
+export const VRS_PROVIDER_ID = 'VRS Provider ID'; 
+export const MANUFACTURER_ID = 'Manufaturer ID'; 

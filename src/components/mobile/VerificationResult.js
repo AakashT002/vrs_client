@@ -14,6 +14,8 @@ import {
   ERROR_ID_LABEL,
   NOT_VERIFIED,
   VERIFIED,
+  MANUFACTURER_ID,
+  VRS_PROVIDER_ID
 } from '../../utils/constants';
 
 import access_time from '../../assets/images/access_time.png';
@@ -49,7 +51,15 @@ const VerificationResult = props => {
       event.eventStatus === NOT_VERIFIED ||
       event.eventStatus === REQUEST_RCVD
     ) {
-      return `${event.entityType} ID: ${event.entityId}`;
+      if (event.entityType === 'MANUFACTURER') {
+        return `${MANUFACTURER_ID}: ${event.entityId}`;
+      }
+      else if (event.entityType === 'VRS_PROVIDER') {
+        return `${VRS_PROVIDER_ID}: ${event.entityId}`;
+      }
+      else {
+        return `${event.entityType} ID: ${event.entityId}`;
+      }
     } else if (event.eventStatus === ERROR) {
       return ERROR_ID_LABEL + event.statusCode;
     }
